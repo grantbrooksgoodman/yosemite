@@ -1,5 +1,5 @@
 //
-//  CollectionViewCell.swift
+//  MatchCell.swift
 //  Yosemite
 //
 //  Created by Grant Brooks Goodman on 26/08/2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell
+class MatchCell: UICollectionViewCell
 {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!

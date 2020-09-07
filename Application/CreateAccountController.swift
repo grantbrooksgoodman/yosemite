@@ -1102,7 +1102,7 @@ extension UIView
     }
     
     /**
-     Removes a subview for a given tag.
+     Removes a subview for a given tag, if it exists.
      
      - Parameter withTag: The tag of the view to remove.
      */
