@@ -1,0 +1,1995 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>dismiss</key>
+	<dict>
+		<key>af</key>
+		<string>Ontslaan</string>
+		<key>ar</key>
+		<string>رفض</string>
+		<key>az</key>
+		<string>Azad</string>
+		<key>ba</key>
+		<string>Ҡыуып</string>
+		<key>be</key>
+		<string>Звольніць</string>
+		<key>bg</key>
+		<string>Съкрати</string>
+		<key>bn</key>
+		<string>বরখাস্ত</string>
+		<key>bs</key>
+		<string>Odbaci</string>
+		<key>ca</key>
+		<string>Ometre</string>
+		<key>ceb</key>
+		<string>Wagtangon</string>
+		<key>cs</key>
+		<string>Zamítl</string>
+		<key>cy</key>
+		<string>Diswyddo</string>
+		<key>da</key>
+		<string>Afvise</string>
+		<key>de</key>
+		<string>Entlassen</string>
+		<key>el</key>
+		<string>Να απορρίψει</string>
+		<key>en</key>
+		<string>Dismiss</string>
+		<key>eo</key>
+		<string>Eksigi</string>
+		<key>es</key>
+		<string>Descartar</string>
+		<key>et</key>
+		<string>Jätta</string>
+		<key>eu</key>
+		<string>Baztertu</string>
+		<key>fa</key>
+		<string>اخراج</string>
+		<key>fi</key>
+		<string>Hylkää</string>
+		<key>fr</key>
+		<string>Rejeter</string>
+		<key>ga</key>
+		<string>Dhíbhe</string>
+		<key>gd</key>
+		<string>Cuir air falbh</string>
+		<key>gl</key>
+		<string>Dimitir</string>
+		<key>gu</key>
+		<string>બરતરફ</string>
+		<key>he</key>
+		<string>לבטל</string>
+		<key>hi</key>
+		<string>खारिज</string>
+		<key>hr</key>
+		<string>Otpustiti</string>
+		<key>ht</key>
+		<string>Rejte</string>
+		<key>hu</key>
+		<string>Elvetéséhez</string>
+		<key>hy</key>
+		<string>Հեռացնել</string>
+		<key>id</key>
+		<string>Mengabaikan</string>
+		<key>is</key>
+		<string>Sleppa</string>
+		<key>it</key>
+		<string>Respingere</string>
+		<key>ja</key>
+		<string>任</string>
+		<key>jv</key>
+		<string>Ngilangi</string>
+		<key>ka</key>
+		<string>გადააყენოს</string>
+		<key>kk</key>
+		<string>Босатыңыз</string>
+		<key>kn</key>
+		<string>ವಜಾಗೊಳಿಸಿ</string>
+		<key>ko</key>
+		<string>닫기</string>
+		<key>ky</key>
+		<string>Бошотулсун</string>
+		<key>la</key>
+		<string>Dimittis</string>
+		<key>lt</key>
+		<string>Atleisti</string>
+		<key>mg</key>
+		<string>Handroaka</string>
+		<key>mi</key>
+		<string>Tonoa</string>
+		<key>mk</key>
+		<string>Разреши</string>
+		<key>ml</key>
+		<string>നിരസിക്കുക</string>
+		<key>mn</key>
+		<string>Халах</string>
+		<key>mr</key>
+		<string>घालविणे</string>
+		<key>ms</key>
+		<string>Memecat</string>
+		<key>mt</key>
+		<string>Tiċħad</string>
+		<key>ne</key>
+		<string>खारेज</string>
+		<key>nl</key>
+		<string>Sluiten</string>
+		<key>no</key>
+		<string>Avvise</string>
+		<key>pa</key>
+		<string>ਖਾਰਜ</string>
+		<key>pl</key>
+		<string>Zwolnić</string>
+		<key>pt</key>
+		<string>Fechar</string>
+		<key>ro</key>
+		<string>Respingerea</string>
+		<key>ru</key>
+		<string>Уволить</string>
+		<key>si</key>
+		<string>සේවයෙන් ඉවත්</string>
+		<key>sk</key>
+		<string>Zrušiť</string>
+		<key>sl</key>
+		<string>Opustite</string>
+		<key>sq</key>
+		<string>Të shkarkonte</string>
+		<key>sr</key>
+		<string>Отпусти</string>
+		<key>su</key>
+		<string>Ngilangkeun</string>
+		<key>sv</key>
+		<string>Avskeda</string>
+		<key>sw</key>
+		<string>Kumfukuza</string>
+		<key>ta</key>
+		<string>பதவி நீக்கம்</string>
+		<key>te</key>
+		<string>కొట్టి</string>
+		<key>tg</key>
+		<string>ยกเลิก</string>
+		<key>th</key>
+		<string>ไม่สนใจ</string>
+		<key>tl</key>
+		<string>Bale-walain</string>
+		<key>tr</key>
+		<string>Görevden</string>
+		<key>tt</key>
+		<string>Хезмәтеннән азат итү</string>
+		<key>udm</key>
+		<string>Палэнтыны</string>
+		<key>uk</key>
+		<string>Звільнити</string>
+		<key>ur</key>
+		<string>مسترد</string>
+		<key>uz</key>
+		<string>Lavozimdan ozod qiladi</string>
+		<key>vi</key>
+		<string>Bỏ</string>
+		<key>yi</key>
+		<string>אָפּזאָגן</string>
+		<key>zh</key>
+		<string>驳回</string>
+	</dict>
+	<key>following_unable</key>
+	<dict>
+		<key>af</key>
+		<string>Ongelukkig, sommige of al die volgende boodskap was nie in staat om te vertaal in jou taal. Probeer asseblief weer.</string>
+		<key>ar</key>
+		<string>للأسف بعض أو كل ما يلي الرسالة التي لم يتمكن من ترجمتها إلى اللغة الخاصة بك. يرجى المحاولة مرة أخرى.</string>
+		<key>az</key>
+		<string>Təəssüf ki, bəzi və ya bütün aşağıdakı mesaj ola bilməz tərcümə dil. Lütfən, yenidən cəhd edin.</string>
+		<key>ba</key>
+		<string>Ҡыҙғанысҡа ҡаршы, ҡайһы бер телдәргә тәржемә йәки һеҙ икенсе бөтә хәбәрҙең булыуы мөмкин түгел. Зинһар, тағы бер ҡат ҡарарға.</string>
+		<key>be</key>
+		<string>Да жаль, некаторыя або ўсе наступныя паведамленні не можа быць перакладзеная на ваш мову. Калі ласка, паспрабуйце зноў.</string>
+		<key>bg</key>
+		<string>За съжаление, някои или всички от следните съобщения не може да се преведе на вашия език. Моля, опитайте отново.</string>
+		<key>bn</key>
+		<string>দুর্ভাগ্যবশত, কিছু বা সব, নিম্নলিখিত বার্তা পারেনি অনুবাদ করা আপনার ভাষা. অনুগ্রহ করে আবার চেষ্টা করুন.</string>
+		<key>bs</key>
+		<string>Nažalost, neki od sljedeća poruka je bila u stanju da se prevede u tvoj jezik. Molim pokušajte ponovo.</string>
+		<key>ca</key>
+		<string>Malauradament, totes o algunes de les següents missatge no va poder ser traduïts a la seva llengua. Si us plau, torni a intentar.</string>
+		<key>ceb</key>
+		<string>Ikasubo, ang pipila o tanan sa mosunod nga mensahe nga dili makahimo sa gihubad ngadto sa imong pinulongan. Palihug sa pagsulay sa pag-usab.</string>
+		<key>cs</key>
+		<string>Bohužel, některé nebo všechny následující zpráva nemohla být přeloženy do vašeho jazyka. Zkuste to prosím znovu.</string>
+		<key>cy</key>
+		<string>Yn anffodus, mae rhai neu bob un o&apos;r canlynol neges yn gallu cael ei gyfieithu i mewn i&apos;ch iaith. Os gwelwch yn dda ceisiwch eto.</string>
+		<key>da</key>
+		<string>Desværre, nogle eller alle af følgende besked var ude af stand til at blive oversat til dit sprog. Prøv venligst igen.</string>
+		<key>de</key>
+		<string>Leider, einige oder alle der folgenden Nachricht war nicht in der Lage zu sein, in Ihre Sprache übersetzt. Bitte versuchen Sie es erneut.</string>
+		<key>el</key>
+		<string>Δυστυχώς, ορισμένες ή όλες από τις παρακάτω μήνυμα δεν ήταν δυνατό να μεταφραστεί στη γλώσσα σας. Παρακαλώ δοκιμάστε ξανά.</string>
+		<key>en</key>
+		<string>Unfortunately, some or all of the following message was unable to be translated into your language. Please try again.</string>
+		<key>eo</key>
+		<string># Beda? rinde, kelkaj aŭ ĉiuj de la sekva mesaĝo estis nekapabla esti tradukita en vian lingvon. Bonvolu provi denove.</string>
+		<key>es</key>
+		<string>Por desgracia, algunos o todos de los siguientes mensaje no pudo ser traducido a su idioma. Por favor, inténtelo de nuevo.</string>
+		<key>et</key>
+		<string>Kahjuks, mõned või kõik järgmised sõnum oli, ei suuda tõlkida oma keelde. Palun proovige uuesti.</string>
+		<key>eu</key>
+		<string>Zoritxarrez, batzuk edo guztiak honako mezua ezin izan itzulitako zure hizkuntzara. Mesedez, saiatu berriro.</string>
+		<key>fa</key>
+		<string>متاسفانه برخی یا همه موارد زیر پیام قادر به ترجمه به زبان خود. لطفا دوباره سعی کنید.</string>
+		<key>fi</key>
+		<string>Valitettavasti, jotkin tai kaikki seuraavat viesti oli, voi olla käännetty kieli. Ole hyvä ja yritä uudelleen.</string>
+		<key>fr</key>
+		<string>Malheureusement, certains ou tous le message suivant n&apos;a pas pu être traduit dans votre langue. Merci d&apos;essayer de nouveau.</string>
+		<key>ga</key>
+		<string>Ar an drochuair, roinnt nó gach ceann de na teachtaireacht seo a leanas a bhí in ann a aistriú isteach i do theanga. Le do thoil bain triail eile as.</string>
+		<key>gd</key>
+		<string>Gu mì-fhortanach, tha cuid no a h-uile teachdaireachd a leanas a bha comasach air a bhith air eadar-theangachadh a-steach do chànain. Feuch ris a-rithist.</string>
+		<key>gl</key>
+		<string>Por desgraza, algúns ou todos os seguintes mensaxe foi incapaz de ser traducido ao seu idioma. Por favor, ténteo de novo.</string>
+		<key>gu</key>
+		<string>કમનસીબે, અમુક અથવા બધા નીચેની સંદેશ અસમર્થ હતું ભાષાંતર કરવા માટે, તમારી ભાષા. કૃપા કરીને ફરીથી પ્રયત્ન કરો.</string>
+		<key>he</key>
+		<string>למרבה הצער, כולם או חלקם, את ההודעה הבאה זה יכול להיות מתורגם לשפה שלך. אנא נסה שוב.</string>
+		<key>hi</key>
+		<string>दुर्भाग्य से, कुछ या सभी निम्न संदेश में असमर्थ था होना करने के लिए अपनी भाषा में अनुवाद. कृपया फिर से कोशिश करें.</string>
+		<key>hr</key>
+		<string>Nažalost, neke ili sve sljedeće poruke ne mogu biti prevedeni na vaš jezik. Molimo vas, pokušajte ponovno.</string>
+		<key>ht</key>
+		<string>Malerezman, kèk oswa tout mesaj sa a te kapab yo dwe tradui nan lang ou. Tanpri eseye ankò.</string>
+		<key>hu</key>
+		<string>Sajnos, néhány vagy az összes, a következő üzenet volt képes fordítani a nyelvét. Kérjük, próbálja újra.</string>
+		<key>hy</key>
+		<string>Ցավոք, որոշ կամ բոլոր հետևյալ հաղորդագրությունները կարող է թարգմանվել է ձեր լեզուն ։ Խնդրում եմ, փորձեք կրկին.</string>
+		<key>id</key>
+		<string>Sayangnya, beberapa atau semua hal berikut pesan tidak dapat diterjemahkan ke dalam bahasa anda. Silakan coba lagi.</string>
+		<key>is</key>
+		<string>Því miður, sumir eða öll eftir skilaboð var ekki að vera að þýða í þínu tungumáli. Reyndu aftur.</string>
+		<key>it</key>
+		<string>Purtroppo, alcuni o tutti i seguenti messaggio era in grado di essere tradotto nella tua lingua. Si prega di riprovare.</string>
+		<key>ja</key>
+		<string>残念ながら、一部又は全部の以下のメッセージが翻訳しました。 もう一度入力してください。</string>
+		<key>jv</key>
+		<string>Sayange, sawetara utawa kabeh saka ing ngisor iki pesen tukang be translated menyang basa. Mangga nyoba maneh.</string>
+		<key>ka</key>
+		<string>სამწუხაროდ, ზოგიერთი ან ყველა შემდეგი გაგზავნა ვერ შეძლო ითარგმნოს თქვენს ენაზე. გთხოვთ, სცადეთ კიდევ ერთხელ.</string>
+		<key>kk</key>
+		<string>Өкінішке орай, кейбір немесе барлық келесі хабарламаны мүмкін емес ауыстырылды сіздің тілі. Көріңіз тағы да.</string>
+		<key>kn</key>
+		<string>ದುರದೃಷ್ಟವಶಾತ್, ಕೆಲವು ಅಥವಾ ಎಲ್ಲಾ ಕೆಳಗಿನ message was unable to be translated into your ಭಾಷೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+		<key>ko</key>
+		<string>불행하게도,의 일부 또는 전부 다음과 같은 메시지 못했신의 언어로 번역. 다시 시도해 주시기 바랍니다.</string>
+		<key>ky</key>
+		<string>Тилекке каршы, айрым же бардык төмөнкүдөй билдирүү мүмкүн эмес которулууга сиздин тили. Мейли, байкап көргүлө кайра.</string>
+		<key>la</key>
+		<string>Infeliciter, omnes sequens nuntius non potuit transferri in lingua tua. Quaeso, iterum conare.</string>
+		<key>lt</key>
+		<string>Deja, kai kuriuos ar visus iš šių pranešimų negalėjo būti išverstas į jūsų kalbą. Bandykite dar kartą.</string>
+		<key>mg</key>
+		<string>Indrisy anefa fa, ny sasany na rehetra izao hafatra manaraka izao dia tsy ho voadika amin&apos;ny tenim-pirenena. Andramo indray.</string>
+		<key>mi</key>
+		<string>Kia aroha mai, etahi, te katoa ranei o te karere e whai ake nei i taea ki te kia iritihia ki to koutou reo. Koa ngana anō.</string>
+		<key>mk</key>
+		<string>За жал, некои или сите од следниве порака не беше во состојба да бидат преведени на вашиот јазик. Ве молиме обидете се повторно.</string>
+		<key>ml</key>
+		<string>നിര്ഭാഗവശാല്, some or all of the following message was unable to be translated into your language. Please try again.</string>
+		<key>mn</key>
+		<string>Харамсалтай нь, зарим, эсвэл бүх дараах мэдэгдэл чадахгүй байсан байх орчуулсан таны хэл. Дахин оролдоно уу.</string>
+		<key>mr</key>
+		<string>दुर्दैवाने, काही किंवा सर्व खालिल संदेश करण्यात अक्षम आहे be translated into your language. कृपया पुन्हा प्रयत्न करा.</string>
+		<key>ms</key>
+		<string>Sayangnya, beberapa di antara atau semua pesan berikut dapat menjadi diterjemahkan ke dalam bahasa anda. Sila cuba lagi.</string>
+		<key>mt</key>
+		<string>Sfortunatament, kollha jew uħud minnhom tal-messaġġ li ġej kien f&apos;pożizzjoni li jiġu tradotti fil-lingwa tiegħek. Jekk jogħġbok erġa &apos; ipprova.</string>
+		<key>ne</key>
+		<string>दुर्भाग्यवश, केही वा सबै निम्न सन्देश गर्न असमर्थ थियो be translated into your language. कृपया फेरि प्रयास गर्नुहोस् । </string>
+		<key>nl</key>
+		<string>Helaas zijn sommige of alle van de volgende bericht kan niet worden vertaald in uw taal. Gelieve opnieuw te proberen.</string>
+		<key>no</key>
+		<string>Dessverre, noen eller alle av de følgende melding var ikke i stand til å være oversatt til ditt språk. Vennligst prøv igjen.</string>
+		<key>pa</key>
+		<string>ਬਦਕਿਸਮਤੀ ਨਾਲ, ਦੇ ਕੁਝ ਜ ਸਾਰੇ ਹੇਠ ਸੁਨੇਹਾ ਕਰਨ ਲਈ ਅਸਮਰੱਥ ਹੈ ਸੀ ਅਨੁਵਾਦ ਆਪਣੀ ਭਾਸ਼ਾ ਵਿੱਚ. ਕਿਰਪਾ ਕਰਕੇ ਮੁੜ ਕੋਸ਼ਿਸ ਕਰੋ.</string>
+		<key>pl</key>
+		<string>Niestety, niektóre lub wszystkie z następujących komunikatów nie może być przetłumaczony na twój język. Proszę, spróbuj ponownie.</string>
+		<key>pt</key>
+		<string>Infelizmente, de alguns ou de todos a mensagem a seguir não pôde ser traduzido em sua língua. Por favor, tente novamente.</string>
+		<key>ro</key>
+		<string>Din păcate, unele sau toate dintre următoarele mesajul a fost în imposibilitatea de a fi traduse în limba ta. Vă rugăm să încercați din nou.</string>
+		<key>ru</key>
+		<string>К сожалению, некоторые или все следующие сообщения не может быть переведена на ваш язык. Пожалуйста, попробуйте снова.</string>
+		<key>si</key>
+		<string>අවාසනාවකට මෙන්, කිහිපයක් හෝ සියල්ලම පහත පණිවිඩය කිරීමට නොහැකි වූ බවට පරිවර්තනය කළ ඔබේ භාෂාව. කරුණාකර නැවත උත්සාහ කරන්න.</string>
+		<key>sk</key>
+		<string>Bohužiaľ, niektoré alebo všetky nasledujúce správy nemohol byť preložené do vášho jazyka. Prosím, skúste to znova.</string>
+		<key>sl</key>
+		<string>Na žalost, nekatere ali vse naslednje sporočilo je bilo, ne more biti prevedeni v vaš jezik. Prosimo, poskusite znova.</string>
+		<key>sq</key>
+		<string>Për fat të keq, disa ose të gjitha këto mesazh nuk ishte në gjendje për të përkthyer në gjuhën tuaj. Ju lutemi të provoni përsëri.</string>
+		<key>sr</key>
+		<string>Нажалост, неке или све ове поруке није могао бити преведен на ваш језик. Молимо вас, покушајте поново.</string>
+		<key>su</key>
+		<string>Hanjakalna, sababaraha atawa sakabéh talatah di handap ieu teu bisa ditarjamahkeun kana basa sunda. Mangga cobian deui.</string>
+		<key>sv</key>
+		<string>Tyvärr, några eller alla av följande meddelandet kunde inte översättas till ditt språk. Var god försök igen.</string>
+		<key>sw</key>
+		<string>Kwa bahati mbaya, baadhi au yote ya ujumbe zifuatazo hakuweza kuwa kutafsiriwa katika lugha yako. Tafadhali jaribu tena.</string>
+		<key>ta</key>
+		<string>துரதிருஷ்டவசமாக, சில அல்லது அனைத்து பின்வரும் செய்தியை முடியவில்லை மொழிபெயர்க்க வேண்டும் உங்கள் மொழி. தயவு செய்து மீண்டும் முயற்சிக்கவும்.</string>
+		<key>te</key>
+		<string>దురదృష్టవశాత్తు, కొన్ని లేదా అన్ని క్రింది సందేశం was unable to be translated into your language. దయచేసి మళ్లీ ప్రయత్నించండి.</string>
+		<key>tg</key>
+		<string>Мутаассифона, баъзе е ҳамаи зерин паемҳои метавонад ба тарҷума ба забони худ. Лутфан, кӯшиш боз.</string>
+		<key>th</key>
+		<string>น่าเสียดายที่บางหรือต่อไปนี้ทั้งหมดข้อความถูกไม่สามารถถูกแปลงไปในภาษาของคุณ. โปรดลองใหม่อีกครั้ง</string>
+		<key>tl</key>
+		<string>Sa kasamaang-palad, ang ilan o lahat ng mga sumusunod na mensahe ay hindi nagawang upang i-translate sa iyong wika. Mangyaring subukan muli.</string>
+		<key>tr</key>
+		<string>Ne yazık ki, aşağıdaki iletiyi bazı veya tüm diline tercüme edemedi. Lütfen tekrar deneyin.</string>
+		<key>tt</key>
+		<string>Кызганычка каршы, кайбер яки бөтен түбәндәге хәбәрләр алмый переведена сезнең тел. Зинһар өчен, карагыз әле кабат.</string>
+		<key>udm</key>
+		<string>Жаляса верано луэ, куд-огезлэсь вань верам кыл вылэ выжтыны луысал яке вуоно уг быгато. Пожалуйста, нош ик утчасько.</string>
+		<key>uk</key>
+		<string>На жаль, деякі або всі такі повідомлення не може бути перекладена на вашу мову. Будь ласка, спробуйте знову.</string>
+		<key>ur</key>
+		<string>بدقسمتی سے, کچھ یا تمام مندرجہ ذیل پیغام کے قابل نہیں تھا میں ترجمہ کرنے کے لئے آپ کی زبان ہے. براہ مہربانی دوبارہ کوشش کریں.</string>
+		<key>uz</key>
+		<string>Afsuski, quyidagi xabar ayrim yoki sizning barcha tiliga tarjima qilingan bo&apos;lishi olmas edi. Yana harakat qilib ko&apos;ring, iltimos.</string>
+		<key>vi</key>
+		<string>Rất tiếc, một, hoặc tất cả các tin nhắn sau là không thể được dịch sang ngôn ngữ của bạn. Hãy cố gắng một lần nữa.</string>
+		<key>yi</key>
+		<string>צום באַדויערן, עטלעכע אָדער אַלע פון די ווייַטערדיק אָנזאָג איז געווען ניט געקענט צו זייַן איבערגעזעצט אין אייער שפּראַך. ביטע פּרובירן ווידער.</string>
+		<key>zh</key>
+		<string>不幸的是，一些或所有下面的消息是无法被翻译成语言。 请再试一次。</string>
+	</dict>
+	<key>language_codes</key>
+	<dict>
+		<key>af</key>
+		<string>Afrikaans (Afrikaans)</string>
+		<key>ar</key>
+		<string>Arabic (العربية)</string>
+		<key>az</key>
+		<string>Azerbaijan (Azərbaycan)</string>
+		<key>ba</key>
+		<string>Bashkir (Башҡорт)</string>
+		<key>be</key>
+		<string>Belarusian (Беларуская)</string>
+		<key>bg</key>
+		<string>Bulgarian (Български)</string>
+		<key>bn</key>
+		<string>Bengali (বাংলা)</string>
+		<key>bs</key>
+		<string>Bosnian (Bosanskih)</string>
+		<key>ca</key>
+		<string>Catalan (Català)</string>
+		<key>ceb</key>
+		<string>Cebuano (Cebuano)</string>
+		<key>cs</key>
+		<string>Czech (Čeština)</string>
+		<key>cy</key>
+		<string>Welsh (Cymru)</string>
+		<key>da</key>
+		<string>Danish (Dansk)</string>
+		<key>de</key>
+		<string>German (Deutsch)</string>
+		<key>el</key>
+		<string>Greek (Ελληνικά)</string>
+		<key>en</key>
+		<string>English</string>
+		<key>eo</key>
+		<string>Esperanto (Esperanto)</string>
+		<key>es</key>
+		<string>Spanish (Español)</string>
+		<key>et</key>
+		<string>Estonian (Eesti)</string>
+		<key>eu</key>
+		<string>Basque (Euskal)</string>
+		<key>fa</key>
+		<string>Persian (فارسی)</string>
+		<key>fi</key>
+		<string>Finnish (Suomalainen)</string>
+		<key>fr</key>
+		<string>French (Français)</string>
+		<key>ga</key>
+		<string>Irish (Gaeilge)</string>
+		<key>gd</key>
+		<string>Scottish Gaelic (Gàidhlig Na H-Alba)</string>
+		<key>gl</key>
+		<string>Galician (Galego)</string>
+		<key>gu</key>
+		<string>Gujarati (ગુજરાતી)</string>
+		<key>he</key>
+		<string>Hebrew (עברית)</string>
+		<key>hi</key>
+		<string>Hindi (हिन्दी)</string>
+		<key>hr</key>
+		<string>Croatian (Hrvatski)</string>
+		<key>ht</key>
+		<string>Haitian Creole (Ayisyen Kreyòl)</string>
+		<key>hu</key>
+		<string>Hungarian (Magyar)</string>
+		<key>hy</key>
+		<string>Armenian (Հայ)</string>
+		<key>id</key>
+		<string>Indonesian (Bahasa Indonesia)</string>
+		<key>is</key>
+		<string>Icelandic (Íslensk)</string>
+		<key>it</key>
+		<string>Italian (Italiano)</string>
+		<key>ja</key>
+		<string>Japanese (日本語)</string>
+		<key>jv</key>
+		<string>Javanese (Jawa)</string>
+		<key>ka</key>
+		<string>Georgian (ქართული)</string>
+		<key>kk</key>
+		<string>Kazakh (Қазақ)</string>
+		<key>kn</key>
+		<string>Kannada (ಕನ್ನಡ)</string>
+		<key>ko</key>
+		<string>Korean (한국어)</string>
+		<key>ky</key>
+		<string>Kyrgyz (Киргизский)</string>
+		<key>la</key>
+		<string>Latin (Latine)</string>
+		<key>lt</key>
+		<string>Lithuanian (Lietuvių)</string>
+		<key>mg</key>
+		<string>Malagasy (Malagasy)</string>
+		<key>mi</key>
+		<string>Maori (Māori)</string>
+		<key>mk</key>
+		<string>Macedonian (Македонски)</string>
+		<key>ml</key>
+		<string>Malayalam (മലയാളം)</string>
+		<key>mn</key>
+		<string>Mongolian (Монгол улсын)</string>
+		<key>mr</key>
+		<string>Marathi (मराठी)</string>
+		<key>ms</key>
+		<string>Malay (Melayu)</string>
+		<key>mt</key>
+		<string>Maltese (Malti)</string>
+		<key>ne</key>
+		<string>Nepali (नेपाली)</string>
+		<key>nl</key>
+		<string>Dutch (Nederlands)</string>
+		<key>no</key>
+		<string>Norwegian (Norsk)</string>
+		<key>pa</key>
+		<string>Punjabi (ਪੰਜਾਬੀ)</string>
+		<key>pl</key>
+		<string>Polish (Polski)</string>
+		<key>pt</key>
+		<string>Portuguese (Português)</string>
+		<key>ro</key>
+		<string>Romanian (Română)</string>
+		<key>ru</key>
+		<string>Russian (Русский)</string>
+		<key>si</key>
+		<string>Sinhala (සිංහල)</string>
+		<key>sk</key>
+		<string>Slovakian (Slovenský)</string>
+		<key>sl</key>
+		<string>Slovenian (Slovenski)</string>
+		<key>sq</key>
+		<string>Albanian (Shqiptare)</string>
+		<key>sr</key>
+		<string>Serbian (Српски)</string>
+		<key>su</key>
+		<string>Sundanese (Basa sunda)</string>
+		<key>sv</key>
+		<string>Swedish (Svenska)</string>
+		<key>sw</key>
+		<string>Swahili (Kiswahili)</string>
+		<key>ta</key>
+		<string>Tamil (தமிழ்)</string>
+		<key>te</key>
+		<string>Telugu (తెలుగు)</string>
+		<key>tg</key>
+		<string>Tajik (Тоҷик)</string>
+		<key>th</key>
+		<string>Thai (ภาษาไทย)</string>
+		<key>tl</key>
+		<string>Tagalog (Tagalog)</string>
+		<key>tr</key>
+		<string>Turkish (Türkçe)</string>
+		<key>tt</key>
+		<string>Tatar (Татар)</string>
+		<key>udm</key>
+		<string>Udmurt (Удмурт)</string>
+		<key>uk</key>
+		<string>Ukrainian (Українська)</string>
+		<key>ur</key>
+		<string>Urdu (اردو)</string>
+		<key>uz</key>
+		<string>Uzbek (O&apos;zbek)</string>
+		<key>vi</key>
+		<string>Vietnamese (Tiếng Việt)</string>
+		<key>yi</key>
+		<string>Yiddish (ייִדיש)</string>
+		<key>zh</key>
+		<string>Chinese (中文)</string>
+	</dict>
+	<key>no_internet_message</key>
+	<dict>
+		<key>af</key>
+		<string>Die Internet-verbinding blyk te wees op die regte pad.
+
+Asseblief toegang tot die Internet en probeer weer.</string>
+		<key>ar</key>
+		<string>اتصال إنترنت يبدو حاليا.
+
+يرجى الاتصال بالإنترنت ثم حاول مرة أخرى.</string>
+		<key>az</key>
+		<string>İnternet bağlantısı yerləşir offline.
+
+Xahiş edirik, qoşulun İnternet və yenidən cəhd edin.</string>
+		<key>ba</key>
+		<string>Интернет-берләшмә ҡушыла.
+
+режимда автономиялы.
+
+Зинһар, ҡабатларға тырышасаҡ һәм интернетҡа тоташтырылған.</string>
+		<key>be</key>
+		<string>Інтэрнэт-злучэнне знаходзіцца ў аўтаномным рэжыме.
+
+Калі ласка, падключыцеся да Інтэрнэту і паўтарыце спробу.</string>
+		<key>bg</key>
+		<string>Интернет-връзка, е в офлайн режим.
+
+Моля, свържете се към Интернет и опитайте отново.</string>
+		<key>bn</key>
+		<string>ইন্টারনেট সংযোগ প্রদর্শিত হতে অফলাইন.
+
+দয়া করে ইন্টারনেটের সাথে সংযোগ এবং আবার চেষ্টা করুন.</string>
+		<key>bs</key>
+		<string>Internet veza izgleda da je van dometa.
+
+Molim te spoji na Internet i pokušaj ponovo.</string>
+		<key>ca</key>
+		<string>La connexió a Internet sembla estar fora de línia.
+
+Si us plau, connectar-se a Internet i provar de nou.</string>
+		<key>ceb</key>
+		<string>Ang Internet connection makita nga offline.
+
+Palihug sa sumpaysumpaya sa Internet ug mosulay pag-usab.</string>
+		<key>cs</key>
+		<string>Připojení k Internetu se zdá být v režimu offline.
+
+Prosím, připojení k Internetu a zkuste to znovu.</string>
+		<key>cy</key>
+		<string>Y cysylltiad Rhyngrwyd yn ymddangos i fod yn all-lein.
+
+Os gwelwch yn dda cysylltu i&apos;r Rhyngrwyd ac yn ceisio eto.</string>
+		<key>da</key>
+		<string>Den Internet-forbindelse ser ud til at være offline.
+
+Bemærk oprette forbindelse til Internettet, og prøv igen.</string>
+		<key>de</key>
+		<string>Die Internet-Verbindung scheint offline zu sein.
+
+Bitte mit dem Internet verbinden und versuchen Sie es erneut.</string>
+		<key>el</key>
+		<string>Η σύνδεση με το Διαδίκτυο φαίνεται να είναι εκτός σύνδεσης.
+
+Παρακαλώ συνδεθείτε στο Internet και προσπαθήστε ξανά.</string>
+		<key>en</key>
+		<string>The internet connection appears to be offline.</string>
+		<key>eo</key>
+		<string>La Interreta konekto aperas esti elreta.
+
+Bonvolu konekti al la Interreto kaj provu denove.</string>
+		<key>es</key>
+		<string>La conexión a Internet parece estar fuera de línea.
+
+Por favor, conectarse a Internet e inténtelo de nuevo.</string>
+		<key>et</key>
+		<string>Interneti-ühenduse tundub, et offline.
+
+Palun Interneti-ühendust ja proovige uuesti.</string>
+		<key>eu</key>
+		<string>Internet konexioa agertzen offline.
+
+Mesedez, Internetera konektatu eta saiatu berriro.</string>
+		<key>fa</key>
+		<string>اتصال به اینترنت به نظر می رسد نیست.
+
+لطفا اتصال به اینترنت و دوباره سعی کنید.</string>
+		<key>fi</key>
+		<string>Internet-yhteys näyttää olevan offline-tilassa.
+
+Ole hyvä yhteyden Internetiin ja yritä uudelleen.</string>
+		<key>fr</key>
+		<string>La connexion Internet semble être hors ligne.
+
+Veuillez vous connecter à l&apos;Internet et essayez à nouveau.</string>
+		<key>ga</key>
+		<string>Ar an Idirlíon nasc dealraitheach a bheith as líne.
+
+Le do thoil nascadh leis an Idirlíon agus bain triail as arís.</string>
+		<key>gd</key>
+		<string>An t-eadar-Lìon ceangal gu bheil far loidhne.
+
+Cuir ceangal ris an eadar-Lìon agus feuch ris a-rithist.</string>
+		<key>gl</key>
+		<string>A conexión a Internet parece estar fóra de liña.
+
+Por favor, conectarse a Internet e ténteo de novo.</string>
+		<key>gu</key>
+		<string>ઇન્ટરનેટ કનેક્શન ઓફલાઈન થયેલ હોય એમ દેખાય છે.
+
+કૃપા કરીને ઇન્ટરનેટ સાથે કનેક્ટ કરો અને ફરીથી પ્રયત્ન કરો.</string>
+		<key>he</key>
+		<string>חיבור לאינטרנט נראה במצב לא מקוון.
+
+בבקשה להתחבר לאינטרנט ונסה שוב.</string>
+		<key>hi</key>
+		<string>इंटरनेट कनेक्शन प्रकट होता है किया जा करने के लिए ऑफ़लाइन है । कृपया इंटरनेट से कनेक्ट करें और फिर कोशिश करें.</string>
+		<key>hr</key>
+		<string>Internet veza je u izvanmrežnom načinu rada.
+
+Molimo vas, povežite se s Internetom i pokušajte ponovo.</string>
+		<key>ht</key>
+		<string>Koneksyon sou Entènèt la parèt yo dwe offline.
+
+Tanpri konekte sou Entènèt la epi eseye ankò.</string>
+		<key>hu</key>
+		<string>Az Internet-kapcsolat, úgy tűnik, hogy offline.
+
+Kérjük, csatlakozzon az Internethez, majd próbálja meg újra.</string>
+		<key>hy</key>
+		<string>Ինտերնետ-կապը գտնվում է օֆլայն է: Խնդրում ենք, միացեք Ինտերնետին և կրկին փորձեք.</string>
+		<key>id</key>
+		<string>Koneksi Internet tampaknya offline.
+
+Silakan terhubung ke Internet dan coba lagi.</string>
+		<key>is</key>
+		<string>Nettengingu virðist vera ótengdur.
+
+Vinsamlegast tengjast Netinu og reyna aftur.</string>
+		<key>it</key>
+		<string>La connessione a Internet sembra essere offline.
+
+Si prega di collegarsi a Internet e riprovare.</string>
+		<key>ja</key>
+		<string>インターネット接続がオフラインです。 くださいインターネットへ接続して操作をやり直してください。</string>
+		<key>jv</key>
+		<string>Sambungan Internet katon dadi offline.
+
+Mangga nyambung menyang Internet lan nyoba maneh.</string>
+		<key>ka</key>
+		<string>ინტერნეტი, როგორც ჩანს ფორუმზე.
+
+გთხოვთ დაკავშირება ინტერნეტი და სცადეთ კიდევ ერთხელ.</string>
+		<key>kk</key>
+		<string>Интернет қосылымы және орналасқан желіден тыс.
+
+Пожалуйста, подключитесь Интернетке және әрекетті қайталаңыз.</string>
+		<key>kn</key>
+		<string>ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕ ಕಂಡುಬರುತ್ತದೆ ಆಫ್ಲೈನ್.
+
+ಮಾಡಿ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+		<key>ko</key>
+		<string>인터넷 연결을 나타나는 오프라인 상태로 표시됩니다.
+
+인터넷에 연결하시기 바랍니다 다시 시도하십시오.</string>
+		<key>ky</key>
+		<string>Интернет-туташуу турат автономном режиминде.
+
+Мейли, подключитесь карата Интернетке жана повторите өтүүсүнө.</string>
+		<key>la</key>
+		<string>Internet nexu apparet, consectetuer adipiscing elit.
+
+Placere coniungere ad Internet, et experiri iterum.</string>
+		<key>lt</key>
+		<string>Interneto ryšys, atrodo, būti neprisijungęs.
+
+Prašome prisijungti prie Interneto ir bandykite dar kartą.</string>
+		<key>mg</key>
+		<string>Ny Aterineto toa ivelan&apos;ny aterineto.
+
+Azafady mifandray amin&apos;ny Aterineto, ary miezaka indray.</string>
+		<key>mi</key>
+		<string>Te hononga Ipurangi puta ki te waiho i te tuimotu.
+
+Tēnā hono atu ki te Internet me te ngana anō.</string>
+		<key>mk</key>
+		<string>Интернет конекцијата се појавува да биде присутен.
+
+Ве молиме да се поврзете на Интернет и обидете се повторно.</string>
+		<key>ml</key>
+		<string>ഇന്റർനെറ്റ് കണക്ഷൻ ഓഫ്ലൈനിൽ ദൃശ്യമാകുന്നു.
+
+ദയവായി ഇൻറർനെറ്റുമായി ബന്ധിപ്പിച്ച് വീണ്ടും ശ്രമിക്കൂ.</string>
+		<key>mn</key>
+		<string>Интернет холболт байх нь харагдаж офлайн.
+
+Уу Интернэтэд холбогдож, дахин оролдоно.</string>
+		<key>mr</key>
+		<string>इंटरनेट कनेक्शन असल्याचे दिसून येत आहे ऑफलाइन आहे.
+
+कृपया इंटरनेटशी कनेक्ट करा आणि पुन्हा प्रयत्न करा.</string>
+		<key>ms</key>
+		<string>Sambungan Internet muncul untuk menjadi offline.
+
+Tolong sambungkan ke Internet dan cuba lagi.</string>
+		<key>mt</key>
+		<string>L-konnessjoni mal-Internet jidher li l-internet.
+
+Jekk jogħġbok jgħaqqdu l-Internet u erġa &apos; ipprova.</string>
+		<key>ne</key>
+		<string>इन्टरनेट जडान देखिन्छ अफलाइन छ । कृपया इन्टरनेट जडान र फेरि प्रयास गर्नुहोस् । </string>
+		<key>nl</key>
+		<string>De Internet verbinding wordt weergegeven als offline.
+
+Maak verbinding met het Internet en probeer het opnieuw.</string>
+		<key>no</key>
+		<string>Internett-tilkobling ser ut til å være offline.
+
+Vennligst koble til Internett, og prøv på nytt.</string>
+		<key>pa</key>
+		<string>ਨੂੰ ਇੰਟਰਨੈੱਟ ਕੁਨੈਕਸ਼ਨ ਹੋਣ ਦਾ ਦਿਸਦਾ ਹੈ ਆਫਲਾਈਨ ਹੈ.
+
+ਜੀ, ਨੂੰ ਇੰਟਰਨੈੱਟ ਨਾਲ ਕੁਨੈਕਟ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.</string>
+		<key>pl</key>
+		<string>Połączenie z internetem jest w trybie offline.
+
+Proszę, połącz się z Internetem i spróbuj ponownie.</string>
+		<key>pt</key>
+		<string>A conexão com a Internet parece estar offline.
+
+Por favor conecte-se à Internet e tente novamente.</string>
+		<key>ro</key>
+		<string>Conexiunea la Internet pare a fi deconectat.
+
+Vă rugăm să vă conectați la Internet și încercați din nou.</string>
+		<key>ru</key>
+		<string>Интернет-соединение находится в автономном режиме.
+
+Пожалуйста, подключитесь к Интернету и повторите попытку.</string>
+		<key>si</key>
+		<string>අන්තර්ජාල සම්බන්ධතාවයක් බව පෙනී යයි නොබැඳි වනු ඇත.
+
+කරුණාකර අන්තර්ජාලය වෙත සම්බන්ධ කර නැවත උත්සාහ කරන්න.</string>
+		<key>sk</key>
+		<string>Pripojenie na Internet sa zdá byť offline.
+
+Prosím, pripojiť na Internet, a skúste to znova.</string>
+		<key>sl</key>
+		<string>Internetna povezava se zdi, da se brez povezave.
+
+Prosimo, da se povežete z Internetom in poskusite znova.</string>
+		<key>sq</key>
+		<string>Lidhja në Internet duket të jetë e shkëputur.
+
+Ju lutemi të lidheni me Internet dhe të provoni përsëri.</string>
+		<key>sr</key>
+		<string>Интернет веза је у режиму ван мреже.
+
+Молим вас, морате да имате Интернет везу и покушајте поново.</string>
+		<key>su</key>
+		<string>Nu sambungan Internet mucunghul jadi offline.
+
+Mangga nyambung ka Internet jeung coba deui.</string>
+		<key>sv</key>
+		<string>Internet-anslutning verkar vara offline.
+
+Anslut till Internet och försök igen.</string>
+		<key>sw</key>
+		<string>Internet uhusiano inaonekana kuwa offline.
+
+Tafadhali kuungana na Mtandao na kujaribu tena.</string>
+		<key>ta</key>
+		<string>இணைய இணைப்பு தோன்றுகிறது தான்.
+
+தயவு செய்து இணைய இணைக்க மீண்டும் முயற்சி.</string>
+		<key>te</key>
+		<string>ఇంటర్నెట్ కనెక్షన్ ఆఫ్లైన్లో కనిపిస్తుంది.
+
+దయచేసి ఇంటర్నెట్కు కనెక్ట్ చేసి మళ్లీ ప్రయత్నించండి.</string>
+		<key>tg</key>
+		<string>Интернет-мураккаб аст, хомӯш.
+
+Лутфан, подключитесь ба Интернет ва амалро такрор кунед.</string>
+		<key>th</key>
+		<string>ที่เชื่อมต่ออินเทอร์เน็ตดูเหมือนจะเป็นออฟไลน์นะ ได้โปรดเชื่อมต่อไปยังอินเทอร์เน็ตก่อนแล้วลองใหม่อีกครั้ง</string>
+		<key>tl</key>
+		<string>Ang koneksyon sa Internet ay lilitaw upang maging offline.
+
+Mangyaring kumonekta sa Internet at subukan muli.</string>
+		<key>tr</key>
+		<string>İnternet bağlantısı çevrimdışı görünüyor.
+
+Internet&apos;e bağlanın ve yeniden deneyin.</string>
+		<key>tt</key>
+		<string>Интернет-соединение урнашкан, автоном режимда.
+
+Зинһар, подключитесь Интернетка һәм повторите узды.</string>
+		<key>udm</key>
+		<string>Интернет-режимын пуке автономной огазеян.
+
+Пожалуйста, подключаться, Интернет please try доры.</string>
+		<key>uk</key>
+		<string>Інтернет-з&apos;єднання знаходиться в автономному режимі.
+
+Будь ласка, підключіться до Інтернету і повторіть спробу.</string>
+		<key>ur</key>
+		<string>انٹرنیٹ کنکشن ہونا ظاہر ہوتا ہے آف لائن.
+
+براہ مہربانی رابطہ قائم کرنے کے لئے انٹرنیٹ اور دوبارہ کوشش کریں.</string>
+		<key>uz</key>
+		<string>Internet ulanish offline ko&apos;rinadi.
+
+Internetga ulanish va yana harakat qiling, iltimos.</string>
+		<key>vi</key>
+		<string>Các kết nối Internet dường như là nhé.
+
+Hãy kết nối với Internet và cố gắng một lần nữa.</string>
+		<key>yi</key>
+		<string>די אינטערנעט קשר אויס צו זיין אָפפלינע.
+
+ביטע פאַרבינדן צו די אינטערנעט און פּרובירן ווידער.</string>
+		<key>zh</key>
+		<string>互联网连接，似乎是离线。 请连接到互联网和再试一次。</string>
+	</dict>
+	<key>no_internet_title</key>
+	<dict>
+		<key>af</key>
+		<string>Geen Internet Konneksie</string>
+		<key>ar</key>
+		<string>لا اتصال إنترنت</string>
+		<key>az</key>
+		<string>Heç Bir İnternet Bağlantısı</string>
+		<key>ba</key>
+		<string>Интернетҡа Тоташыу Юҡ</string>
+		<key>be</key>
+		<string>Няма Падлучэння Да Інтэрнэту</string>
+		<key>bg</key>
+		<string>Няма Интернет Връзка</string>
+		<key>bn</key>
+		<string>কোন ইন্টারনেট সংযোগ</string>
+		<key>bs</key>
+		<string>Nema Internet</string>
+		<key>ca</key>
+		<string>Sense Connexió A Internet</string>
+		<key>ceb</key>
+		<string>Walay Koneksyon Sa Internet</string>
+		<key>cs</key>
+		<string>Bez Připojení K Internetu</string>
+		<key>cy</key>
+		<string>Nid Oes Cysylltiad Rhyngrwyd</string>
+		<key>da</key>
+		<string>Er Der Ingen Internetforbindelse</string>
+		<key>de</key>
+		<string>Keine Internet-Verbindung</string>
+		<key>el</key>
+		<string>Δεν Υπάρχει Σύνδεση Στο Internet</string>
+		<key>en</key>
+		<string>Internet Connection Offline</string>
+		<key>eo</key>
+		<string>Neniu Interreta Konekto</string>
+		<key>es</key>
+		<string>No Hay Conexión A Internet</string>
+		<key>et</key>
+		<string>Interneti-ühendus puudub</string>
+		<key>eu</key>
+		<string>Internet Konexioa Ez</string>
+		<key>fa</key>
+		<string>بدون اتصال به اینترنت</string>
+		<key>fi</key>
+		<string>Ei Internet-Yhteyden</string>
+		<key>fr</key>
+		<string>Pas De Connexion Internet</string>
+		<key>ga</key>
+		<string>Níl Aon Nasc Idirlín</string>
+		<key>gd</key>
+		<string>Chan Eil Ceangal Eadar-Lìn</string>
+		<key>gl</key>
+		<string>Non Hai Conexión A Internet</string>
+		<key>gu</key>
+		<string>કોઈ ઇન્ટરનેટ કનેક્શન છે</string>
+		<key>he</key>
+		<string>אין חיבור לאינטרנט</string>
+		<key>hi</key>
+		<string>कोई इंटरनेट कनेक्शन</string>
+		<key>hr</key>
+		<string>Nema Veze Na Internet</string>
+		<key>ht</key>
+		<string>Pa Gen Okenn Koneksyon Entènèt</string>
+		<key>hu</key>
+		<string>Nincs Internet Kapcsolat</string>
+		<key>hy</key>
+		<string>Չկա Ինտերնետ Կապ</string>
+		<key>id</key>
+		<string>Tidak Ada Koneksi Internet</string>
+		<key>is</key>
+		<string>Engin Tengsl</string>
+		<key>it</key>
+		<string>Nessuna Connessione A Internet</string>
+		<key>ja</key>
+		<string>なインターネット接続</string>
+		<key>jv</key>
+		<string>Ora Ana Sambungan Internet</string>
+		<key>ka</key>
+		<string>არ ინტერნეტი</string>
+		<key>kk</key>
+		<string>Жоқ, Интернетке Қосылу</string>
+		<key>kn</key>
+		<string>ಯಾವುದೇ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕ</string>
+		<key>ko</key>
+		<string>인터넷 연결 없음</string>
+		<key>ky</key>
+		<string>Жок Интернетке Кошуу</string>
+		<key>la</key>
+		<string>Non Penitus Iunctio</string>
+		<key>lt</key>
+		<string>Nėra Interneto Ryšio</string>
+		<key>mg</key>
+		<string>Tsy Misy Fifandraisana Aterineto</string>
+		<key>mi</key>
+		<string>Kahore He Hononga Ipurangi</string>
+		<key>mk</key>
+		<string>Без Интернет Конекција</string>
+		<key>ml</key>
+		<string>ഇന്റർനെറ്റ് കണക്ഷൻ ഇല്ല</string>
+		<key>mn</key>
+		<string>Ямар Ч Интернэт Холболт</string>
+		<key>mr</key>
+		<string>इंटरनेट कनेक्शन</string>
+		<key>ms</key>
+		<string>Tidak Ada Sambungan Internet</string>
+		<key>mt</key>
+		<string>L-Ebda Konnessjoni Mal-Internet</string>
+		<key>ne</key>
+		<string>कुनै इन्टरनेट जडान</string>
+		<key>nl</key>
+		<string>Geen Internet Verbinding</string>
+		<key>no</key>
+		<string>Ingen Internett-Tilkobling</string>
+		<key>pa</key>
+		<string>ਕੋਈ ਵੀ ਇੰਟਰਨੈੱਟ ਕੁਨੈਕਸ਼ਨ</string>
+		<key>pl</key>
+		<string>Brak Połączenia Z Internetem</string>
+		<key>pt</key>
+		<string>Sem Conexão À Internet</string>
+		<key>ro</key>
+		<string>Nici O Conexiune La Internet</string>
+		<key>ru</key>
+		<string>Нет Подключения К Интернету</string>
+		<key>si</key>
+		<string>කිසිදු අන්තර්ජාල සම්බන්ධතාවයක්</string>
+		<key>sk</key>
+		<string>Pripojenie Na Internet</string>
+		<key>sl</key>
+		<string>Brez Internetne Povezave</string>
+		<key>sq</key>
+		<string>Nuk Ka Lidhje Të Internetit</string>
+		<key>sr</key>
+		<string>Нема Интернет Конекција</string>
+		<key>su</key>
+		<string>No Sambungan Internet</string>
+		<key>sv</key>
+		<string>Ingen Internet-Anslutning</string>
+		<key>sw</key>
+		<string>Hakuna Uhusiano Internet</string>
+		<key>ta</key>
+		<string>எந்த இணைய இணைப்பு</string>
+		<key>te</key>
+		<string>ఇంటర్నెట్ కనెక్షన్</string>
+		<key>tg</key>
+		<string>Не Пайвастшавӣ Ба Интернет</string>
+		<key>th</key>
+		<string>ไม่มีการเชื่อมต่ออินเทอร์เน็ต</string>
+		<key>tl</key>
+		<string>Walang Koneksyon Sa Internet</string>
+		<key>tr</key>
+		<string>Hiçbir İnternet Bağlantısı</string>
+		<key>tt</key>
+		<string>Юк, Интернетка Тоташу</string>
+		<key>udm</key>
+		<string>Вотэсын Ӧвӧл Подключение</string>
+		<key>uk</key>
+		<string>Немає Підключення До Інтернету</string>
+		<key>ur</key>
+		<string>کوئی انٹرنیٹ کنکشن</string>
+		<key>uz</key>
+		<string>Hech Internet Aloqasi</string>
+		<key>vi</key>
+		<string>Không Có Internet</string>
+		<key>yi</key>
+		<string>קיין אינטערנעט קשר</string>
+		<key>zh</key>
+		<string>没有互联网连接的</string>
+	</dict>
+	<key>not_supported</key>
+	<dict>
+		<key>af</key>
+		<string>Jou taal is nie tans ondersteun.
+
+Kyk terug op&apos;n later tyd vir potensiële updates.</string>
+		<key>ar</key>
+		<string>لغتك غير معتمد حاليا.
+
+التحقق مرة أخرى في وقت لاحق المحتملة التحديثات.</string>
+		<key>az</key>
+		<string>Dil dəstəklənmir.
+
+Yoxlayın və daha sonra üçün potensial yenilikləri.</string>
+		<key>ba</key>
+		<string>Һеҙ теле хуплана.
+
+Һуңғы ваҡытта был тикшереү артыҡ яңыртыу өсөн потенциаль.</string>
+		<key>be</key>
+		<string>Ваш мова не падтрымліваецца.
+
+Праверце на больш позні час для патэнцыйных абнаўленняў.</string>
+		<key>bg</key>
+		<string>Вашият език не се поддържа.
+
+Проверете по-късно време за бъдещи актуализации.</string>
+		<key>bn</key>
+		<string>আপনার ভাষায় বর্তমানে সমর্থিত নয়.
+
+চেক ফিরে পরবর্তী সময়ে সম্ভাব্য জন্য আপডেট.</string>
+		<key>bs</key>
+		<string>Tvoj jezik trenutno nije podržao.
+
+Provjeri kasnije za potencijal novosti.</string>
+		<key>ca</key>
+		<string>La seva llengua no està suportat.
+
+Comprovar de nou en un moment posterior per a possibles actualitzacions.</string>
+		<key>ceb</key>
+		<string>Sa inyong pinulongan dili karon nga gisuportahan.
+
+Check balik sa usa ka ulahi nga panahon alang sa mga potensyal nga updates.</string>
+		<key>cs</key>
+		<string>Váš jazyk není v současné době podporována.
+
+Podívejte se na pozdější čas pro případné aktualizace.</string>
+		<key>cy</key>
+		<string>Eich iaith yn cefnogi ar hyn o bryd.
+
+Gwiriwch yn ôl yn ddiweddarach posibl ar gyfer y wybodaeth ddiweddaraf.</string>
+		<key>da</key>
+		<string>Dit sprog er ikke understøttet i øjeblikket.
+
+Check tilbage på et senere tidspunkt for mulige opdateringer.</string>
+		<key>de</key>
+		<string>Ihre Sprache wird derzeit nicht unterstützt.
+
+Überprüfen Sie zurück zu einem späteren Zeitpunkt für potenzielle updates.</string>
+		<key>el</key>
+		<string>Η γλώσσα σας δεν υποστηρίζεται προς το παρόν.
+
+Ελέγξτε πάλι σε μεταγενέστερο χρόνο, για πιθανές ενημερώσεις.</string>
+		<key>en</key>
+		<string>Your language is not currently supported.
+
+Check back at a later time for potential updates.</string>
+		<key>eo</key>
+		<string>Via lingvo ne estas nuntempe subtenita.
+
+Kontroli reen#? e pli lasta tempo por potencialaj#? isdatigo.</string>
+		<key>es</key>
+		<string>Su idioma no es compatible actualmente.
+
+Comprobar de nuevo en un momento posterior para posibles actualizaciones.</string>
+		<key>et</key>
+		<string>Teie keel ei ole praegu toetatud.
+
+Vaadata tagasi hiljem võimalikke uuendusi.</string>
+		<key>eu</key>
+		<string>Zure hizkuntza ez da gaur egun onartzen.
+
+Begiratu atzera beranduago potentzial eguneratzeak.</string>
+		<key>fa</key>
+		<string>زبان خود را در حال حاضر پشتیبانی می کند.
+
+بررسی بازگشت در زمان بعد به صورت بالقوه به روز رسانی.</string>
+		<key>fi</key>
+		<string>Kieltä ei tällä hetkellä tueta.
+
+Tarkista takaisin myöhemmin mahdollisia päivityksiä.</string>
+		<key>fr</key>
+		<string>Votre langue n&apos;est pas actuellement pris en charge.
+
+Revenez plus tard pour d&apos;éventuelles mises à jour.</string>
+		<key>ga</key>
+		<string>Do teanga nach bhfuil tacaíocht faoi láthair.
+
+Seiceáil ar ais ag tráth níos déanaí le haghaidh nuashonruithe ionchasacha.</string>
+		<key>gd</key>
+		<string>Cànain agad nach eil an-dràsta a &apos; faighinn taic.
+
+Sùil air ais aig an dèidh sin an t-àm ann a dh&apos;fhaodadh a bhith ùrachaidhean.</string>
+		<key>gl</key>
+		<string>A súa lingua non está soportado.
+
+Comprobación de volta en un momento posterior para potencial actualizacións.</string>
+		<key>gu</key>
+		<string>તમારી ભાષા વર્તમાનમાં આધારભૂત નથી.
+
+તપાસ પછીથી પાછા માટે સંભવિત સુધારાઓ.</string>
+		<key>he</key>
+		<string>השפה שלך אינו נתמך כעת.
+
+בדוק שוב במועד מאוחר יותר על פוטנציאל עדכונים.</string>
+		<key>hi</key>
+		<string>अपनी भाषा समर्थित नहीं है.
+
+चेक वापस एक बाद में समय पर संभावित अद्यतन करने के लिए.</string>
+		<key>hr</key>
+		<string>Vaš jezik nije podržan.
+
+Provjerite na kasnije vrijeme za potencijalne ažuriranja.</string>
+		<key>ht</key>
+		<string>Lang ou se pa kounye a sipòte.
+
+Tcheke tounen nan yon moman pita pou potansyèl dènye.</string>
+		<key>hu</key>
+		<string>A nyelv jelenleg nem támogatott.
+
+Látogasson vissza egy későbbi időpontban az esetleges frissítéseket.</string>
+		<key>hy</key>
+		<string>Ձեր լեզուն չի պահպանվում: Ստուգեք ավելի ուշ պոտենցիալ թարմացման.</string>
+		<key>id</key>
+		<string>Bahasa anda saat ini tidak didukung.
+
+Periksa kembali nanti untuk potensi update.</string>
+		<key>is</key>
+		<string>Tungumál er ekki eins og stutt.
+
+Athuga aftur á síðari tíma fyrir hugsanlega uppfærslur.</string>
+		<key>it</key>
+		<string>La lingua non è attualmente supportato.
+
+Controllare indietro in un secondo momento, per eventuali aggiornamenti.</string>
+		<key>ja</key>
+		<string>お客様の言語ではないとして、現在サポートされます。 チェックバン後の時間を潜在的に更新します。</string>
+		<key>jv</key>
+		<string>Basa panjenengan ora saiki didhukung.
+
+Mriksa bali ing wektu mengko kanggo potensial nganyari.</string>
+		<key>ka</key>
+		<string>თქვენს ენაზე არ არის გაკეთებული მხარი დაუჭირა.
+
+შეამოწმეთ მოგვიანებით პოტენციური განახლებები.</string>
+		<key>kk</key>
+		<string>Сіздің тілін қолдау көрсетілмейді.
+
+Тексеріңіз кейінірек уақытта әлеуетті жаңарту.</string>
+		<key>kn</key>
+		<string>ನಿಮ್ಮ ಭಾಷೆ ಪ್ರಸ್ತುತ ಬೆಂಬಲವಿಲ್ಲ.
+
+ಮತ್ತೆ ಪರಿಶೀಲಿಸಿ ನಂತರದ ಸಮಯದಲ್ಲಿ ಸಂಭಾವ್ಯ ನವೀಕರಣಗಳನ್ನು.</string>
+		<key>ko</key>
+		<string>귀하의 언어는 현재 지원되지 않습니다.
+
+체크인 나중에 다시 시간에 대한 잠재적인 업데이트합니다.</string>
+		<key>ky</key>
+		<string>Сиздин тили колдоого алынган эмес.
+
+Проверьте кыйла кеч кезде үчүн потенциалдуу жаңыртуулардын.</string>
+		<key>la</key>
+		<string>Tua lingua est currently non sustinetur.
+
+Reprehendo retro postea pro potentia updates.</string>
+		<key>lt</key>
+		<string>Jūsų kalba nėra šiuo metu remia.
+
+Patikrinkite, ar atgal, vėliau už galimus naujinimus.</string>
+		<key>mg</key>
+		<string>Ny fiteny amin&apos;izao fotoana izao dia tsy raisina an-tànana.
+
+Jereo indray amin&apos;ny manaraka fa mety ho fanavaozam-baovao.</string>
+		<key>mi</key>
+		<string>Tō te reo, ko te e kore e tautoko i tēnei wā.
+
+Tirohia hoki, i te wa i muri mai mō te pūmanawa ki te whakahōunga.</string>
+		<key>mk</key>
+		<string>Вашиот јазик е да не се поддржани во моментот.
+
+Проверете назад на некое подоцнежно време за потенцијалните ажурирања.</string>
+		<key>ml</key>
+		<string>നിങ്ങളുടെ ഭാഷ നിലവിൽ പിന്തുണയ്ക്കുന്നില്ല.
+
+സാധ്യതയുള്ള അപ്ഡേറ്റുകൾക്കായി പിന്നീട് പരിശോധിക്കുക.</string>
+		<key>mn</key>
+		<string>Таны хэл биш юм одоогоор дэмжиж байна.
+
+Эргэж шалгах сүүлд нь боломжит шинэчлэл.</string>
+		<key>mr</key>
+		<string>आपली भाषा नाही आहे सध्या समर्थीत आहे.
+
+चेक परत पुढच्या वेळी संभाव्य updates.</string>
+		<key>ms</key>
+		<string>Bahasa anda tidak disokong.
+
+Periksa kembali di masa untuk potensi terbaru.</string>
+		<key>mt</key>
+		<string>Il-lingwa tiegħek mhux qed appoġġjati.
+
+Iċċekkja lura aktar tard għat-potenzjal ta&apos;l-aġġornamenti.</string>
+		<key>ne</key>
+		<string>आफ्नो भाषा हाल समर्थन गर्दैन । चेक फिर्ता मा एक पछि समय को लागि संभावित अपडेट.</string>
+		<key>nl</key>
+		<string>Uw taal is op dit moment niet ondersteund.
+
+Kijk terug op een later tijdstip voor mogelijke updates.</string>
+		<key>no</key>
+		<string>Språket ditt er ikke støttes.
+
+Sjekk tilbake på et senere tidspunkt for eventuelle oppdateringer.</string>
+		<key>pa</key>
+		<string>ਆਪਣੀ ਭਾਸ਼ਾ, ਨਾ ਹੈ, ਇਸ ਵੇਲੇ ਸਹਿਯੋਗੀ ਹੈ.
+
+ਚੈੱਕ ਵਾਪਸ &apos; ਤੇ ਇੱਕ ਨੂੰ ਬਾਅਦ ਵਾਰ ਲਈ ਸੰਭਾਵੀ ਅੱਪਡੇਟ.</string>
+		<key>pl</key>
+		<string>Twój język nie jest obsługiwany.
+
+Sprawdź w późniejszym czasie dla potencjalnych aktualizacji.</string>
+		<key>pt</key>
+		<string>O idioma não é suportado no momento.
+
+Verifique novamente em um momento posterior para possíveis atualizações.</string>
+		<key>ro</key>
+		<string>Limba dvs nu este acceptat în prezent.
+
+Verificați din nou la o dată ulterioară pentru eventualele actualizări.</string>
+		<key>ru</key>
+		<string>Ваш язык не поддерживается.
+
+Проверьте на более позднее время для потенциальных обновлений.</string>
+		<key>si</key>
+		<string>ඔබේ භාෂාව නොවේ දැනට සහය දක්වයි.
+
+නැවත පරීක්ෂා කරන්න දී පසුව කාලය සඳහා අනාගත යාවත්කාලීන.</string>
+		<key>sk</key>
+		<string>Váš jazyk v súčasnosti nie je podporované.
+
+Vráťte neskôr pre prípadné aktualizácie.</string>
+		<key>sl</key>
+		<string>Vašem jeziku trenutno ni podprto.
+
+Preverite nazaj na kasnejši čas za možne posodobitve.</string>
+		<key>sq</key>
+		<string>Gjuha juaj nuk është ende i mbështetur.
+
+Kontrolloni sërish më vonë për potencial më të reja.</string>
+		<key>sr</key>
+		<string>Ваш језик није подржан.
+
+Проверите касније за потенцијалне исправке.</string>
+		<key>su</key>
+		<string>Basa anjeun ayeuna teu dirojong.
+
+Mariksa deui dina waktu ka hareup pikeun poténsial apdet.</string>
+		<key>sv</key>
+		<string>Ditt språk är för närvarande inte stöds.
+
+Kolla tillbaka vid ett senare tillfälle för eventuella uppdateringar.</string>
+		<key>sw</key>
+		<string>Lugha yako ni si sasa kwa mkono.
+
+Kuangalia nyuma kwa wakati mmoja baadaye kwa ajili ya uwezo updates.</string>
+		<key>ta</key>
+		<string>உங்கள் மொழி அல்ல, தற்போது ஆதரவு.
+
+சரிபார்த்து மீண்டும் ஒரு பின்னர் நேரத்தில் சாத்தியமான மேம்படுத்தல்கள்.</string>
+		<key>te</key>
+		<string>ప్రస్తుతం మీ భాష మద్దతు లేదు.
+
+సంభావ్య నవీకరణల కోసం తర్వాతసారి తనిఖీ చెయ్యండి.</string>
+		<key>tg</key>
+		<string>Шумо дар забон намешавад.
+
+Санҷед, дар як вақт дертар эҳтимолӣ барои навсозиҳои.</string>
+		<key>th</key>
+		<string>ภาษาของคุณไม่ใช่ปัจจุบันได้รับการสนับสนุน ตรวจสอบที่หลังเวลาสำหรับศักยภาพอัปเดทระบบนะ</string>
+		<key>tl</key>
+		<string>Ang iyong wika ay kasalukuyang hindi suportado.
+
+Bumalik sa ibang pagkakataon para sa mga potensyal na mga update.</string>
+		<key>tr</key>
+		<string>Dilinizi şu anda desteklenmiyor.
+
+Geri Olası güncellemeler için daha sonra kontrol edin.</string>
+		<key>tt</key>
+		<string>Сезнең тел дә хуплана.
+
+Тикшерегез артык соңрак вакытта өчен потенциаль обновлений.</string>
+		<key>udm</key>
+		<string>Поддерживаться тонэ уз кылзы.
+
+Бергес выльдон понна трос дыр потенциальный вылын эскерыны.</string>
+		<key>uk</key>
+		<string>Ваша мова не підтримується.
+
+Перевірте на більш пізній час для потенційних оновлень.</string>
+		<key>ur</key>
+		<string>آپ کی زبان نہیں ہے اس وقت کی حمایت.
+
+واپس کی جانچ پڑتال کے بعد ایک وقت کے لئے کی صلاحیت اپ ڈیٹ.</string>
+		<key>uz</key>
+		<string>Tilni hozirgi kunda qo&apos;llab-quvvatladi emas.
+
+Orqa salohiyati yangilanishlar uchun keyinchalik bir vaqtda tekshirish.</string>
+		<key>vi</key>
+		<string>Ngôn ngữ của bạn là không được hỗ trợ.
+
+Kiểm tra lại sau một thời gian cho tiềm năng cập nhật.</string>
+		<key>yi</key>
+		<string>אייער שפּראַך איז ניט דערווייַל געשטיצט.
+
+קוק צוריק אין אַ שפּעטער צייַט פֿאַר פּאָטענציעל דערהייַנטיקונגען.</string>
+		<key>zh</key>
+		<string>你的语言不是目前支持。 检查后在稍后的时间供潜在的更新。</string>
+	</dict>
+	<key>send_feedback</key>
+	<dict>
+		<key>af</key>
+		<string>Stuur Terugvoer</string>
+		<key>ar</key>
+		<string>إرسال الملاحظات</string>
+		<key>az</key>
+		<string>Əlaqə Göndər</string>
+		<key>ba</key>
+		<string>Баһалама Ебәреү</string>
+		<key>be</key>
+		<string>Адправіць Водгук</string>
+		<key>bg</key>
+		<string>Изпрати На Върха</string>
+		<key>bn</key>
+		<string>প্রতিক্রিয়া পাঠান</string>
+		<key>bs</key>
+		<string>Pošalji Povratne</string>
+		<key>ca</key>
+		<string>Enviament De Comentaris</string>
+		<key>ceb</key>
+		<string>Ipadala Feedback</string>
+		<key>cs</key>
+		<string>Odeslat Zpětnou Vazbu</string>
+		<key>cy</key>
+		<string>Anfon Adborth</string>
+		<key>da</key>
+		<string>Send Kommentarer</string>
+		<key>de</key>
+		<string>Feedback Senden</string>
+		<key>el</key>
+		<string>Στείλτε Τα Σχόλιά Σας</string>
+		<key>en</key>
+		<string>Send Feedback</string>
+		<key>eo</key>
+		<string>Sendu Rimarkojn</string>
+		<key>es</key>
+		<string>Enviar Comentarios</string>
+		<key>et</key>
+		<string>Tagasisidet</string>
+		<key>eu</key>
+		<string>Bidali Iradokizunak</string>
+		<key>fa</key>
+		<string>ارسال بازخورد</string>
+		<key>fi</key>
+		<string>Lähetä Palautetta</string>
+		<key>fr</key>
+		<string>Envoyer Des Commentaires</string>
+		<key>ga</key>
+		<string>Aiseolas A Thabhairt</string>
+		<key>gd</key>
+		<string>Cuir Fios Air Ais</string>
+		<key>gl</key>
+		<string>Enviar Feedback</string>
+		<key>gu</key>
+		<string>પ્રતિસાદ મોકલો</string>
+		<key>he</key>
+		<string>שלח משוב</string>
+		<key>hi</key>
+		<string>प्रतिक्रिया भेजें</string>
+		<key>hr</key>
+		<string>Pošalji Komentar</string>
+		<key>ht</key>
+		<string>Voye Fidbak</string>
+		<key>hu</key>
+		<string>A Visszajelzés Küldése</string>
+		<key>hy</key>
+		<string>Ուղարկել Արձագանք</string>
+		<key>id</key>
+		<string>Mengirim Umpan Balik</string>
+		<key>is</key>
+		<string>Senda Viðbrögð</string>
+		<key>it</key>
+		<string>Inviare Commenti</string>
+		<key>ja</key>
+		<string>ご意見-ご要望の送信</string>
+		<key>jv</key>
+		<string>Ngirim Saran</string>
+		<key>ka</key>
+		<string>გამოხმაურების</string>
+		<key>kk</key>
+		<string>Жіберу Кері Қайтарып Алу</string>
+		<key>kn</key>
+		<string>ಪ್ರತಿಕ್ರಿಯೆ ಕಳುಹಿಸಿ</string>
+		<key>ko</key>
+		<string>의견 보내기</string>
+		<key>ky</key>
+		<string>Жөнөтүүгө Чакырып Алуу</string>
+		<key>la</key>
+		<string>Mittere Feedback</string>
+		<key>lt</key>
+		<string>Siųsti Atsiliepimus</string>
+		<key>mg</key>
+		<string>Mandefa Fanehoan-Kevitra</string>
+		<key>mi</key>
+		<string>Tukua Atu Urupare</string>
+		<key>mk</key>
+		<string>Да Испратите Повратни Информации</string>
+		<key>ml</key>
+		<string>Send Feedback</string>
+		<key>mn</key>
+		<string>Илгээх Санал Хүсэлт</string>
+		<key>mr</key>
+		<string>अभिप्राय पाठवा</string>
+		<key>ms</key>
+		<string>Maklum Balas</string>
+		<key>mt</key>
+		<string>Ibgħat Il-Kummenti</string>
+		<key>ne</key>
+		<string>Send Feedback</string>
+		<key>nl</key>
+		<string>Feedback Verzenden</string>
+		<key>no</key>
+		<string>Send Tilbakemelding</string>
+		<key>pa</key>
+		<string>ਭੇਜਣ ਫੀਡਬੈਕ</string>
+		<key>pl</key>
+		<string>Wyślij Opinię</string>
+		<key>pt</key>
+		<string>Enviar Comentário</string>
+		<key>ro</key>
+		<string>Trimite Comentarii</string>
+		<key>ru</key>
+		<string>Отправить Отзыв</string>
+		<key>si</key>
+		<string>යැවීමට ප්රතිචාර</string>
+		<key>sk</key>
+		<string>Odoslať Spätnú Väzbu</string>
+		<key>sl</key>
+		<string>Pošlji Povratne Informacije</string>
+		<key>sq</key>
+		<string>Dërgoni Komentin Tuaj</string>
+		<key>sr</key>
+		<string>Пошаљи Повратне Информације</string>
+		<key>su</key>
+		<string>Ngirim Eupan Balik</string>
+		<key>sv</key>
+		<string>Skicka Feedback</string>
+		<key>sw</key>
+		<string>Kutuma Maoni</string>
+		<key>ta</key>
+		<string>கருத்துக்களை அனுப்ப</string>
+		<key>te</key>
+		<string>అభిప్రాయాన్ని పంపండి</string>
+		<key>tg</key>
+		<string>Ирсол Шарҳи</string>
+		<key>th</key>
+		<string>ส่งการแจ้งเตือนการเริ่มทำงาน</string>
+		<key>tl</key>
+		<string>Magpadala Ng Mga Komento</string>
+		<key>tr</key>
+		<string>Geri Bildirim Gönder </string>
+		<key>tt</key>
+		<string>Җибәрергә Отзыв</string>
+		<key>udm</key>
+		<string>Келяны Отзыв</string>
+		<key>uk</key>
+		<string>Відправити Відгук</string>
+		<key>ur</key>
+		<string>تاثرات بھیجیں</string>
+		<key>uz</key>
+		<string>Hisobot Yuborish </string>
+		<key>vi</key>
+		<string>Gửi Thông Tin Phản Hồi</string>
+		<key>yi</key>
+		<string>שיקן באַמערקונגען</string>
+		<key>zh</key>
+		<string>发送反馈</string>
+	</dict>
+	<key>unable_message</key>
+	<dict>
+		<key>af</key>
+		<string>Ongelukkig, die teks van die aansoek kon nie vertaal word nie in jou taal.
+
+Wees asseblief seker dat jy het&apos;n voldoende netwerk konneksie en probeer weer.</string>
+		<key>ar</key>
+		<string>للأسف نص التطبيق لا يمكن ترجمتها إلى اللغة الخاصة بك.
+
+يرجى التأكد من لديك كافية اتصال شبكة الاتصال ثم حاول مرة أخرى.</string>
+		<key>az</key>
+		<string>Təəssüf ki, bəyanatın mətni tərcümə edilə bilməz dil.
+
+Əmin olun ki, sizdə var, kifayət qədər şəbəkə bağlantısı və yenidən cəhd edin.</string>
+		<key>ba</key>
+		<string>Ҡыҙғанысҡа ҡаршы, һеҙҙең текст тәржемә ителгән телдең булыуы мөмкин түгел белдерҙе.
+
+Рәхим итеп, инанысы сездә селтәренә тоташыу һәм тағы бер ҡат һынап ҡараусылар етерлек буласаҡ.</string>
+		<key>be</key>
+		<string>На жаль, тэкст заявы не могуць быць пераведзены на ваш мову.
+
+Калі ласка, пераканайцеся, што ў вас ёсць дастатковы сеткавага падлучэння і паспрабуйце зноў.</string>
+		<key>bg</key>
+		<string>За съжаление, текстът на декларацията не може да се преведе на вашия език.
+
+Моля, уверете се, че имате достатъчно за свързване на мрежата и опитайте отново.</string>
+		<key>bn</key>
+		<string>দুর্ভাগ্যবশত, টেক্সট আবেদন করতে পারে না, অনুবাদ করা, আপনার ভাষা.
+
+দয়া করে নিশ্চিত হতে হবে আপনি পর্যাপ্ত নেটওয়ার্ক সংযোগ এবং আবার চেষ্টা করুন.</string>
+		<key>bs</key>
+		<string>Nažalost, tekst prijavu se ne može prevesti na vaš jezik.
+
+Molim te, budi siguran da imate odgovarajući mreže vezu i pokušaj ponovo.</string>
+		<key>ca</key>
+		<string>Malauradament, el text de l&apos;aplicació no es podria traduir en el teu idioma.
+
+Si us plau, assegureu-vos de tenir una adequada connexió a la xarxa i torna a intentar.</string>
+		<key>ceb</key>
+		<string>Ikasubo, ang mga teksto sa aplikasyon nga dili gihubad ngadto sa imong pinulongan.
+
+Palihug sa pagsiguro nga kamo adunay usa ka igo nga network koneksyon ug mosulay pag-usab.</string>
+		<key>cs</key>
+		<string>Bohužel, text žádosti nemohly být přeloženy do vašeho jazyka.
+
+Prosím, ujistěte se, že máte odpovídající připojení k síti a zkuste to znovu.</string>
+		<key>cy</key>
+		<string>Yn anffodus, yn y testun y cais gallai nid yn cael ei gyfieithu i mewn i&apos;ch iaith.
+
+Os gwelwch yn dda fod yn siŵr fod gennych digonol cysylltiad rhwydwaith ac yn ceisio eto.</string>
+		<key>da</key>
+		<string>Desværre, teksten af ansøgningen kunne ikke blive oversat til dit sprog.
+
+Vær sikker på at du har en passende netværksforbindelsen, og prøv igen.</string>
+		<key>de</key>
+		<string>Leider ist der text des Programms konnten nicht in Ihre Sprache übersetzt.
+
+Bitte achten Sie darauf, dass eine adäquate Netzwerkverbindung und versuchen Sie es erneut.</string>
+		<key>el</key>
+		<string>Δυστυχώς, το κείμενο της αίτησης δεν μπορεί να μεταφραστεί στη γλώσσα σας.
+
+Παρακαλούμε να βεβαιωθείτε ότι έχετε επαρκή σύνδεση με το δίκτυο και προσπαθήστε ξανά.</string>
+		<key>en</key>
+		<string>Unfortunately, the text of the application could not be translated into your language.
+
+Please be sure you have an adequate network connection and try again.</string>
+		<key>eo</key>
+		<string>Bedaŭrinde, la teksto de la apliko ne povis esti tradukita en vian lingvon.
+
+Bonvolu esti certe ke vi havas adekvatan reta konekto kaj provi denove.</string>
+		<key>es</key>
+		<string>Por desgracia, el texto de la solicitud no podrá ser traducido a su idioma.
+
+Por favor, asegúrese de contar con una adecuada conexión de red e inténtelo de nuevo.</string>
+		<key>et</key>
+		<string>Kahjuks teksti taotlust ei saa tõlkida oma keelde.
+
+Palun veenduge, et teil on piisav võrgustik ühendust ja proovige uuesti.</string>
+		<key>eu</key>
+		<string>Zoritxarrez, aplikazioaren ezin izan itzulitako zure hizkuntzara.
+
+Mesedez, ziurtatu behar duzu egoki bat sare konexioa eta saiatu berriro.</string>
+		<key>fa</key>
+		<string>متاسفانه متن این نرم افزار نمی تواند ترجمه به زبان خود.
+
+لطفا مطمئن شوید که شما یک کافی اتصال به شبکه و دوباره سعی کنید.</string>
+		<key>fi</key>
+		<string>Valitettavasti teksti sovellus voisi olla käännetty suomeksi.
+
+Varmista sinulla on riittävä verkkoyhteys ja yritä uudelleen.</string>
+		<key>fr</key>
+		<string>Malheureusement, le texte de la demande n&apos;a pas pu être traduit dans votre langue.
+
+Veuillez vous assurer d&apos;avoir un réseau adéquat de la connexion et essayez de nouveau.</string>
+		<key>ga</key>
+		<string>Ar an drochuair, an téacs de an t-iarratas d &apos; fhéadfadh nach iad a aistriú isteach i do theanga.
+
+Le do thoil a bheith cinnte go bhfuil tú leordhóthanach nasc líonra agus iarracht a dhéanamh arís.</string>
+		<key>gd</key>
+		<string>Gu mì-fhortanach, teacsa an aplacaid cha b &apos; urrainn dhuinn eadar-theangachadh a-steach do chànain.
+
+Dèan cinnteach gu bheil thu an iomchaidh lìonra is feuch ris a-rithist.</string>
+		<key>gl</key>
+		<string>Por desgraza, o texto da solicitude non podería ser traducido ao seu idioma.
+
+Por favor, asegúrese de que ten unha adecuada conexión de rede e ténteo de novo.</string>
+		<key>gu</key>
+		<string>કમનસીબે, લખાણ અરજી અનુવાદ થશે નહિં કરી શકે તમારી ભાષામાં છે.
+
+કૃપા કરીને ખાતરી કરો કે તમે હોય છે એક પર્યાપ્ત નેટવર્ક જોડાણ અને ફરીથી પ્રયાસ કરો.</string>
+		<key>he</key>
+		<string>למרבה הצער, את הטקסט של היישום לא יכול להיות מתורגם לשפה שלך.
+
+בבקשה תהיה בטוח שיש לך נאותה חיבור הרשת ולנסות שוב.</string>
+		<key>hi</key>
+		<string>दुर्भाग्य से, आवेदन के पाठ नहीं किया जा सकता है अपनी भाषा में अनुवाद.
+
+कृपया सुनिश्चित करें कि आप एक पर्याप्त नेटवर्क कनेक्शन और फिर से कोशिश करें.</string>
+		<key>hr</key>
+		<string>Nažalost, tekst izjave ne mogu biti prevedeni na vaš jezik.
+
+Molimo vas, pobrinite se da imate dovoljno mrežne veze i pokušajte ponovno.</string>
+		<key>ht</key>
+		<string>Malerezman, tèks yo nan aplikasyon an pa t &apos; kapab dwe tradui nan lang ou.
+
+Tanpri asire w ke ou gen yon bon jan rezo koneksyon epi eseye ankò.</string>
+		<key>hu</key>
+		<string>Sajnos, a szöveg az alkalmazás nem tudott fordítani a nyelvét.
+
+Kérjük, győződjön meg róla, hogy megfelelő hálózati kapcsolatot, majd próbálja meg újra!</string>
+		<key>hy</key>
+		<string>Ցավոք, հայտարարության տեքստը կարող է թարգմանվել է ձեր լեզուն ։ Խնդրում ենք համոզվեք, որ դուք ունեք բավարար ցանցային կապի եւ փորձեք կրկին.</string>
+		<key>id</key>
+		<string>Sayangnya, teks dari aplikasi tidak bisa diterjemahkan ke dalam bahasa anda.
+
+Pastikan anda memiliki cukup koneksi jaringan anda dan coba lagi.</string>
+		<key>is</key>
+		<string>Því miður, texta umsókn gæti ekki vera að þýða í þínu tungumáli.
+
+Vinsamlegast vera viss um að þú hefur fullnægjandi nettengingu og reyna aftur.</string>
+		<key>it</key>
+		<string>Purtroppo, il testo della domanda non può essere tradotto nella tua lingua.
+
+Si prega di essere sicuri di avere una adeguata connessione di rete e riprovare.</string>
+		<key>ja</key>
+		<string>残念ながら、ステートメントは申請できませんで翻訳しました。 ていただきましては、適切なネットワーク接続してから接続し直してください。</string>
+		<key>jv</key>
+		<string>Sayange, teks saka aplikasi ora bisa dijarwakake menyang basa.
+
+Mangga dadi manawa sampeyan duwe ora nyukupi sambungan jaringan lan nyoba maneh.</string>
+		<key>ka</key>
+		<string>სამწუხაროდ, ტექსტი განაცხადი არ შეიძლება ითარგმნოს თქვენს ენაზე.
+
+გთხოვთ, დარწმუნდით, რომ თქვენ გაქვთ ადეკვატური ქსელის კავშირი და სცადეთ კიდევ ერთხელ.</string>
+		<key>kk</key>
+		<string>Өкінішке орай, мәтіні, өтініш емес, ауыстырылуы мүмкін сіздің тілі.
+
+Тексеріңіз сізде жеткілікті желілік қосу және қайтадан көріңіз.</string>
+		<key>kn</key>
+		<string>ದುರದೃಷ್ಟವಶಾತ್, ಪಠ್ಯ ಅಪ್ಲಿಕೇಶನ್ ಸಾಧ್ಯವಿಲ್ಲ ನುಡಿಗಟ್ಟು ನಿಮ್ಮ ಭಾಷೆಗೆ.
+
+ದಯವಿಟ್ಟು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ ನೀವು ಸಮರ್ಪಕ ನೆಟ್ವರ್ಕ್ ಸಂಪರ್ಕವನ್ನು ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
+		<key>ko</key>
+		<string>불행하게도,텍스트의 응용 프로그램을 수 없는 언어로 번역된다.
+
+는지 확인하십시오 적절한 네트워크 연결을 다시 시도하십시오.</string>
+		<key>ky</key>
+		<string>Тилекке каршы, арыздын текстин эмес которулушу мүмкүн сиздин тили.
+
+Мейли, ийне-мандренанын венага сизде жетиштүү түйүндүк кошуу жана байкап көргүлө кайра.</string>
+		<key>la</key>
+		<string>Donec text of applicatio non potuit transferri in lingua tua.
+
+Commodo exsisto certus vos have an satis network iunctio et experiri iterum.</string>
+		<key>lt</key>
+		<string>Deja, tekstą programa negali būti išverstas į jūsų kalbą.
+
+Prašome įsitikinkite, kad turite tinkamą tinklo ryšys ir bandykite dar kartą.</string>
+		<key>mg</key>
+		<string>Indrisy anefa fa, ny lahatsoratry ny fampiharana mety tsy ho voadika amin&apos;ny tenim-pirenena.
+
+Mba ho azo antoka manana ny ampy tambajotra fifandraisana, ary miezaka indray.</string>
+		<key>mi</key>
+		<string>Kia aroha mai, ko te kuputuhi o te tono e kore e taea te iritihia ki to koutou reo.
+
+Tena, kia tino whai koe i te rawaka te hononga whatunga me te ngana anō.</string>
+		<key>mk</key>
+		<string>За жал, текстот на апликација може да не се преведени на вашиот јазик.
+
+Ве молиме бидете сигурни дека имате соодветна мрежна конекција и обидете се повторно.</string>
+		<key>ml</key>
+		<string>നിർഭാഗ്യവശാൽ, അപ്ലിക്കേഷന്റെ വാചകം നിങ്ങളുടെ ഭാഷയിലേക്ക് വിവർത്തനം ചെയ്യാൻ കഴിഞ്ഞില്ല.
+
+നിങ്ങൾക്ക് ഒരു പര്യാപ്തമായ നെറ്റ്വർക്ക് കണക്ഷൻ ഉണ്ടെന്ന് ഉറപ്പുവരുത്തി വീണ്ടും ശ്രമിക്കുക.</string>
+		<key>mn</key>
+		<string>Харамсалтай нь, текст програм болох байх орчуулсан таны хэл.
+
+Таалагдах байх гэдэгт итгэлтэй байх хангалттай сүлжээний холболт, дахин оролдоно.</string>
+		<key>mr</key>
+		<string>दुर्दैवाने, अनुप्रयोगाचा मजकूर आपल्या भाषेत अनुवादित केला जाऊ शकत नाही.
+
+कृपया आपल्याकडे पुरेसे नेटवर्क कनेक्शन असल्याची आणि पुन्हा प्रयत्न करून सुनिश्चित करा.</string>
+		<key>ms</key>
+		<string>Malangnya, teks permohonan tidak dapat diterjemahkan ke dalam bahasa anda.
+
+Sila pastikan anda memiliki cukup rangkaian sambungan dan cuba lagi.</string>
+		<key>mt</key>
+		<string>Sfortunatament, it-test ta&apos;l-applikazzjoni ma setgħux jiġu tradotti fil-lingwa tiegħek.
+
+Jekk jogħġbok kun żgur li għandek adegwat konnessjoni man-netwerk u erġa &apos; ipprova.</string>
+		<key>ne</key>
+		<string>दुर्भाग्यवश, आवेदन पाठ आफ्नो भाषा मा अनुवाद हुन सकेन। कृपया तपाईंले एक पर्याप्त नेटवर्क जडान र पुन: प्रयास गर्नुहोस् निश्चित हुन।</string>
+		<key>nl</key>
+		<string>Helaas, de tekst van de toepassing kan niet worden vertaald in uw taal.
+
+Zorg ervoor dat je een goede netwerkverbinding en probeer het opnieuw.</string>
+		<key>no</key>
+		<string>Dessverre, tekst av programmet kunne ikke være oversatt til ditt språk.
+
+Vær sikker på at du har et tilstrekkelig nettverk-tilkoblingen, og prøv på nytt.</string>
+		<key>pa</key>
+		<string>ਬਦਕਿਸਮਤੀ ਨਾਲ, ਪਾਠ ਨੂੰ ਅਰਜ਼ੀ ਦੇ ਸਕਦਾ ਹੈ, ਨਾ ਹੋ ਅਨੁਵਾਦ ਆਪਣੀ ਭਾਸ਼ਾ ਵਿੱਚ.
+
+ਇਹ ਯਕੀਨੀ ਹੋ ਕਰੋ ਜੀ ਤੁਹਾਨੂੰ ਇੱਕ ਕਾਫੀ ਨੈੱਟਵਰਕ ਕੁਨੈਕਸ਼ਨ ਅਤੇ ਮੁੜ ਕੋਸ਼ਿਸ ਕਰੋ.</string>
+		<key>pl</key>
+		<string>Niestety, tekst oświadczenia nie mogą być przetłumaczone na twój język.
+
+Proszę, upewnij się, że masz wystarczającą połączenie sieciowe i spróbuj ponownie.</string>
+		<key>pt</key>
+		<string>Infelizmente, o texto de o aplicativo não pode ser traduzido em sua língua.
+
+Por favor, certifique-se de que você tem uma adequada ligação à rede e tente novamente.</string>
+		<key>ro</key>
+		<string>Din păcate, textul de cerere ar putea să nu fie traduse în limba ta.
+
+Vă rugăm să asigurați-vă că aveți un nivel adecvat de conectare la rețea și încercați din nou.</string>
+		<key>ru</key>
+		<string>К сожалению, текст заявления не могут быть переведены на ва@objc ш язык.
+
+Пожа@objc @objc луй@objc ста, убедитесь, что у вас есть достаточный сетевого подключения и попробуйте снова.</string>
+		<key>si</key>
+		<string>අවාසනාවකට මෙන්, පෙළ අයදුම් කළ නොහැකි බවට පරිවර්තනය ඔබගේ භාෂාව.
+
+කරුණාකර වග බලා ගන්න ඔබ ප්රමාණවත් ජාල සම්බන්ධතා නැවත උත්සාහ කරන්න.</string>
+		<key>sk</key>
+		<string>Bohužiaľ, text žaloby nemohol byť preložené do vášho jazyka.
+
+Prosím, uistite sa, že máte dostatočné sieťové pripojenie a skúste znova.</string>
+		<key>sl</key>
+		<string>Na žalost, besedilo tožbe ne bi mogel biti prevedeni v vaš jezik.
+
+Prosimo, da se prepričajte, da imate ustrezno omrežno povezavo in poskusite znova.</string>
+		<key>sq</key>
+		<string>Për fat të keq, teksti i kërkesës nuk mund të jetë e përkthyer në gjuhën tuaj.
+
+Ju lutemi të jetë i sigurt që ju keni një adekuate lidhje të rrjetit dhe të provoni përsëri.</string>
+		<key>sr</key>
+		<string>Нажалост, текст изјаве не могу бити преведен на ваш језик.
+
+Молимо вас, проверите да ли имате довољно мрежну везу и покушајте поново.</string>
+		<key>su</key>
+		<string>Hanjakalna, téks aplikasi teu bisa ditarjamahkeun kana basa sunda.
+
+Mangga pastikeun anjeun boga nyukupan koneksi jaringan jeung coba deui.</string>
+		<key>sv</key>
+		<string>Tyvärr, texten i ansökan inte kunde översättas till ditt språk.
+
+Vänligen se till att du har en adekvat nätverksanslutningen och försök igen.</string>
+		<key>sw</key>
+		<string>Kwa bahati mbaya, nakala ya maombi inaweza si kuwa kutafsiriwa katika lugha yako.
+
+Tafadhali kuwa na uhakika una kutosha wa uhusiano wa mtandao na kujaribu tena.</string>
+		<key>ta</key>
+		<string>துரதிருஷ்டவசமாக, உரை பயன்பாடு இருக்க முடியவில்லை மொழிபெயர்க்கப்பட்டுள்ளது உங்கள் மொழி.
+
+தயவு செய்து உறுதியாக இருக்க நீங்கள் ஒரு போதுமான நெட்வொர்க் இணைப்பு மற்றும் மீண்டும் முயற்சிக்கவும்.</string>
+		<key>te</key>
+		<string>దురదృష్టవశాత్తు, అప్లికేషన్ యొక్క టెక్స్ట్ మీ భాషలోకి అనువదించబడలేదు.
+
+మీకు తగిన నెట్వర్క్ కనెక్షన్ ఉన్నట్లు నిర్ధారించుకోండి మరియు మళ్లీ ప్రయత్నించండి.</string>
+		<key>tg</key>
+		<string>Мутаассифона, матни ариза метавонад ба тарҷума ба забони худ.
+
+Лутфан, боварӣ ҳосил кунед, ки шумо кофии шабакавӣ пайваст ва кӯшиш кунед, ки боз.</string>
+		<key>th</key>
+		<string>โชคร้ายที่ข้อความของโปรแกรมไม่สามารถถูกแปลงไปในภาษาของคุณ.
+
+ได้โปรดแน่ใจว่าคุณต้องการเพียงพอการเชื่อมต่อระบบเครือข่ายแล้วลองใหม่อีกครั้ง</string>
+		<key>tl</key>
+		<string>Sa kasamaang palad, ang teksto ng ang application ay hindi ma-translate sa iyong wika.
+
+Mangyaring siguraduhin na mayroon kang isang sapat na koneksyon sa network at subukang muli.</string>
+		<key>tr</key>
+		<string>Ne yazık ki, uygulama metin diline tercüme olamazdı.
+
+Lütfen yeterli ağ bağlantısı vardır ve yeniden deneyin emin olun.</string>
+		<key>tt</key>
+		<string>Кызганычка каршы, текст гариза алмый күчерелде сезнең тел.
+
+Зинһар, инаныгыз бар, җитәрлек челтәр тоташтыру һәм карагыз әле кабат.</string>
+		<key>udm</key>
+		<string>Жаляса верано луисько, уг быгаты текст заявленизэ кылэ берыктэмын вал.
+
+Пожалуйста, ышанӥсько, сетевой, мар тонэн нош ик луиз подключение тырмыт веръязы.</string>
+		<key>uk</key>
+		<string>На жаль, текст заяви не можуть бути переведені на вашу мову.
+
+Будь ласка, переконайтеся, що у вас є достатній мережевого підключення і спробуйте знову.</string>
+		<key>ur</key>
+		<string>بدقسمتی سے, متن کی درخواست نہیں کر سکتے ہیں میں ترجمہ کیا جائے گا آپ کی زبان ہے.
+
+براہ مہربانی اس بات کا یقین آپ کو ایک مناسب نیٹ ورک کنکشن اور دوبارہ کوشش کریں.</string>
+		<key>uz</key>
+		<string>Afsuski, bu dastur matnini sizning tiliga tarjima qilingan bo&apos;lishi mumkin emas.
+
+Etarli tarmoq aloqasi bor ishonch hosil qiling va yana bir bor harakat qilib ko&apos;ring, iltimos.</string>
+		<key>vi</key>
+		<string>Rất tiếc, các văn bản của các ứng dụng không thể dịch sang ngôn ngữ của bạn.
+
+Hãy chắc chắn rằng bạn có đủ kết nối mạng và cố gắng một lần nữa.</string>
+		<key>yi</key>
+		<string>צום באַדויערן, דער טעקסט פון דער אַפּלאַקיישאַן קען ניט זיין איבערגעזעצט אין אייער שפּראַך.
+
+ביטע זיין זיכער איר האָבן אַ טויגן נעץ קשר און פּרובירן ווידער.</string>
+		<key>zh</key>
+		<string>不幸的是，该文本的应用程序不能被翻译成语言。 请确定你有充分的网络连接和再试一次。</string>
+	</dict>
+	<key>unable_title</key>
+	<dict>
+		<key>af</key>
+		<string>Nie in staat is om te Vertaal</string>
+		<key>ar</key>
+		<string>غير قادر على ترجمة</string>
+		<key>az</key>
+		<string>Bilmədi tərcümə</string>
+		<key>ba</key>
+		<string>Тәржемә алмай</string>
+		<key>be</key>
+		<string>Не змагла перавесці</string>
+		<key>bg</key>
+		<string>Не е в състояние превод</string>
+		<key>bn</key>
+		<string>অনুবাদ করতে অক্ষম</string>
+		<key>bs</key>
+		<string>Ne mogu Prevesti</string>
+		<key>ca</key>
+		<string>Incapaç de Traduir</string>
+		<key>ceb</key>
+		<string>Wala makahimo sa Paghubad</string>
+		<key>cs</key>
+		<string>Nelze Přeložit</string>
+		<key>cy</key>
+		<string>Gallu i Cyfieithu</string>
+		<key>da</key>
+		<string>Ude af stand til at Oversætte</string>
+		<key>de</key>
+		<string>Nicht in der Lage zu Übersetzen</string>
+		<key>el</key>
+		<string>Σε θέση να Μεταφράσει</string>
+		<key>en</key>
+		<string>Unable to Translate</string>
+		<key>eo</key>
+		<string>Ne eblas Traduki</string>
+		<key>es</key>
+		<string>Incapaz de Traducir</string>
+		<key>et</key>
+		<string>Ei suuda Tõlkida</string>
+		<key>eu</key>
+		<string>Ezin da Itzuli</string>
+		<key>fa</key>
+		<string>قادر به ترجمه</string>
+		<key>fi</key>
+		<string>Pysty Kääntämään</string>
+		<key>fr</key>
+		<string>Incapable de Traduire</string>
+		<key>ga</key>
+		<string>In ann a Aistriú</string>
+		<key>gd</key>
+		<string>Cha ghabh eadar-Theangachadh</string>
+		<key>gl</key>
+		<string>Incapaz de Traducir</string>
+		<key>gu</key>
+		<string>માટે અસમર્થ અનુવાદ</string>
+		<key>he</key>
+		<string>אין אפשרות לתרגם</string>
+		<key>hi</key>
+		<string>का अनुवाद करने में असमर्थ</string>
+		<key>hr</key>
+		<string>Nije mogao prevesti</string>
+		<key>ht</key>
+		<string>Kapab Tradui</string>
+		<key>hu</key>
+		<string>Nem tud Lefordítani</string>
+		<key>hy</key>
+		<string>Չի կարողացել թարգմանել</string>
+		<key>id</key>
+		<string>Mampu Menerjemahkan</string>
+		<key>is</key>
+		<string>Ekki til að Þýða</string>
+		<key>it</key>
+		<string>In grado di Tradurre</string>
+		<key>ja</key>
+		<string>なの翻訳</string>
+		<key>jv</key>
+		<string>Biso kanggo Nerjemahake</string>
+		<key>ka</key>
+		<string>ვერ თარგმნის</string>
+		<key>kk</key>
+		<string>Алмады аудару</string>
+		<key>kn</key>
+		<string>ಅನುವಾದಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
+		<key>ko</key>
+		<string>번역할 수 없</string>
+		<key>ky</key>
+		<string>Эмес смогла которулсун</string>
+		<key>la</key>
+		<string>Non ad Transferendum</string>
+		<key>lt</key>
+		<string>Negali Versti</string>
+		<key>mg</key>
+		<string>Tsy afaka Mandika</string>
+		<key>mi</key>
+		<string>Taea ki te Iriti i</string>
+		<key>mk</key>
+		<string>Во можност да се Преведе</string>
+		<key>ml</key>
+		<string>വിവർത്തനം ചെയ്യാൻ കഴിയുന്നില്ല</string>
+		<key>mn</key>
+		<string>Чадахгүй Орчуулах</string>
+		<key>mr</key>
+		<string>अक्षम अनुवाद</string>
+		<key>ms</key>
+		<string>Tidak dapat Menterjemahkan</string>
+		<key>mt</key>
+		<string>F&apos;pożizzjoni li Tittraduċi</string>
+		<key>ne</key>
+		<string>गर्न असमर्थ अनुवाद</string>
+		<key>nl</key>
+		<string>Niet in staat om te Vertalen</string>
+		<key>no</key>
+		<string>Ute av stand til å Oversette</string>
+		<key>pa</key>
+		<string>ਕਰਨ ਲਈ ਅਸਮਰੱਥ ਅਨੁਵਾਦ</string>
+		<key>pl</key>
+		<string>Nie udało się przetłumaczyć</string>
+		<key>pt</key>
+		<string>Não é possível Traduzir</string>
+		<key>ro</key>
+		<string>În imposibilitatea de a Traduce</string>
+		<key>ru</key>
+		<string>Не смогла перевести</string>
+		<key>si</key>
+		<string>කිරීමට නොහැකි පරිවර්තනය</string>
+		<key>sk</key>
+		<string>Nedá Preložiť</string>
+		<key>sl</key>
+		<string>Ni mogoče Prevesti</string>
+		<key>sq</key>
+		<string>Të paaftë për të Translate</string>
+		<key>sr</key>
+		<string>Није био у стању да преведе</string>
+		<key>su</key>
+		<string>Bisa Narjamahkeun</string>
+		<key>sv</key>
+		<string>Oförmögen att Översätta</string>
+		<key>sw</key>
+		<string>Hawawezi Kutafsiri</string>
+		<key>ta</key>
+		<string>முடியவில்லை மொழிபெயர்க்க</string>
+		<key>te</key>
+		<string>అనువదించడం సాధ్యపడలేదు</string>
+		<key>tg</key>
+		<string>Натавонист ба тарҷума</string>
+		<key>th</key>
+		<string>ไม่สามารถแปลภาษา</string>
+		<key>tl</key>
+		<string>Hindi upang Isalin</string>
+		<key>tr</key>
+		<string>Çeviremiyor</string>
+		<key>tt</key>
+		<string>Алмады күчерергә</string>
+		<key>udm</key>
+		<string>Воштоно уз луы</string>
+		<key>uk</key>
+		<string>Не змогла перевести</string>
+		<key>ur</key>
+		<string>ترجمہ کرنے کے لئے کے قابل نہیں</string>
+		<key>uz</key>
+		<string>Qodir Tarjima qilish</string>
+		<key>vi</key>
+		<string>Không thể Dịch</string>
+		<key>yi</key>
+		<string>געקענט צו איבערזעצן</string>
+		<key>zh</key>
+		<string>无法翻译</string>
+	</dict>
+</dict>
+</plist>
