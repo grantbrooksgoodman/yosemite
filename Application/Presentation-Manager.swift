@@ -357,7 +357,7 @@ class PresentationManager
                     fatalError()
                 }))
                 
-                if preReleaseApplication
+                if buildState != .generalRelease
                 {
                     fatalErrorController.addAction(UIAlertAction(title: returnedStringArray[3], style: .destructive, handler: { (action: UIAlertAction!) in
                         UIPasteboard.general.string = clipboardString
@@ -380,7 +380,7 @@ class PresentationManager
                     fatalError()
                 }))
                 
-                if preReleaseApplication
+                if buildState != .generalRelease
                 {
                     fatalErrorController.addAction(UIAlertAction(title: returnedStringArray[3], style: .destructive, handler: { (action: UIAlertAction!) in
                     }))

@@ -66,7 +66,7 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
         //The value of the pre-release application boolean.
         //The value of the prefers status bar boolean.
         
-        buildInstance = Build(withType: .mainController, instanceArray: [bundleVersionLabel!, projectIdentifierLabel!, skuLabel!, codeNameButton!, extraneousInformationView!, informationButton!, sendFeedbackButton!, subtitleButton!, self])
+        buildInstance = Build(withType: .mainController, instanceArray: [bundleVersionLabel!, projectIdentifierLabel!, skuLabel!, codeNameButton!, extraneousInformationView!, informationButton!, sendFeedbackButton!, subtitleButton!, self], conserveSpace: false)
     }
     
     //--------------------------------------------------//

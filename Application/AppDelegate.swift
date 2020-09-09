@@ -20,9 +20,11 @@ import Reachability
 
 //Top-Level Declarations
 
+var buildState: Build.BuildState = .alpha
+
 //Boolean Declarations
 var darkMode                = false
-var preReleaseApplication   = false
+var preReleaseApplication   = true
 var verboseFunctionExposure = false
 
 //DateFormatter Declarations
@@ -184,7 +186,7 @@ class AppDelegate: UIResponder, MFMailComposeViewControllerDelegate, UIApplicati
         }
         
         //Set the array of information.
-        Build(withType: .applicationDelegate, instanceArray: nil)
+        Build(withType: .applicationDelegate, instanceArray: nil, conserveSpace: false)
         
         f.originalDevelopmentEnvironment = .fiveEightInch
         

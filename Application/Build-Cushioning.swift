@@ -39,6 +39,15 @@ class Build
         case mainController
     }
     
+    enum BuildState
+    {
+        case preAlpha
+        case alpha
+        case beta
+        case releaseCandidate
+        case generalRelease
+    }
+    
     //--------------------------------------------------//
     
     //Required Initialisation Function
@@ -80,7 +89,7 @@ class Build
      - Parameter instanceArray: An array of the components needing to be set up.
      
      */
-    @discardableResult required init(withType: ControllerType, instanceArray: [Any]?)
+    @discardableResult required init(withType: ControllerType, instanceArray: [Any]?, conserveSpace: Bool)
     {
         //If there is no global information dictionary, generate and set one.
         //If there already is one, then just set it to currentInformationDictionary here.
@@ -106,7 +115,7 @@ class Build
                     let viewController = unwrappedInstanceArray[withType == .genericController ? 4 : 8] as? UIViewController
                 {
                     //If the application is pre-release and the screen height matches that of an iPhone X or Xs.
-                    if preReleaseApplication && (screenHeight == 812 || screenHeight == 896)
+                    if buildState != .generalRelease && (screenHeight == 812 || screenHeight == 896)
                     {
                         //Set appropriate location values for an iPhone X or Xs.
                         let firstYValue = (screenHeight == 812 ? 32 : 35)
@@ -150,12 +159,12 @@ class Build
                             toggleDarkMode(withType: withType)
                             
                             //Determine and set the isHidden values for some of the core visual components.
-                            unwrappedCodeNameLabel.isHidden = !preReleaseApplication
-                            unwrappedLogoTypeImageView.isHidden = !preReleaseApplication
-                            unwrappedPreReleaseLabel.isHidden = !preReleaseApplication
+                            unwrappedCodeNameLabel.isHidden = (buildState == .generalRelease && !conserveSpace)
+                            unwrappedLogoTypeImageView.isHidden = (buildState == .generalRelease && !conserveSpace)
+                            unwrappedPreReleaseLabel.isHidden = (buildState == .generalRelease)
                             
                             //If the app is pre-release, and if the device is a new form factor (iPhone X, Xs, ...).
-                            if preReleaseApplication
+                            if buildState != .generalRelease
                             {
                                 //Set the project name label text.
                                 //If the languageCode is not English.
@@ -166,30 +175,34 @@ class Build
                                         
                                         //Send our label and its text to a function to be processed and set appropriately.
                                         DispatchQueue.main.async {
-                                            self.setCodeNameText(withButtonOrLabel: unwrappedCodeNameLabel, withText: returnedString)
+                                            self.setCodeNameText(withButtonOrLabel: conserveSpace ? unwrappedPreReleaseLabel : unwrappedCodeNameLabel, withText: returnedString, short: conserveSpace)
                                         }
                                     }
                                 }
                                 else //If the languageCode is indeed English.
                                 {
                                     //Send our label and its text to a function to be processed and set appropriately.
-                                    setCodeNameText(withButtonOrLabel: unwrappedCodeNameLabel, withText: "Version")
+                                    setCodeNameText(withButtonOrLabel: conserveSpace ? unwrappedPreReleaseLabel : unwrappedCodeNameLabel, withText: "Version", short: conserveSpace)
                                 }
                                 
+                                #warning("Clean this up.")
                                 //Set the pre-release notifier label text.
                                 Translator().dirtyGetTranslation(forString: unwrappedPreReleaseNotifier, requiresHud: false) { (returnedString) in
                                     
                                     DispatchQueue.main.async {
                                         //Set the label's text.
-                                        unwrappedPreReleaseLabel.text = returnedString
-                                        
-                                        //Set the font size for the new text on the label.
-                                        unwrappedPreReleaseLabel.font = unwrappedPreReleaseLabel.font.withSize(unwrappedPreReleaseLabel.fontSizeThatFits(returnedString))
+                                        if !conserveSpace
+                                        {
+                                            unwrappedPreReleaseLabel.text = returnedString
+                                            
+                                            //Set the font size for the new text on the label.
+                                            unwrappedPreReleaseLabel.font = unwrappedPreReleaseLabel.font.withSize(unwrappedPreReleaseLabel.fontSizeThatFits(returnedString))
+                                        }
                                         
                                         //Animate the presentation of the core visual elements.
                                         UIView.animate(withDuration: 0.2, delay: 0.5, animations: {
-                                            unwrappedCodeNameLabel.alpha = 1
-                                            unwrappedLogoTypeImageView.alpha = 1
+                                            unwrappedCodeNameLabel.alpha = conserveSpace ? 0 : 1
+                                            unwrappedLogoTypeImageView.alpha = conserveSpace ? 0 : 1
                                             unwrappedPreReleaseLabel.alpha = 1
                                             unwrappedSendFeedbackButton.alpha = 1
                                         })
@@ -259,14 +272,14 @@ class Build
                                     
                                     //Send our button and its titleLabel's text to a function to be processed and set appropriately.
                                     DispatchQueue.main.async {
-                                        self.setCodeNameText(withButtonOrLabel: unwrappedCodeNameButton, withText: returnedString)
+                                        self.setCodeNameText(withButtonOrLabel: unwrappedCodeNameButton, withText: returnedString, short: false)
                                     }
                                 }
                             }
                             else
                             {
                                 //Send our button and its titleLabel's text to a function to be processed and set appropriately.
-                                setCodeNameText(withButtonOrLabel: unwrappedCodeNameButton, withText: "Project Code Name")
+                                setCodeNameText(withButtonOrLabel: unwrappedCodeNameButton, withText: "Project Code Name", short: false)
                             }
                             
                             //Set the subtitleButton's titleLabel's text.
@@ -326,8 +339,15 @@ class Build
     ///Displays build information in an alert controller.
     func displayBuildInformation()
     {
+        var messageToDisplay = "This is a \(buildStateAsString(short: false)) version of project code name *\(codeName)*.\n\n\(informationDictionary["expiryInformationString"]!)\n\nAll features presented here are subject to change, and any new or previously undisclosed information presented within this software is to remain strictly confidential.\n\nRedistribution of this software by unauthorised parties in any way, shape, or form is strictly prohibited.\n\nBy continuing your use of this software, you acknowledge your agreement to the above terms.\n\nAll content herein, unless otherwise stated, is copyright © \(Calendar.current.dateComponents([.year], from: Date()).year!) *NEOTechnica Corporation*. All rights reserved."
+        
+        if buildStateAsString(short: false) == "general"
+        {
+            messageToDisplay = "This is a pre-release update to *\(finalName)*.\n\n\(informationDictionary["expiryInformationString"]!)\n\nAll features presented here are subject to change, and any new or previously undisclosed information presented within this software is to remain strictly confidential.\n\nRedistribution of this software by unauthorised parties in any way, shape, or form is strictly prohibited.\n\nBy continuing your use of this software, you acknowledge your agreement to the above terms.\n\nAll content herein, unless otherwise stated, is copyright © \(Calendar.current.dateComponents([.year], from: Date()).year!) *NEOTechnica Corporation*. All rights reserved."
+        }
+        
         //Display a successAlertController with information about the build.
-        PresentationManager().successAlertController(withTitle: "Project \(codeName)", withMessage: "This is a pre-release version of project code name *\(codeName)*.\n\n\(informationDictionary["expiryInformationString"]!)\n\nAll features presented here are subject to change, and any new or previously undisclosed information presented within this software is to remain strictly confidential.\n\nRedistribution of this software by unauthorised parties in any way, shape, or form is strictly prohibited.\n\nBy continuing your use of this software, you acknowledge your agreement to the above terms.\n\nAll content herein, unless otherwise stated, is copyright © \(Calendar.current.dateComponents([.year], from: Date()).year!) *NEOTechnica Corporation*. All rights reserved.", withCancelButtonTitle: "Dismiss", withAlternateSelectors: nil, preferredActionIndex: nil)
+        PresentationManager().successAlertController(withTitle: "Project \(codeName)", withMessage: messageToDisplay, withCancelButtonTitle: "Dismiss", withAlternateSelectors: nil, preferredActionIndex: nil)
     }
     
     /**
@@ -464,6 +484,23 @@ class Build
     
     //Private Functions
     
+    private func buildStateAsString(short: Bool) -> String
+    {
+        switch buildState
+        {
+        case .preAlpha:
+            return short ? "p" : "pre-alpha"
+        case .alpha:
+            return short ? "a" : "alpha"
+        case .beta:
+            return short ? "b" : "beta"
+        case .releaseCandidate:
+            return short ? "c" : "release candidate"
+        default:
+            return short ? "g" : "general"
+        }
+    }
+    
     /**
      Generates the build's SKU.
      
@@ -483,7 +520,7 @@ class Build
         //If the code name is exactly 3 letters, set threeLetterCodeNameIdentifier to the entire code name, uppercased.
         let threeLetterCodeNameIdentifier = (codeName.length > 3 ? "\(String(codeName.first!))\(String(codeName[codeName.index(codeName.startIndex, offsetBy: Int((Double(codeName.count) / 2).rounded(.down)))]))\(String(codeName.last!))".uppercased() : codeName.uppercased())
         
-        return "\(formattedBuildDateString)-\(threeLetterCodeNameIdentifier)-\(String(format: "%06d", buildNumber))"
+        return "\(formattedBuildDateString)-\(threeLetterCodeNameIdentifier)-\(String(format: "%06d", buildNumber))\(buildStateAsString(short: true))"
     }
     
     /**
@@ -630,25 +667,39 @@ class Build
         return (Array(NSOrderedSet(array: projectIdentifierAsStringCharacterArray)) as! [String]).joined()
     }
     
+    #warning("Clean this up.")
     /**
      Sets the code name text for an appropriate **UIView**.
      
      - Parameter withButtonOrLabel: A **UIView** being either **codeNameButton** for a main controller, and **codeNameLabel** for a generic one.
      - Parameter withText: A **string** containing the appropriate text to be set.
      */
-    private func setCodeNameText(withButtonOrLabel: UIView, withText: String)
+    private func setCodeNameText(withButtonOrLabel: UIView, withText: String, short: Bool)
     {
         //If the UIView passed in was codeNameLabel.
         if let codeNameLabel = withButtonOrLabel as? UILabel
         {
             //Generate an appropriate title for the label.
-            let titleToSet = "\(codeName) | \(withText) \(informationDictionary["bundleVersion"]!) (\(informationDictionary["buildNumberAsString"]!))"
+            var titleToSet = "\(codeName) | \(withText) \(informationDictionary["bundleVersion"]!) (\(informationDictionary["buildNumberAsString"]!)\(buildStateAsString(short: true)))"
+            
+            if short
+            {
+                titleToSet = "\(codeName) \(informationDictionary["bundleVersion"]!) (\(informationDictionary["buildNumberAsString"]!)\(buildStateAsString(short: true)))"
+                codeNameLabel.backgroundColor = .black
+                codeNameLabel.textColor = .white
+                codeNameLabel.font = UIFont(name: "SFUIText-Bold", size: 13)
+            }
             
             //Set the label's text.
             codeNameLabel.text = titleToSet
             
             //Set the font size for the new text on the label.
             codeNameLabel.font = codeNameLabel.font.withSize(codeNameLabel.fontSizeThatFits(titleToSet))
+            
+            let intrinsicContentWidth = codeNameLabel.sizeThatFits(codeNameLabel.intrinsicContentSize).width
+            
+            codeNameLabel.frame.size.width = intrinsicContentWidth
+            codeNameLabel.center.x = UIScreen.main.bounds.midX //UIScreen.main.bounds.width - (codeNameLabel.frame.size.width + 10)
         }
         else if let codeNameButton = withButtonOrLabel as? UIButton //If the UIView passed in was codeNameButton.
         {

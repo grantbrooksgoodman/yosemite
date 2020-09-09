@@ -57,7 +57,7 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
     {
         lastInitialisedController = self
         
-        buildInstance = Build(withType: .genericController, instanceArray: [codeNameLabel!, logoTypeImageView!, preReleaseLabel!, sendFeedbackButton!, self])
+        buildInstance = Build(withType: .genericController, instanceArray: [codeNameLabel!, logoTypeImageView!, preReleaseLabel!, sendFeedbackButton!, self], conserveSpace: true)
     }
     
     //--------------------------------------------------//
