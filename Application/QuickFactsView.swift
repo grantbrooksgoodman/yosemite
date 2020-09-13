@@ -12,7 +12,7 @@ class QuickFactsView: UIView
 {
     //--------------------------------------------------//
     
-    //Interface Builder UI Elements
+    /* Interface Builder UI Elements */
     
     //UILabels
     @IBOutlet weak var ageLabel:    UILabel!
@@ -23,7 +23,7 @@ class QuickFactsView: UIView
     
     //--------------------------------------------------//
     
-    //Override Function
+    /* Overridden Function */
     
     override func draw(_ rect: CGRect)
     {

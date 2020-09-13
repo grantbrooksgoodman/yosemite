@@ -16,7 +16,7 @@ class AlertKit
 {
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     //Other Declarations
     var decrementSeconds = 30
@@ -397,7 +397,7 @@ class AlertKit
                     fatalError()
                 }))
                 
-                if buildState != .generalRelease
+                if buildType != .generalRelease
                 {
                     fatalErrorController.addAction(UIAlertAction(title: returnedStringArray[3], style: .destructive, handler: { (action: UIAlertAction!) in
                         UIPasteboard.general.string = clipboardString
@@ -420,7 +420,7 @@ class AlertKit
                     fatalError()
                 }))
                 
-                if buildState != .generalRelease
+                if buildType != .generalRelease
                 {
                     fatalErrorController.addAction(UIAlertAction(title: returnedStringArray[3], style: .destructive, handler: { (action: UIAlertAction!) in
                     }))

@@ -14,21 +14,21 @@ class GenericController: UIViewController
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     @IBOutlet weak var titleLabel: TranslatedLabel!
     @IBOutlet weak var contentLabel: UILabel!
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     var titleText: String!
     var content: String!
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -58,9 +58,9 @@ class GenericController: UIViewController
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
 }

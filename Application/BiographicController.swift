@@ -13,7 +13,7 @@ class BiographicController: UIViewController
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     @IBOutlet weak var profileImageView: UIImageView!
     
@@ -24,7 +24,7 @@ class BiographicController: UIViewController
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     var biographyPlaceholder = "Add a short statement about yourself to be shown to shelters"
     var addImagePlaceholder = "Tap to add an image"
@@ -34,7 +34,7 @@ class BiographicController: UIViewController
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func viewDidAppear(_ animated: Bool)
     {
@@ -70,7 +70,7 @@ class BiographicController: UIViewController
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     func setUpViews()
     {

@@ -80,7 +80,7 @@ class UserData
     
     //--------------------------------------------------//
     
-    //Prerequisite Initialisation Function
+    /* Initialiser Function */
     
     init(avatarImageData: String?,
          bioText: String?,

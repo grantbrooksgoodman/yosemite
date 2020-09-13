@@ -17,22 +17,17 @@ class ConversationController: UIViewController, MFMailComposeViewControllerDeleg
 {
     //--------------------------------------------------//
     
-    //Interface Builder UI Elements
-    
-    //UILabels
-    @IBOutlet weak var codeNameLabel:   UILabel!
-    @IBOutlet weak var preReleaseLabel: UILabel!
+    /* Interface Builder UI Elements */
     
     //Other Elements
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var matchCollectionView: UICollectionView!
-    @IBOutlet weak var logoTypeImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var sendFeedbackButton: UIButton!
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     //Arrays
     var conversationArray: [Conversation]?
@@ -48,18 +43,18 @@ class ConversationController: UIViewController, MFMailComposeViewControllerDeleg
     
     //--------------------------------------------------//
     
-    //Prerequisite Initialisation Function
+    /* Initialiser Function */
     
     func initialiseController()
     {
         lastInitialisedController = self
-        
-        buildInstance = Build(withType: .genericController, instanceArray: [codeNameLabel!, logoTypeImageView!, preReleaseLabel!, sendFeedbackButton!, self], conserveSpace: true)
+        buildInstance = Build(self)
+        currentFile = #file
     }
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -140,6 +135,8 @@ class ConversationController: UIViewController, MFMailComposeViewControllerDeleg
     {
         super.viewDidLoad()
         
+        initialiseController()
+        
         //Check to see if the user has any open Conversations.
         guard let conversations = conversationArray else
         { //No conversations.
@@ -187,7 +184,9 @@ class ConversationController: UIViewController, MFMailComposeViewControllerDeleg
     
     override func viewWillAppear(_ animated: Bool)
     {
-        initialiseController()
+        super.viewWillAppear(animated)
+        
+        buildInfoController?.view.isHidden = false
         
         matchCollectionView.alpha = matchesUpdated ? 0 : 1
         matchesUpdated = false
@@ -252,7 +251,7 @@ class ConversationController: UIViewController, MFMailComposeViewControllerDeleg
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     @IBAction func sendFeedbackButton(_ sender: Any)
     {
@@ -261,7 +260,7 @@ class ConversationController: UIViewController, MFMailComposeViewControllerDeleg
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
     {

@@ -13,7 +13,7 @@ class EmploymentController: UIViewController
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     //Other Elements
     @IBOutlet weak var employmentStatusSegmentedControl: UISegmentedControl!
@@ -21,7 +21,7 @@ class EmploymentController: UIViewController
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     //CGRect Declarations
     var originalFrame:                      CGRect!
@@ -31,7 +31,7 @@ class EmploymentController: UIViewController
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func viewDidLoad()
     {
@@ -66,7 +66,7 @@ class EmploymentController: UIViewController
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     @IBAction func employmentStatusSegmentedControl(_ sender: Any)
     {
@@ -76,7 +76,7 @@ class EmploymentController: UIViewController
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     /**
      Called when the keyboard begins displaying.

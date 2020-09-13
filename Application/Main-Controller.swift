@@ -21,7 +21,7 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     //UIButtons
     @IBOutlet weak var codeNameButton:     UIButton!
@@ -30,19 +30,17 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
     @IBOutlet weak var subtitleButton:     UIButton!
     
     //UILabels
-    @IBOutlet weak var bundleVersionLabel:                UILabel!
-    @IBOutlet weak var projectIdentifierLabel:            UILabel!
-    @IBOutlet weak var skuLabel:                          UILabel!
+    @IBOutlet weak var bundleVersionLabel:     UILabel!
+    @IBOutlet weak var projectIdentifierLabel: UILabel!
+    @IBOutlet weak var skuLabel:               UILabel!
     
     //UIViews
     @IBOutlet weak var extraneousInformationView: UIView!
     @IBOutlet weak var preReleaseInformationView: UIView!
     
-    @IBOutlet weak var testLabel: UILabel!
-    
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     override var prefersStatusBarHidden:            Bool                 { return false }
     override var preferredStatusBarStyle:           UIStatusBarStyle     { return .lightContent }
@@ -50,11 +48,9 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
     
     var buildInstance: Build!
     
-    let dispatchGroup = DispatchGroup()
-    
     //--------------------------------------------------//
     
-    //Prerequisite Initialisation Function
+    /* Initialiser Function */
     
     func initialiseController()
     {
@@ -66,16 +62,20 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
         //The value of the pre-release application boolean.
         //The value of the prefers status bar boolean.
         
-        buildInstance = Build(withType: .mainController, instanceArray: [bundleVersionLabel!, projectIdentifierLabel!, skuLabel!, codeNameButton!, extraneousInformationView!, informationButton!, sendFeedbackButton!, subtitleButton!, self], conserveSpace: false)
+        lastInitialisedController = self
+        buildInstance = Build(self)
+        currentFile = #file
     }
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        initialiseController()
         
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.red
@@ -83,6 +83,7 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
         self.navigationItem.backBarButtonItem?.setTitleTextAttributes(attributes, for: .normal)
         
         setBackgroundImage(view, imageName: "Background Image")
+        
         UserSerialiser().getRandomUsers(amountToGet: 1) { (wrappedReturnedUsers, getRandomUsersErrorDescriptor) in
             if let returnedUsers = wrappedReturnedUsers
             {
@@ -129,6 +130,80 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
         //            createRandomUser()
         //            i += 1
         //        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        if informationDictionary["subtitleExpiryString"] == "Evaluation period ended." && preReleaseApplication
+        {
+            view.addBlur(withActivityIndicator: false, withStyle: .light, withTag: 1)
+            view.isUserInteractionEnabled = false
+        }
+        
+        buildInfoController?.view.isHidden = true
+    }
+    
+    //--------------------------------------------------//
+    
+    /* Interface Builder Actions */
+    
+    @IBAction func codeNameButton(_ sender: AnyObject)
+    {
+        buildInstance.codeNameButtonAction()
+    }
+    
+    @IBAction func informationButton(_ sender: AnyObject)
+    {
+        buildInstance.displayBuildInformation()
+    }
+    
+    @IBAction func sendFeedbackButton(_ sender: Any)
+    {
+        PresentationManager().feedbackController(withFileName: #file)
+    }
+    
+    @IBAction func subtitleButton(_ sender: Any)
+    {
+        buildInstance.subtitleButtonAction(withButton: sender as! UIButton)
+    }
+    
+    //--------------------------------------------------//
+    
+    /* Independent Functions */
+    
+    func createAccount(email: String, password: String, orderedUserMetaData: [Any], completionHandler: @escaping(_ returnedUser: User?, _ errorDescriptor: String?) -> Void)
+    {
+        guard let firstName           = orderedUserMetaData[0] as? String    else { completionHandler(nil, "Improperly formatted metadata."); return }
+        guard let lastName            = orderedUserMetaData[1] as? String    else { completionHandler(nil, "Improperly formatted metadata."); return }
+        guard let phoneNumber         = orderedUserMetaData[2] as? String    else { completionHandler(nil, "Improperly formatted metadata."); return }
+        guard let userData            = orderedUserMetaData[3] as? UserData  else { completionHandler(nil, "Improperly formatted metadata."); return }
+        
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (wrappedReturnedUser, wrappedReturnedError) in
+            if let returnedError = wrappedReturnedError
+            {
+                completionHandler(nil, errorInformation(forError: (returnedError as NSError)))
+            }
+            else
+            {
+                if let returnedUser = wrappedReturnedUser
+                {
+                    UserSerialiser().createUser(associatedIdentifier: returnedUser.user.uid, emailAddress: email, firstName: firstName, lastName: lastName, userData: userData, phoneNumber: phoneNumber) { (wrappedUser, createUserErrorDescriptor) in
+                        if let returnedUser = wrappedUser
+                        {
+                            completionHandler(returnedUser, nil)
+                        }
+                        else
+                        {
+                            completionHandler(nil, createUserErrorDescriptor ?? "An unknown error occurred.")
+                        }
+                    }
+                }
+                else
+                {
+                    completionHandler(nil, "No error, but no returned user either.")
+                }
+            }
+        })
     }
     
     func createRandomUser()
@@ -197,23 +272,12 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
             random = randomFirstName.stringCharacters[0...randomInteger(1, maximumValue: randomFirstName.length - 1)].joined() + consonants.chooseOne + vowels.chooseOne
         }
         
-        let randomLastName = randomName.components(separatedBy: " ")[1]
-        //let randomUserName = "\(randomFirstName.lowercased())_\(randomLastName.lowercased())"
-        
-        let metadata: [Any] = ["\(randomName.components(separatedBy: " ")[0])\(vowels.chooseOne)\(consonants.chooseOne)\(vowels.chooseOne)", random, "818-555-5555", userData]
+        let metadata: [Any] = ["\(randomName.components(separatedBy: " ")[0])\(vowels.chooseOne)\(consonants.chooseOne)\(vowels.chooseOne)", random!, "818-555-5555", userData]
         
         self.createAccount(email: "\(random.lowercased())@yosemite.app", password: "123456", orderedUserMetaData: metadata) { (wrappedUser, createAccountError) in
             if let returnedUser = wrappedUser
             {
                 print(returnedUser.associatedIdentifier!)
-                //                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-                //                    PKHUD.sharedHUD.contentView = PKHUDSuccessView()
-                //                    PKHUD.sharedHUD.show(onView: lastInitialisedController.view)
-                //
-                //                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                //                        hideHud()
-                //                    }
-                //                }
             }
             else
             {
@@ -230,94 +294,19 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
         }
     }
     
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
+    {
+        buildInstance.handleMailComposition(withController: controller, withResult: result, withError: error)
+    }
+    
+    //--------------------------------------------------//
+    
+    /* Selector Functions */
+    
     @objc func goToWelcome()
     {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             self.performSegue(withIdentifier: "welcomeFromMainSegue", sender: self)
         }
-    }
-    
-    func createAccount(email: String, password: String, orderedUserMetaData: [Any], completionHandler: @escaping(_ returnedUser: User?, _ errorDescriptor: String?) -> Void)
-    {
-        guard let firstName           = orderedUserMetaData[0] as? String    else { completionHandler(nil, "Improperly formatted metadata."); return }
-        guard let lastName            = orderedUserMetaData[1] as? String    else { completionHandler(nil, "Improperly formatted metadata."); return }
-        guard let phoneNumber         = orderedUserMetaData[2] as? String    else { completionHandler(nil, "Improperly formatted metadata."); return }
-        guard let userData            = orderedUserMetaData[3] as? UserData  else { completionHandler(nil, "Improperly formatted metadata."); return }
-        
-        Auth.auth().createUser(withEmail: email, password: password, completion: { (wrappedReturnedUser, wrappedReturnedError) in
-            if let returnedError = wrappedReturnedError
-            {
-                completionHandler(nil, errorInformation(forError: (returnedError as NSError)))
-            }
-            else
-            {
-                if let returnedUser = wrappedReturnedUser
-                {
-                    UserSerialiser().createUser(associatedIdentifier: returnedUser.user.uid, emailAddress: email, firstName: firstName, lastName: lastName, userData: userData, phoneNumber: phoneNumber) { (wrappedUser, createUserErrorDescriptor) in
-                        if let returnedUser = wrappedUser
-                        {
-                            completionHandler(returnedUser, nil)
-                        }
-                        else
-                        {
-                            completionHandler(nil, createUserErrorDescriptor ?? "An unknown error occurred.")
-                        }
-                    }
-                }
-                else
-                {
-                    completionHandler(nil, "No error, but no returned user either.")
-                }
-            }
-        })
-    }
-    
-    override func viewWillAppear(_ animated: Bool)
-    {
-        initialiseController()
-        
-        if informationDictionary["subtitleExpiryString"] == "Evaluation period ended." && preReleaseApplication
-        {
-            view.addBlur(withActivityIndicator: false, withStyle: .light, withTag: 1)
-            view.isUserInteractionEnabled = false
-        }
-    }
-    
-    //--------------------------------------------------//
-    
-    //Interface Builder Actions
-    
-    @IBAction func codeNameButton(_ sender: AnyObject)
-    {
-        buildInstance.codeNameButtonAction()
-    }
-    
-    @IBAction func informationButton(_ sender: AnyObject)
-    {
-        buildInstance.displayBuildInformation()
-    }
-    
-    @IBAction func sendFeedbackButton(_ sender: Any)
-    {
-        PresentationManager().feedbackController(withFileName: #file)
-    }
-    
-    @IBAction func subtitleButton(_ sender: Any)
-    {
-        buildInstance.subtitleButtonAction(withButton: sender as! UIButton)
-    }
-    
-    //--------------------------------------------------//
-    
-    //Independent Functions
-    
-    @objc func printHi()
-    {
-        print("hi")
-    }
-    
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
-    {
-        buildInstance.handleMailComposition(withController: controller, withResult: result, withError: error)
     }
 }

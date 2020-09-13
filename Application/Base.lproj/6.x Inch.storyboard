@@ -201,7 +201,7 @@
         <!--Sample Controller-->
         <scene sceneID="1mO-Ga-Nrc">
             <objects>
-                <viewController storyboardIdentifier="SC" title="Sample Controller" id="OT8-Dr-tzH" customClass="SC" customModule="Yosemite" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SampleController" title="Sample Controller" id="OT8-Dr-tzH" customClass="SampleController" customModule="Yosemite" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="p6j-1Q-IMo"/>
                         <viewControllerLayoutGuide type="bottom" id="trC-ev-Gbv"/>

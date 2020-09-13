@@ -14,11 +14,11 @@ class CardPageController: UIPageViewController
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     weak var cardPageDelegate: CardPageControllerDelegate?
     
@@ -34,7 +34,7 @@ class CardPageController: UIPageViewController
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -79,11 +79,11 @@ class CardPageController: UIPageViewController
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     /**
      Scrolls to the next view controller.

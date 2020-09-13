@@ -15,7 +15,7 @@ class IC: UIViewController
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     //Other Elements
     @IBOutlet weak var imageView: UIImageView!
@@ -24,7 +24,7 @@ class IC: UIViewController
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     //Other Declarations
     let applicationDelegate = UIApplication.shared.delegate! as! AppDelegate
@@ -37,7 +37,7 @@ class IC: UIViewController
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func viewDidLoad()
     {
@@ -160,7 +160,7 @@ class IC: UIViewController
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     @IBAction func skipButton(_ sender: Any)
     {

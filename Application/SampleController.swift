@@ -1,5 +1,5 @@
 //
-//  Sample-Controller.swift
+//  SampleController.swift
 //  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 04/08/2020.
@@ -10,40 +10,32 @@
 import MessageUI
 import UIKit
 
-class SC: UIViewController, MFMailComposeViewControllerDelegate
+class SampleController: UIViewController, MFMailComposeViewControllerDelegate
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
-    
-    //UILabels
-    @IBOutlet weak var codeNameLabel:   UILabel!
-    @IBOutlet weak var preReleaseLabel: UILabel!
-    
-    //Other Elements
-    @IBOutlet weak var logoTypeImageView: UIImageView!
-    @IBOutlet weak var sendFeedbackButton: UIButton!
+    /* Interface Builder UI Elements */
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     var buildInstance: Build!
     
     //--------------------------------------------------//
     
-    //Prerequisite Initialisation Function
+    /* Initialiser Function */
     
     func initialiseController()
     {
         lastInitialisedController = self
-        
-        buildInstance = Build(withType: .genericController, instanceArray: [codeNameLabel!, logoTypeImageView!, preReleaseLabel!, sendFeedbackButton!, self], conserveSpace: true)
+        buildInstance = Build(self)
+        currentFile = #file
     }
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -53,25 +45,24 @@ class SC: UIViewController, MFMailComposeViewControllerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        initialiseController()
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
-        initialiseController()
+        super.viewWillAppear(animated)
+        
+        buildInfoController?.view.isHidden = false
     }
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
-    
-    @IBAction func sendFeedbackButton(_ sender: Any)
-    {
-        PresentationManager().feedbackController(withFileName: #file)
-    }
+    /* Interface Builder Actions */
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
     {

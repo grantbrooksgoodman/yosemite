@@ -18,19 +18,7 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
-    
-    //UILabels
-    @IBOutlet weak var codeNameLabel:   UILabel!
-    @IBOutlet weak var preReleaseLabel: UILabel!
-    
-    //Other Elements
-    @IBOutlet weak var logoTypeImageView: UIImageView!
-    @IBOutlet weak var sendFeedbackButton: UIButton!
-    
-    //--------------------------------------------------//
-    
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     var buildInstance: Build!
     
@@ -44,18 +32,18 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
     
     //--------------------------------------------------//
     
-    //Prerequisite Initialisation Function
+    /* Initialiser Function */
     
     func initialiseController()
     {
         lastInitialisedController = self
-        
-        buildInstance = Build(withType: .genericController, instanceArray: [codeNameLabel!, logoTypeImageView!, preReleaseLabel!, sendFeedbackButton!, self], conserveSpace: true)
+        buildInstance = Build(self)
+        currentFile = #file
     }
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     public struct Sender: SenderType
     {
@@ -69,9 +57,16 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
         
     }
     
+    @objc func sendFeedbackButtonAction()
+    {
+        PresentationManager().feedbackController(withFileName: #file)
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        initialiseController()
         
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
@@ -192,7 +187,9 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
     
     override func viewWillAppear(_ animated: Bool)
     {
-        initialiseController()
+        super.viewWillAppear(animated)
+        
+        buildInfoController?.view.isHidden = false
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -238,7 +235,7 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     @IBAction func sendFeedbackButton(_ sender: Any)
     {
@@ -247,7 +244,7 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     @objc func keyboardDidShow(_ withNotification: Notification)
     {

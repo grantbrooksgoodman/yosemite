@@ -15,7 +15,7 @@ class SSRadioButton: UIButton
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     //CGFloats
     @IBInspectable var circleRadius: CGFloat = 5.0
@@ -58,7 +58,7 @@ class SSRadioButton: UIButton
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override init(frame: CGRect)
     {

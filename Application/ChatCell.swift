@@ -15,7 +15,7 @@ class ChatCell: UITableViewCell
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     //UILabels
     @IBOutlet weak var nameLabel:    UILabel!
@@ -31,7 +31,7 @@ class ChatCell: UITableViewCell
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func awakeFromNib()
     {

@@ -18,25 +18,17 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
-    
-    //UIButtons
-    @IBOutlet weak var sendFeedbackButton: UIButton!
-    
-    //UILabels
-    @IBOutlet weak var codeNameLabel:   UILabel!
-    @IBOutlet weak var preReleaseLabel: UILabel!
+    /* Interface Builder UI Elements */
     
     //Other Elements
     @IBOutlet weak var kolodaView: KolodaView!
-    @IBOutlet weak var logoTypeImageView: UIImageView!
     
     @IBOutlet weak var matchesButton: ShadowButton!
     
     @IBOutlet weak var accountButton: ShadowButton!
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     //Other Declarations
     override var prefersStatusBarHidden:            Bool                 { return false }
@@ -51,18 +43,18 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
     
     //--------------------------------------------------//
     
-    //Prerequisite Initialisation Function
+    /* Initialiser Function */
     
     func initialiseController()
     {
         lastInitialisedController = self
-        
-        buildInstance = Build(withType: .genericController, instanceArray: [codeNameLabel!, logoTypeImageView!, preReleaseLabel!, sendFeedbackButton!, self], conserveSpace: true)
+        buildInstance = Build(self)
+        currentFile = #file
     }
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -91,15 +83,20 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
                               height: 60))
     }
     
+    @objc func sendFeedbackButtonAction()
+    {
+        PresentationManager().feedbackController(withFileName: #file)
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
+        initialiseController()
+        
         view.bringSubviewToFront(kolodaView)
         
         setNeedsStatusBarAppearanceUpdate()
-        
-        darkMode = true
         
         accountButton.tag = aTagFor("accountButton")
         matchesButton.tag = aTagFor("matchesButton")
@@ -220,7 +217,9 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
     
     override func viewWillAppear(_ animated: Bool)
     {
-        initialiseController()
+        super.viewWillAppear(animated)
+        
+        buildInfoController?.view.isHidden = false
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -232,7 +231,7 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     @IBAction func matchesButton(_ sender: Any)
     {
@@ -315,7 +314,7 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
     {

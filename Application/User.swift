@@ -35,7 +35,7 @@ class User
     
     //--------------------------------------------------//
     
-    //Prerequisite Initialisation Function
+    /* Initialiser Function */
     
     init(associatedIdentifier: String,
          emailAddress: String,

@@ -16,7 +16,7 @@ class CUC: UIViewController
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     //UITextFields
     @IBOutlet weak var eMailTextField:       UITextField!
@@ -34,14 +34,14 @@ class CUC: UIViewController
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     var originalInstructionTextViewFrame: CGRect!
     var originalInstructionTextViewFontSize: CGFloat = 14
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     //referencing custom or variables in line documentation = «»
     //referencing apple stuff = Capitalise
@@ -126,7 +126,7 @@ class CUC: UIViewController
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     @IBAction func backButton(_ sender: Any)
     {
         if let createAccountController = self.parent as? CreateAccountController
@@ -198,7 +198,7 @@ class CUC: UIViewController
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     /**
      Determines whether a given String is a valid e-mail address or not.

@@ -20,7 +20,7 @@ class CreateAccountController: UIViewController, MFMailComposeViewControllerDele
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     //RadioButtons
     @IBOutlet weak var adoptButton:   SSRadioButton!
@@ -30,20 +30,14 @@ class CreateAccountController: UIViewController, MFMailComposeViewControllerDele
     @IBOutlet weak var backButton:     ShadowButton!
     @IBOutlet weak var continueButton: ShadowButton!
     
-    //UILabels
-    @IBOutlet weak var codeNameLabel:   UILabel!
-    @IBOutlet weak var preReleaseLabel: UILabel!
-    
     //Other Elements
     @IBOutlet weak var createAccountLabel: TranslatedLabel!
     @IBOutlet weak var instructionTextView: UITextView!
-    @IBOutlet weak var logoTypeImageView: UIImageView!
     @IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet weak var sendFeedbackButton: UIButton!
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     //CGPoints
     var initialBiographicCentre:      CGPoint!
@@ -68,22 +62,24 @@ class CreateAccountController: UIViewController, MFMailComposeViewControllerDele
     
     //--------------------------------------------------//
     
-    //Prerequisite Initialisation Function
+    /* Initialiser Function */
     
     func initialiseController()
     {
         lastInitialisedController = self
-        
-        buildInstance = Build(withType: .genericController, instanceArray: [codeNameLabel!, logoTypeImageView!, preReleaseLabel!, sendFeedbackButton!, self], conserveSpace: true)
+        buildInstance = Build(self)
+        currentFile = #file
     }
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        initialiseController()
         
         //Turn on dark mode.
         darkMode = true
@@ -163,10 +159,12 @@ class CreateAccountController: UIViewController, MFMailComposeViewControllerDele
     
     override func viewWillAppear(_ animated: Bool)
     {
+        super.viewWillAppear(animated)
+        
+        buildInfoController?.view.isHidden = false
+        
         if lastInitialisedController != self
         {
-            initialiseController()
-            
             //Set the view's tag.
             view.tag = aTagFor("createAccountController")
             
@@ -205,7 +203,7 @@ class CreateAccountController: UIViewController, MFMailComposeViewControllerDele
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     @IBAction func backButton(_ sender: Any)
     {

@@ -19,8 +19,9 @@ import Reachability
 //--------------------------------------------------//
 
 //Top-Level Declarations
+var buildType: Build.BuildType = .alpha
 
-var buildState: Build.BuildState = .alpha
+var buildInfoController: BuildInfoController?
 
 //Boolean Declarations
 var darkMode                = false
@@ -47,6 +48,7 @@ var unableTitleDictionary:          [String: String]!
 //String Declarations
 var accountIdentifier: String!
 var codeName                  = "Yosemite"
+var currentFile = #file
 var finalName                 = "glaid"
 var languageCode              = "en"
 //Array(languageCodeDictionary.keys).randomElement()!
@@ -59,16 +61,18 @@ var appStoreReleaseVersion = 0
 var currentUser: User?
 var lastInitialisedController: UIViewController! = MC()
 
+var touchTimer: Timer?
+
 var f = Frame()
 
 //--------------------------------------------------//
 
 @UIApplicationMain
-class AppDelegate: UIResponder, MFMailComposeViewControllerDelegate, UIApplicationDelegate, UNUserNotificationCenterDelegate
+class AppDelegate: UIResponder, MFMailComposeViewControllerDelegate, UIApplicationDelegate, UIGestureRecognizerDelegate, UNUserNotificationCenterDelegate
 {
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     //Boolean Declarations
     var currentlyAnimating = false
@@ -82,8 +86,44 @@ class AppDelegate: UIResponder, MFMailComposeViewControllerDelegate, UIApplicati
     
     //--------------------------------------------------//
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool
     {
+        touchTimer?.invalidate()
+        
+        touchTimer = nil
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            buildInfoController?.view.alpha = 0.35
+            
+        }) { (_) in
+            if touchTimer == nil
+            {
+                touchTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.touchTimerAction), userInfo: nil, repeats: true)
+            }
+        }
+        
+        return false
+    }
+    
+    @objc func touchTimerAction()
+    {
+        UIView.animate(withDuration: 0.2, animations: {
+            if touchTimer != nil
+            {
+                buildInfoController?.view.alpha = 1
+                
+                touchTimer?.invalidate()
+                touchTimer = nil
+            }
+        })
+    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool
+    {        
+        let tapGesture = UITapGestureRecognizer(target: self, action: nil)
+        tapGesture.delegate = self
+        window?.addGestureRecognizer(tapGesture)
+        
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "AppleGaramond", size: 17)!], for: .normal)
@@ -186,7 +226,7 @@ class AppDelegate: UIResponder, MFMailComposeViewControllerDelegate, UIApplicati
         }
         
         //Set the array of information.
-        Build(withType: .applicationDelegate, instanceArray: nil, conserveSpace: false)
+        Build(nil)
         
         f.originalDevelopmentEnvironment = .fiveEightInch
         
@@ -268,11 +308,33 @@ class AppDelegate: UIResponder, MFMailComposeViewControllerDelegate, UIApplicati
     {
         completionHandler(.alert)
     }
+    
+    @objc func tryIt()
+    {
+        print("hi")
+    }
 }
 
 //--------------------------------------------------//
 
 //Other Functions
+
+func buildTypeAsString(short: Bool) -> String
+{
+    switch buildType
+    {
+    case .preAlpha:
+        return short ? "p" : "pre-alpha"
+    case .alpha:
+        return short ? "a" : "alpha"
+    case .beta:
+        return short ? "b" : "beta"
+    case .releaseCandidate:
+        return short ? "c" : "release candidate"
+    default:
+        return short ? "g" : "general"
+    }
+}
 
 ///Function that returns a day of the week for a given date string.
 func dayOfWeek(_ fromDateString: String) -> String
@@ -567,24 +629,34 @@ func politelyPresent(viewController: UIViewController)
 {
     hideHud()
     
-    if lastInitialisedController.presentedViewController == nil
+    let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+    
+    if var topController = keyWindow?.rootViewController
     {
-        if !Thread.isMainThread
+        while let presentedViewController = topController.presentedViewController
         {
-            DispatchQueue.main.sync {
-                lastInitialisedController.present(viewController, animated: true)
+            topController = presentedViewController
+        }
+        
+        if topController.presentedViewController == nil
+        {
+            if !Thread.isMainThread
+            {
+                DispatchQueue.main.sync {
+                    topController.present(viewController, animated: true)
+                }
+            }
+            else
+            {
+                topController.present(viewController, animated: true)
             }
         }
         else
         {
-            lastInitialisedController.present(viewController, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                politelyPresent(viewController: viewController)
+            })
         }
-    }
-    else
-    {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-            politelyPresent(viewController: viewController)
-        })
     }
 }
 

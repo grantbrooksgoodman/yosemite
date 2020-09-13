@@ -26,7 +26,7 @@ class Message
     
     //--------------------------------------------------//
     
-    //Prerequisite Initialisation Function
+    /* Initialiser Function */
     
     /**
      - Parameter associatedIdentifier:

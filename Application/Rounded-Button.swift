@@ -12,7 +12,7 @@ class RoundedButton: UIButton
 {
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     //UIColors
     var preferredMainColour:     UIColor!
@@ -36,7 +36,7 @@ class RoundedButton: UIButton
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {

@@ -13,7 +13,7 @@ class ConfidenceController: UIViewController
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     @IBOutlet weak var confidenceEncapsulatingView: UIView!
     @IBOutlet weak var confidenceLabel: UILabel!
@@ -22,7 +22,7 @@ class ConfidenceController: UIViewController
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     //CGRect Declarations
     var originalFrame:                      CGRect!
@@ -37,7 +37,7 @@ class ConfidenceController: UIViewController
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func viewDidAppear(_ animated: Bool)
     {
@@ -65,7 +65,7 @@ class ConfidenceController: UIViewController
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     @IBAction func confidenceSlider(_ sender: Any)
     {
@@ -106,7 +106,7 @@ class ConfidenceController: UIViewController
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     /**
      Called when the keyboard begins displaying.

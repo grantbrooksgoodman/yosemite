@@ -13,7 +13,7 @@ class TraitsController: UIViewController
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     @IBOutlet weak var traitsEncapsulatingView: UIView!
     @IBOutlet weak var organisedButton: ShadowButton!
@@ -29,13 +29,13 @@ class TraitsController: UIViewController
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     var didFinishAnimating = true
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -58,7 +58,7 @@ class TraitsController: UIViewController
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     @IBAction func traitButton(_ sender: Any)
     {
@@ -81,7 +81,7 @@ class TraitsController: UIViewController
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     func initialiseButtons(_ withButtons: [ShadowButton])
     {

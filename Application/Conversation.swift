@@ -27,7 +27,7 @@ class Conversation
     
     //--------------------------------------------------//
     
-    //Prerequisite Initialisation Function
+    /* Constructor Function */
     
     init(associatedIdentifier: String, associatedMessages: [Message], lastModifiedDate: Date, participantIdentifiers: [String])
     {

@@ -13,7 +13,7 @@ class ShadowButton: TranslatedButton
 {
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     //Booleans
     private  var animateTouches: Bool!
@@ -50,7 +50,7 @@ class ShadowButton: TranslatedButton
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {

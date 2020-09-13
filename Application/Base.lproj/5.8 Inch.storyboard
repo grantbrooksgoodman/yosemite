@@ -91,17 +91,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QYo-Qp-grY">
-                                <rect key="frame" x="15" y="774.66666666666652" width="86" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <state key="normal" title="Send Feedback">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendFeedbackButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y28-nm-6jo"/>
-                                </connections>
-                            </button>
                             <view alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0mT-z4-wbS">
                                 <rect key="frame" x="162" y="740" width="198" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -140,6 +129,17 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QYo-Qp-grY">
+                                <rect key="frame" x="15" y="772" width="86" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
+                                <state key="normal" title="Send Feedback">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendFeedbackButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y28-nm-6jo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -213,7 +213,7 @@
         <!--Sample Controller-->
         <scene sceneID="1mO-Ga-Nrc">
             <objects>
-                <viewController storyboardIdentifier="SC" title="Sample Controller" id="OT8-Dr-tzH" customClass="SC" customModule="Yosemite" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SampleController" title="Sample Controller" id="OT8-Dr-tzH" customClass="SampleController" customModule="Yosemite" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X03-ia-9fa"/>
                         <viewControllerLayoutGuide type="bottom" id="2OC-LY-a2f"/>
@@ -221,47 +221,10 @@
                     <view key="view" contentMode="scaleToFill" id="2Dj-7M-Ps3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="All features subject to change." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYB-pc-SYH">
-                                <rect key="frame" x="120" y="778" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project Code Name: Application" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D63-Ms-U1A">
-                                <rect key="frame" x="120" y="763" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="13"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NT (White).png" translatesAutoresizingMaskIntoConstraints="NO" id="tfg-NC-NC6">
-                                <rect key="frame" x="325" y="740" width="35" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="66N-ED-f2i">
-                                <rect key="frame" x="15" y="775" width="85" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <state key="normal" title="Send Feedback">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendFeedbackButton:" destination="OT8-Dr-tzH" eventType="touchUpInside" id="879-2V-JRE"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="812"/>
-                    <connections>
-                        <outlet property="codeNameLabel" destination="D63-Ms-U1A" id="gxy-JE-36w"/>
-                        <outlet property="logoTypeImageView" destination="tfg-NC-NC6" id="AFa-ui-cCr"/>
-                        <outlet property="preReleaseLabel" destination="HYB-pc-SYH" id="hCS-Wp-HyL"/>
-                        <outlet property="sendFeedbackButton" destination="66N-ED-f2i" id="aX6-pa-kxq"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VE4-NO-yQy" sceneMemberID="firstResponder"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="6z9-bx-Hda">
@@ -284,35 +247,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="All features subject to change." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JzR-Gj-liK">
-                                <rect key="frame" x="120" y="778" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project Code Name: Application" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m80-qY-erS">
-                                <rect key="frame" x="120" y="763" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="13"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NT (White).png" translatesAutoresizingMaskIntoConstraints="NO" id="123-sT-N8v">
-                                <rect key="frame" x="325" y="740" width="35" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4IW-Bf-jS9">
-                                <rect key="frame" x="15" y="775" width="85" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <state key="normal" title="Send Feedback">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendFeedbackButton:" destination="9hV-Zf-r3u" eventType="touchUpInside" id="uII-w9-7Rl"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.34999999999999998" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qGs-hF-QME" customClass="TranslatedLabel" customModule="Yosemite" customModuleProvider="target">
                                 <rect key="frame" x="16" y="44" width="344" height="142"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -415,14 +349,10 @@ Account</string>
                     <connections>
                         <outlet property="adoptButton" destination="C7Y-xC-PoF" id="gNe-RQ-sn4"/>
                         <outlet property="backButton" destination="8VI-AC-Hig" id="F0A-GV-5PU"/>
-                        <outlet property="codeNameLabel" destination="m80-qY-erS" id="sJK-5d-Oal"/>
                         <outlet property="continueButton" destination="YCG-MT-5x2" id="fIc-0F-5yx"/>
                         <outlet property="createAccountLabel" destination="qGs-hF-QME" id="15r-RM-IQ2"/>
                         <outlet property="instructionTextView" destination="H5n-ZF-8JO" id="czq-JY-K8O"/>
-                        <outlet property="logoTypeImageView" destination="123-sT-N8v" id="v8z-dW-d7V"/>
-                        <outlet property="preReleaseLabel" destination="JzR-Gj-liK" id="wcv-Ge-Gyl"/>
                         <outlet property="progressView" destination="Y7f-gJ-0EI" id="J4F-QZ-2er"/>
-                        <outlet property="sendFeedbackButton" destination="4IW-Bf-jS9" id="nfu-mO-xkv"/>
                         <outlet property="shelterButton" destination="pRM-SK-BBe" id="uat-VX-L2M"/>
                         <segue destination="Cwa-RH-2j6" kind="modal" identifier="signInFromCreateAccountSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="n4P-4o-4K5"/>
                         <segue destination="DVE-4A-eoa" kind="modal" identifier="welcomeFromCreateAccountSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="laq-b4-GDs"/>
@@ -1068,35 +998,6 @@ Account</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="All features subject to change." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Knk-fL-RSG">
-                                <rect key="frame" x="120" y="778" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project Code Name: Application" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBN-2J-WaS">
-                                <rect key="frame" x="120" y="763" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="13"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NT (White).png" translatesAutoresizingMaskIntoConstraints="NO" id="3Qg-P2-xQP">
-                                <rect key="frame" x="325" y="740" width="35" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btU-fP-cku">
-                                <rect key="frame" x="15" y="775" width="85" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <state key="normal" title="Send Feedback">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendFeedbackButton:" destination="Cwa-RH-2j6" eventType="touchUpInside" id="EBS-fJ-pCr"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oTD-cz-tY4">
                                 <rect key="frame" x="16" y="388" width="343" height="91"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1186,13 +1087,9 @@ Account</string>
                     <size key="freeformSize" width="375" height="812"/>
                     <connections>
                         <outlet property="backButton" destination="Y68-Df-wTx" id="tbR-RX-1Rf"/>
-                        <outlet property="codeNameLabel" destination="dBN-2J-WaS" id="bFv-Jp-ROS"/>
                         <outlet property="eMailTextField" destination="gtr-Np-PIV" id="Nbe-YY-igG"/>
                         <outlet property="forgotPasswordButton" destination="OYc-gs-wyf" id="rnP-pr-E3y"/>
-                        <outlet property="logoTypeImageView" destination="3Qg-P2-xQP" id="X22-gT-Vxb"/>
                         <outlet property="passwordTextField" destination="wb6-xl-Xd8" id="Qzv-eU-pix"/>
-                        <outlet property="preReleaseLabel" destination="Knk-fL-RSG" id="Knr-ul-rrE"/>
-                        <outlet property="sendFeedbackButton" destination="btU-fP-cku" id="ics-vF-bwH"/>
                         <outlet property="signInButton" destination="ozz-V9-7Rg" id="VVj-OE-fPg"/>
                         <outlet property="signInLabel" destination="c0J-7X-nMd" id="6wJ-dj-dcs"/>
                         <outlet property="textFieldEncapsulatingView" destination="oTD-cz-tY4" id="2cs-f2-R3z"/>
@@ -1221,35 +1118,6 @@ Account</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All features subject to change." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6dq-5J-Cik">
-                                <rect key="frame" x="120" y="778" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project Code Name: Application" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohv-tX-037">
-                                <rect key="frame" x="120" y="763" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="13"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NT (White).png" translatesAutoresizingMaskIntoConstraints="NO" id="lOd-GQ-v9F">
-                                <rect key="frame" x="325" y="740" width="35" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VIj-Za-FfI">
-                                <rect key="frame" x="15" y="775" width="85" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <state key="normal" title="Send Feedback">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendFeedbackButton:" destination="KAk-ei-GaK" eventType="touchUpInside" id="ldh-Lf-Zbt"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YJu-Tk-GUd" customClass="KolodaView" customModule="Koloda">
                                 <rect key="frame" x="5" y="96" width="365" height="620"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1279,12 +1147,8 @@ Account</string>
                     <size key="freeformSize" width="375" height="812"/>
                     <connections>
                         <outlet property="accountButton" destination="bWp-VQ-Izf" id="yzp-gS-SQa"/>
-                        <outlet property="codeNameLabel" destination="ohv-tX-037" id="OWu-if-Ug0"/>
                         <outlet property="kolodaView" destination="YJu-Tk-GUd" id="f4i-A7-VVr"/>
-                        <outlet property="logoTypeImageView" destination="lOd-GQ-v9F" id="du7-Nq-2mX"/>
                         <outlet property="matchesButton" destination="O2F-lO-hna" id="Pcu-wx-wR0"/>
-                        <outlet property="preReleaseLabel" destination="6dq-5J-Cik" id="7nR-Tk-4YI"/>
-                        <outlet property="sendFeedbackButton" destination="VIj-Za-FfI" id="Fo9-JJ-9Eb"/>
                         <segue destination="cEr-Wc-GLX" kind="push" identifier="conversationFromCardSegue" id="G8q-sj-Fb2"/>
                     </connections>
                 </viewController>
@@ -1309,35 +1173,6 @@ Account</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="All features subject to change." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLr-2p-5gC">
-                                <rect key="frame" x="120" y="778" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project Code Name: Application" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1gL-rk-KUD">
-                                <rect key="frame" x="120" y="763" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="13"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NT (White).png" translatesAutoresizingMaskIntoConstraints="NO" id="hvq-fV-rs4">
-                                <rect key="frame" x="325" y="740" width="35" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTN-cn-8oT">
-                                <rect key="frame" x="15" y="775" width="85" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <state key="normal" title="Send Feedback">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendFeedbackButton:" destination="DVE-4A-eoa" eventType="touchUpInside" id="7od-Fu-jbS"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to Boop!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyr-TK-tuf">
                                 <rect key="frame" x="16" y="268" width="343" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1375,12 +1210,8 @@ Account</string>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="812"/>
                     <connections>
-                        <outlet property="codeNameLabel" destination="1gL-rk-KUD" id="VPJ-4J-evf"/>
                         <outlet property="getStartedButton" destination="CCE-yz-dkw" id="at6-7b-bga"/>
                         <outlet property="haveAccountButton" destination="9v4-uB-mkB" id="dhN-jR-7Np"/>
-                        <outlet property="logoTypeImageView" destination="hvq-fV-rs4" id="BXp-fo-mi5"/>
-                        <outlet property="preReleaseLabel" destination="NLr-2p-5gC" id="vwA-P7-oMn"/>
-                        <outlet property="sendFeedbackButton" destination="nTN-cn-8oT" id="aRL-Zh-pji"/>
                         <segue destination="9hV-Zf-r3u" kind="modal" identifier="createAccountFromWelcomeSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="WYa-yg-YL8"/>
                         <segue destination="Cwa-RH-2j6" kind="modal" identifier="signInFromWelcomeSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="70T-wl-zUs"/>
                     </connections>
@@ -1406,35 +1237,6 @@ Account</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All features subject to change." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1QX-xG-TAh">
-                                <rect key="frame" x="120" y="778" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project Code Name: Application" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icP-SC-uGb">
-                                <rect key="frame" x="120" y="763" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="13"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NT (White).png" translatesAutoresizingMaskIntoConstraints="NO" id="0bl-tq-lq1">
-                                <rect key="frame" x="325" y="740" width="35" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0Tr-Q8-ugJ">
-                                <rect key="frame" x="15" y="775" width="85" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <state key="normal" title="Send Feedback">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendFeedbackButton:" destination="cEr-Wc-GLX" eventType="touchUpInside" id="h0C-bA-dLI"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nGM-Cq-eTO">
                                 <rect key="frame" x="0.0" y="233" width="375" height="579"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1575,12 +1377,8 @@ Account</string>
                     <size key="freeformSize" width="375" height="812"/>
                     <connections>
                         <outlet property="chatTableView" destination="nGM-Cq-eTO" id="o6B-W1-agr"/>
-                        <outlet property="codeNameLabel" destination="icP-SC-uGb" id="pHr-Fc-82e"/>
-                        <outlet property="logoTypeImageView" destination="0bl-tq-lq1" id="4Gf-vs-h2c"/>
                         <outlet property="matchCollectionView" destination="xNF-HV-Vjp" id="Kfn-Wa-Ftt"/>
-                        <outlet property="preReleaseLabel" destination="1QX-xG-TAh" id="73u-7c-Yxv"/>
                         <outlet property="scrollView" destination="9tt-E1-Slo" id="ETd-tz-gYX"/>
-                        <outlet property="sendFeedbackButton" destination="0Tr-Q8-ugJ" id="UPx-iW-KQf"/>
                         <segue destination="W3t-7f-QgN" kind="push" identifier="messagesFromConversationSegue" id="8az-Jz-KqY"/>
                     </connections>
                 </viewController>
@@ -1623,48 +1421,11 @@ Account</string>
                     <view key="view" contentMode="scaleToFill" id="Y6r-WT-fne">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="All features subject to change." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="guf-qX-8S7">
-                                <rect key="frame" x="120" y="778" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Project Code Name: Application" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V4a-R8-4QS">
-                                <rect key="frame" x="120" y="763" width="240" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="13"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="NT (White).png" translatesAutoresizingMaskIntoConstraints="NO" id="gqD-S4-aFQ">
-                                <rect key="frame" x="325" y="740" width="35" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsc-Uv-cry">
-                                <rect key="frame" x="15" y="775" width="85" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
-                                <state key="normal" title="Send Feedback">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendFeedbackButton:" destination="W3t-7f-QgN" eventType="touchUpInside" id="5BE-W1-gXY"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Hi0-LO-3pO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="812"/>
-                    <connections>
-                        <outlet property="codeNameLabel" destination="V4a-R8-4QS" id="YqY-Wg-SiZ"/>
-                        <outlet property="logoTypeImageView" destination="gqD-S4-aFQ" id="eyT-5Z-1lb"/>
-                        <outlet property="preReleaseLabel" destination="guf-qX-8S7" id="2Dt-NL-6iU"/>
-                        <outlet property="sendFeedbackButton" destination="Qsc-Uv-cry" id="QuH-2G-dMw"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qjG-PQ-sBZ" sceneMemberID="firstResponder"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="A9X-vX-8SZ">

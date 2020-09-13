@@ -14,40 +14,32 @@ class WelcomeController: UIViewController, MFMailComposeViewControllerDelegate
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     //ShadowButtons
     @IBOutlet weak var getStartedButton:  ShadowButton!
     @IBOutlet weak var haveAccountButton: ShadowButton!
     
-    //UILabels
-    @IBOutlet weak var codeNameLabel:   UILabel!
-    @IBOutlet weak var preReleaseLabel: UILabel!
-    
-    //Other Elements
-    @IBOutlet weak var logoTypeImageView: UIImageView!
-    @IBOutlet weak var sendFeedbackButton: UIButton!
-    
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     var buildInstance: Build!
     
     //--------------------------------------------------//
     
-    //Prerequisite Initialisation Function
+    /* Initialiser Function */
     
     func initialiseController()
     {
         lastInitialisedController = self
-        
-        buildInstance = Build(withType: .genericController, instanceArray: [codeNameLabel!, logoTypeImageView!, preReleaseLabel!, sendFeedbackButton!, self], conserveSpace: true)
+        buildInstance = Build(self)
+        currentFile = #file
     }
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -57,6 +49,8 @@ class WelcomeController: UIViewController, MFMailComposeViewControllerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        initialiseController()
         
         darkMode = true
         
@@ -77,12 +71,14 @@ class WelcomeController: UIViewController, MFMailComposeViewControllerDelegate
     
     override func viewWillAppear(_ animated: Bool)
     {
-        initialiseController()
+        super.viewWillAppear(animated)
+        
+        buildInfoController?.view.isHidden = false
     }
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     @IBAction func getStartedButton(_ sender: Any)
     {
@@ -101,7 +97,7 @@ class WelcomeController: UIViewController, MFMailComposeViewControllerDelegate
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
     {

@@ -16,7 +16,7 @@ class InformationView: UIView
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     //ShadowButtons
     @IBOutlet weak var backButton:            ShadowButton!
@@ -46,7 +46,7 @@ class InformationView: UIView
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func draw(_ rect: CGRect)
     {
@@ -73,7 +73,7 @@ class InformationView: UIView
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     func toggleCheckmark(_ forShadowButton: ShadowButton, isChecked: Bool)
     {
@@ -103,7 +103,7 @@ class InformationView: UIView
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     @IBAction func backButton(_ sender: Any)
     {

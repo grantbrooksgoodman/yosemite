@@ -16,7 +16,7 @@ class CardView: UIView
 {
     //--------------------------------------------------//
     
-    //Interface Builder UI Elements
+    /* Interface Builder UI Elements */
     
     //ShadowButtons
     @IBOutlet weak var closeButton:       ShadowButton!
@@ -34,7 +34,7 @@ class CardView: UIView
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     var quickFactsView: QuickFactsView!
     var cardPageController: CardPageController?
@@ -42,7 +42,7 @@ class CardView: UIView
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func draw(_ rect: CGRect)
     {
@@ -97,7 +97,7 @@ class CardView: UIView
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     @IBAction func closeButton(_ sender: Any)
     {
@@ -125,7 +125,7 @@ class CardView: UIView
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     func addSwipe()
     {

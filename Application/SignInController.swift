@@ -17,7 +17,7 @@ class SignInController: UIViewController, MFMailComposeViewControllerDelegate
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     //ShadowButtons
     @IBOutlet weak var backButton:           ShadowButton!
@@ -25,24 +25,18 @@ class SignInController: UIViewController, MFMailComposeViewControllerDelegate
     
     //UIButtons
     @IBOutlet weak var forgotPasswordButton: UIButton!
-    @IBOutlet weak var sendFeedbackButton: UIButton!
-    
-    //UILabels
-    @IBOutlet weak var codeNameLabel:   UILabel!
-    @IBOutlet weak var preReleaseLabel: UILabel!
     
     //UITextFields
     @IBOutlet weak var eMailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     //Other Elements
-    @IBOutlet weak var logoTypeImageView: UIImageView!
     @IBOutlet weak var signInLabel: TranslatedLabel!
     @IBOutlet weak var textFieldEncapsulatingView: UIView!
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     //CGFloats
     var originalButtonYOrigin:                     CGFloat!
@@ -54,18 +48,18 @@ class SignInController: UIViewController, MFMailComposeViewControllerDelegate
     
     //--------------------------------------------------//
     
-    //Prerequisite Initialisation Function
+    /* Initialiser Function */
     
     func initialiseController()
     {
         lastInitialisedController = self
-        
-        buildInstance = Build(withType: .genericController, instanceArray: [codeNameLabel!, logoTypeImageView!, preReleaseLabel!, sendFeedbackButton!, self], conserveSpace: true)
+        buildInstance = Build(self)
+        currentFile = #file
     }
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -82,6 +76,8 @@ class SignInController: UIViewController, MFMailComposeViewControllerDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        initialiseController()
         
         //Add a rounded border to the «textFieldEncapsulatingView».
         textFieldEncapsulatingView.layer.borderWidth  = 2
@@ -149,12 +145,14 @@ class SignInController: UIViewController, MFMailComposeViewControllerDelegate
     
     override func viewWillAppear(_ animated: Bool)
     {
-        initialiseController()
+        super.viewWillAppear(animated)
+        
+        buildInfoController?.view.isHidden = false
     }
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     @IBAction func backButton(_ sender: Any)
     {
@@ -203,7 +201,7 @@ class SignInController: UIViewController, MFMailComposeViewControllerDelegate
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     /**
      Determines whether a given String is a valid e-mail address or not.

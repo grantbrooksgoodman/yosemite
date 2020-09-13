@@ -13,7 +13,7 @@ class LivingSituationController: UIViewController
 {
     //--------------------------------------------------//
     
-    //Interface Builder User Interface Elements
+    /* Interface Builder UI Elements */
     
     //Other Elements
     @IBOutlet weak var livingSituationSegmentedControl: UISegmentedControl!
@@ -21,7 +21,7 @@ class LivingSituationController: UIViewController
     
     //--------------------------------------------------//
     
-    //Class-level Declarations
+    /* Class-level Declarations */
     
     //CGRect Declarations
     var originalFrame:                      CGRect!
@@ -31,7 +31,7 @@ class LivingSituationController: UIViewController
     
     //--------------------------------------------------//
     
-    //Override Functions
+    /* Overridden Functions */
     
     override func viewDidLoad()
     {
@@ -66,7 +66,7 @@ class LivingSituationController: UIViewController
     
     //--------------------------------------------------//
     
-    //Interface Builder Actions
+    /* Interface Builder Actions */
     
     @IBAction func livingSituationSegmentedControl(_ sender: Any)
     {
@@ -76,7 +76,7 @@ class LivingSituationController: UIViewController
     
     //--------------------------------------------------//
     
-    //Independent Functions
+    /* Independent Functions */
     
     /**
      Called when the keyboard begins displaying.
