@@ -84,31 +84,69 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
         
         setBackgroundImage(view, imageName: "Background Image")
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            PKHUD.sharedHUD.contentView = PKHUDProgressView(title: nil, subtitle: "Finding User...")
+            PKHUD.sharedHUD.show(onView: self.view)
+        }
+        
+        //showProgressHud()
+        
+        signInUserWithMatches()
+        //
+        //        if randomInteger(0, maximumValue: 10) % 2 == 0
+        //        {
+        //            createRandomUser()
+        //        }
+        
+        //        var i = 0
+        //        while i < 15
+        //        {
+        //            createRandomUser()
+        //            i += 1
+        //        }
+    }
+    
+    func signInUserWithMatches()
+    {
         UserSerialiser().getRandomUsers(amountToGet: 1) { (wrappedReturnedUsers, getRandomUsersErrorDescriptor) in
             if let returnedUsers = wrappedReturnedUsers
             {
                 UserSerialiser().getUser(withIdentifier: returnedUsers[0]) { (wrappedUser, getUserErrorDescriptor) in
                     if let returnedUser = wrappedUser
                     {
-                        currentUser = returnedUser
-                        
-                        currentUser!.updateLastActiveDate()
-                        
-                        accountIdentifier = returnedUser.associatedIdentifier
-                        
-                        Database.database().reference().child("allUsers").child(currentUser!.associatedIdentifier!).observe(.childChanged) { (returnedSnapshot) in
-                            if returnedSnapshot.key == "openConversations"
-                            {
-                                if let openConversations = returnedSnapshot.value as? [String]
-                                {
-                                    currentUser!.openConversations = openConversations
+                        if returnedUser.matches == nil
+                        {
+                            self.signInUserWithMatches()
+                        }
+                        else
+                        {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                PKHUD.sharedHUD.contentView = PKHUDProgressView(title: nil, subtitle: "Found! Signing in...")
+                                PKHUD.sharedHUD.show(onView: self.view)
+                                
+                                PKHUD.sharedHUD.hide(afterDelay: 0.5) { success in
+                                    currentUser = returnedUser
+                                    
+                                    currentUser!.updateLastActiveDate()
+                                    
+                                    accountIdentifier = returnedUser.associatedIdentifier
+                                    
+                                    Database.database().reference().child("allUsers").child(currentUser!.associatedIdentifier!).observe(.childChanged) { (returnedSnapshot) in
+                                        if returnedSnapshot.key == "openConversations"
+                                        {
+                                            if let openConversations = returnedSnapshot.value as? [String]
+                                            {
+                                                currentUser!.openConversations = openConversations
+                                            }
+                                        }
+                                    }
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                        self.performSegue(withIdentifier: "cardFromMainSegue", sender: self)
+                                        //self.performSegue(withIdentifier: "welcomeFromMainSegue", sender: self)
+                                    }
                                 }
                             }
-                        }
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                            self.performSegue(withIdentifier: "cardFromMainSegue", sender: self)
-                            //self.performSegue(withIdentifier: "welcomeFromMainSegue", sender: self)
                         }
                     }
                     else
@@ -118,18 +156,6 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
                 }
             }
         }
-        
-        if randomInteger(0, maximumValue: 10) % 2 == 0
-        {
-            createRandomUser()
-        }
-        
-        //        var i = 0
-        //        while i < 15
-        //        {
-        //            createRandomUser()
-        //            i += 1
-        //        }
     }
     
     override func viewWillAppear(_ animated: Bool)

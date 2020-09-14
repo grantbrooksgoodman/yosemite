@@ -26,6 +26,7 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
     @IBOutlet weak var matchesButton: ShadowButton!
     
     @IBOutlet weak var accountButton: ShadowButton!
+    
     //--------------------------------------------------//
     
     /* Class-level Declarations */
@@ -106,7 +107,6 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
         self.navigationController?.navigationBar.barTintColor = UIColor(hex: 0x003262)
         self.navigationController?.navigationBar.tintColor = UIColor(hex: 0xFEB516)
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(hex: 0xFEB516), NSAttributedString.Key.font: UIFont(name: "AppleGaramond", size: 40)!]
-        //
         
         accountButton.initialiseLayer(animateTouches: true,
                                       backgroundColour: UIColor(hex: 0x265079),

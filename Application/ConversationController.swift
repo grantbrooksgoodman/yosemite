@@ -129,6 +129,9 @@ class ConversationController: UIViewController, MFMailComposeViewControllerDeleg
             chatTableView.frame.size.height = UIScreen.main.bounds.height - topBarHeight
             chatTableView.frame.origin.y = topBarHeight
         }
+        
+        //scrollView.updateFrame()
+        //matchCollectionView.updateFrame()
     }
     
     override func viewDidLoad()
@@ -469,6 +472,7 @@ extension ConversationController: UITableViewDataSource, UITableViewDelegate
         if dateLabelUpdateTimer == nil
         {
             //Set up the «dateLabelUpdateTimer» to fire every 60 seconds.
+            updateDateLabels()
             dateLabelUpdateTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(ConversationController.updateDateLabels), userInfo: nil, repeats: true)
         }
         
@@ -668,6 +672,8 @@ extension ConversationController: UICollectionViewDataSource, UICollectionViewDe
         
         //Set the «nameLabel's» text to the first name of the other User.
         matchCell.nameLabel.text = matchArray![indexPath.row].firstName!
+        
+        //matchCell.updateFrame()
         
         return matchCell
     }

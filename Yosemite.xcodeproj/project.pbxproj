@@ -344,6 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				6874044A1CB1AB4400BD2632 /* AppDelegate.swift */,
+				68C9FAFF1DD6F2F500E7DE4D /* Other Files */,
 				A2ECF96B24C9D9EA00862AF0 /* Serialisation Classes */,
 				682A9B1E1C8E64CE00014EA5 /* Storyboard Files */,
 				682A9B211C8E64FC00014EA5 /* Supporting Files */,
@@ -397,7 +398,6 @@
 				68E3CD811EE3292100C688C5 /* Auxiliary Classes */,
 				A2ECF96C24C9DA4400862AF0 /* Fonts */,
 				682A9B241C8E749D00014EA5 /* Image Files */,
-				68C9FAFF1DD6F2F500E7DE4D /* Other Files */,
 				68C9FB011DD6F31200E7DE4D /* PLIST Files */,
 			);
 			name = "Supporting Files";

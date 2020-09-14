@@ -107,11 +107,10 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
             firstMoveLabel!.frame.size.width = intrinsicContentWidth
             
             firstMoveLabel!.center = view.center
-            firstMoveLabel!.frame.origin.y += 125
+            firstMoveLabel!.frame.origin.y = profileImageView!.frame.maxY + firstMoveLabel!.frame.size.height + 10
             view.addSubview(firstMoveLabel!)
             
-            profileImageView!.updateFrame()
-            firstMoveLabel!.updateFrame()
+            //firstMoveLabel!.updateFrame()
         }
         
         for individualMessage in messageArray
