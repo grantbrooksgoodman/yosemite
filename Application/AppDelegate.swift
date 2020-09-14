@@ -65,6 +65,8 @@ var touchTimer: Timer?
 
 var f = Frame()
 
+var isPresentingMailComposeViewController = false
+
 //--------------------------------------------------//
 
 @UIApplicationMain
@@ -628,6 +630,11 @@ func openStream(forFile: String, forFunction: String, forLine: Int?, withMessage
 func politelyPresent(viewController: UIViewController)
 {
     hideHud()
+    
+    if viewController as? MFMailComposeViewController != nil
+    {
+        isPresentingMailComposeViewController = true
+    }
     
     let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
     

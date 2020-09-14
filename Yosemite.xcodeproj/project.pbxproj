@@ -344,12 +344,12 @@
 			isa = PBXGroup;
 			children = (
 				6874044A1CB1AB4400BD2632 /* AppDelegate.swift */,
-				68C9FAFF1DD6F2F500E7DE4D /* Other Files */,
 				A2ECF96B24C9D9EA00862AF0 /* Serialisation Classes */,
 				682A9B1E1C8E64CE00014EA5 /* Storyboard Files */,
 				682A9B211C8E64FC00014EA5 /* Supporting Files */,
 				682A9B201C8E64F700014EA5 /* View Controllers */,
 				A2ECF96A24C9D9D400862AF0 /* Views */,
+				68C9FAFF1DD6F2F500E7DE4D /* Other Files */,
 			);
 			path = Application;
 			sourceTree = "<group>";

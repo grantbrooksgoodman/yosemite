@@ -72,7 +72,34 @@ class BuildInfoController: UIViewController
     
     @objc func sendFeedbackButtonAction()
     {
-        PresentationManager().feedbackController(withFileName: currentFile)
+        if isPresentingMailComposeViewController
+        {
+            AlertKit().errorAlertController(title: "Already Filing Report",
+                                            message: "It appears that a report is already being filed.\n\nPlease complete the first report before beginning another.",
+                                            dismissButtonTitle: "OK",
+                                            additionalSelectors: nil,
+                                            preferredAdditionalSelector: nil,
+                                            canFileReport: false,
+                                            extraInfo: nil,
+                                            metadata: [#file, #function, #line],
+                                            networkDependent: false)
+        }
+        else
+        {
+            AlertKit().optionAlertController(withTitle: "File Report", withMessage: "Choose the option which best describes your intention.", withCancelButtonTitle: nil, withActions: ["Send Feedback", "Report a Bug"], preferredActionIndex: nil, destructiveActionIndex: nil, networkDependent: true) { (option) in
+                if let option = option
+                {
+                    if option == 0
+                    {
+                        AlertKit().fileReport(type: .feedback, body: "Appended below are various data points useful in analysing any potential problems within the application. Please do not edit the information contained in the lines below, with the exception of the last field, in which any general feedback is appreciated.", prompt: "General Feedback", extraInfo: nil, metadata: [#file, #function, #line])
+                    }
+                    else if option == 1
+                    {
+                        AlertKit().fileReport(type: .bug, body: "In the appropriate section, please describe the error encountered and the steps to reproduce it.", prompt: "Description/Steps to Reproduce", extraInfo: nil, metadata: [#file, #function, #line])
+                    }
+                }
+            }
+        }
     }
     
     //--------------------------------------------------//

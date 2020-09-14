@@ -233,13 +233,7 @@ class AlertKit
                                 let functionName = (metadata[1] as! String).components(separatedBy: "(")[0]
                                 
                                 errorAlertController.addAction(UIAlertAction(title: returnedStrings[3], style: .default, handler: { (action: UIAlertAction!) in
-                                    self.fileReport(isErrorReport: true,
-                                                    withBody: returnedStrings[4],
-                                                    withDescriptor: "Error Descriptor",
-                                                    withExtraneousInformation: extraInfo,
-                                                    withFileName: fileName,
-                                                    withFunctionTitle: functionName,
-                                                    withLineNumber: lineNumber)
+                                    self.fileReport(type: .error, body: returnedStrings[4], prompt: "Error Descriptor", extraInfo: extraInfo, metadata: [fileName, functionName, lineNumber])
                                 }))
                             }
                             
@@ -362,7 +356,12 @@ class AlertKit
     ///Displays a fatal error controller.
     func fatalErrorController(extraneousInformation: String?, withFileName: String!, withFunctionTitle: String!, withLineNumber: Int!)
     {
-        let clipboardString = "[" + retrieveErrorDescriptor(forFunction: withFunctionTitle, withLineNumber: withLineNumber, withUniqueReferenceCode: randomiseCapitalisation(forString: retrieveUniqueReferenceCode(forString: retrieveFileName(forFile: withFileName)), numericModifier: withLineNumber)) + "]"
+        guard let code = code(for: .error, metadata: [withFileName!, withFunctionTitle!, withLineNumber!]) else
+        {
+            report("Unable to generate code.", errorCode: nil, isFatal: true, metadata: [#file, #function, #line]); return
+        }
+        
+        let clipboardString = "[\(code)]"
         
         var formattedExtraneousInformation: String! = ""
         
@@ -435,9 +434,9 @@ class AlertKit
     func feedbackController(withFileName: String)
     {
         DispatchQueue.main.async {
-            Translator().getArrayOfTranslations(fromArray: ["Appended below are various data points useful in analysing any potential problems within the application. Please do not edit the information contained in the lines below, with the exception of the last field, in which a brief description of an incident experienced, or any general feedback, is appreciated.", "Brief Description/General Feedback"], requiresHud: true) { (returnedStrings) in
+            Translator().getArrayOfTranslations(fromArray: ["Appended below are various data points useful in analysing any potential problems within the application. Please do not edit the information contained in the lines below, with the exception of the last field, in which any general feedback is appreciated.", "General Feedback"], requiresHud: true) { (returnedStrings) in
                 
-                self.fileReport(isErrorReport: false, withBody: returnedStrings[0], withDescriptor: returnedStrings[1], withExtraneousInformation: nil, withFileName: withFileName, withFunctionTitle: nil, withLineNumber: nil)
+                self.fileReport(type: .feedback, body: returnedStrings[0], prompt: returnedStrings[1], extraInfo: nil, metadata: [#file, #function, #line])
             }
         }
     }
@@ -770,76 +769,110 @@ class AlertKit
         }
     }
     
-    ///Sets up and formats the information required for a feedback or error report.
-    private func fileReport(isErrorReport: Bool, withBody: String, withDescriptor: String, withExtraneousInformation: String?, withFileName: String, withFunctionTitle: String?, withLineNumber: Int?)
+    enum ReportType
     {
-        //Set up the date formatter.
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
-        dateFormatter.locale = Locale(identifier: "en_GB")
-        
-        //Set the connection status variable.
-        var connectionStatus = "online"
-        
-        if !hasConnectivity()
-        {
-            connectionStatus = "offline"
-        }
-        
-        var reportType = "Feedback"
-        
-        //Set the first part variable depending on whether or not it is an error report.
-        var firstPart = "<i>\(withBody.split(separator: ".")[0])</i><p></p><b>Project ID:</b> \(informationDictionary["projectIdentifier"]!)<p></p><b>Build SKU:</b> \(informationDictionary["buildSku"]!)<p></p><b>Occurrence Date:</b> \(dateFormatter.string(from: Date()))<p></p><b>Internet Connection Status:</b> \(connectionStatus)<p></p><b>Event Descriptor:</b> "
-        
-        if withBody.split(separator: ".").count > 1
-        {
-            firstPart = "<i>\(withBody.split(separator: ".")[0]).<p></p>\(withBody.split(separator: ".")[1]).</i><p></p><b>Project ID:</b> \(informationDictionary["projectIdentifier"]!)<p></p><b>Build SKU:</b> \(informationDictionary["buildSku"]!)<p></p><b>Occurrence Date:</b> \(dateFormatter.string(from: Date()))<p></p><b>Internet Connection Status:</b> \(connectionStatus)<p></p><b>Event Descriptor:</b> "
-        }
-        
-        if isErrorReport
-        {
-            reportType = "Feedback"
-            
-            if let unwrappedExtraneousInformation = withExtraneousInformation
-            {
-                firstPart = "<i>\(withBody.split(separator: ".")[0]).<p></p>\(withBody.split(separator: ".")[1]).</i><p></p><b>Project ID:</b> \(informationDictionary["projectIdentifier"]!)<p></p><b>Build SKU:</b> \(informationDictionary["buildSku"]!)<p></p><b>Occurrence Date:</b> \(dateFormatter.string(from: Date()))<p></p><b>Internet Connection Status:</b> \(connectionStatus)<p></p><b>Extraneous Information:</b> \(unwrappedExtraneousInformation)<p></p><b>\(withDescriptor):</b> "
-            }
-            else
-            {
-                firstPart = "<i>\(withBody.split(separator: ".")[0]).<p></p>\(withBody.split(separator: ".")[1]).</i><p></p><b>Project ID:</b> \(informationDictionary["projectIdentifier"]!)<p></p><b>Build SKU:</b> \(informationDictionary["buildSku"]!)<p></p><b>Occurrence Date:</b> \(dateFormatter.string(from: Date()))<p></p><b>Internet Connection Status:</b> \(connectionStatus)<p></p><b>\(withDescriptor):</b> "
-            }
-        }
-        
-        //Set the second part variable depending on whether or not it is an error report.
-        var secondPart = "[" + retrieveEventDescriptor(forFile: retrieveFileName(forFile: withFileName)) + "]<p></p><b>\(withDescriptor):</b> "
-        
-        if let unwrappedFunctionTitle = withFunctionTitle, let unwrappedLineNumber = withLineNumber
-        {
-            secondPart = "[" + retrieveErrorDescriptor(forFunction: unwrappedFunctionTitle, withLineNumber: unwrappedLineNumber, withUniqueReferenceCode: randomiseCapitalisation(forString: retrieveUniqueReferenceCode(forString: retrieveFileName(forFile: withFileName)), numericModifier: unwrappedLineNumber)) + "]"
-        }
-        
-        print(firstPart + secondPart)
-        
-        composeMessage(withMessage: (firstPart + secondPart), withRecipients: ["support@neotechnica.us"], withSubject: "\((preReleaseApplication ? codeName : finalName)) (\(informationDictionary["bundleVersion"]!)) \(reportType) Report", isHtmlMessage: true)
+        case bug
+        case error
+        case feedback
     }
     
-    ///Randomises the capitalisation for a given string and numeric modifier.
-    private func randomiseCapitalisation(forString: String, numericModifier: Int) -> String
+    func fileReport(type: ReportType, body: String, prompt: String, extraInfo: String?, metadata: [Any])
+    {
+        guard validateMetadata(metadata) else
+        {
+            report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return
+        }
+        
+        guard let code = code(for: type, metadata: metadata) else
+        {
+            report("Unable to generate code.", errorCode: nil, isFatal: true, metadata: [#file, #function, #line]); return
+        }
+        
+        let connectionStatus = hasConnectivity() ? "online" : "offline"
+        
+        let bodySection = body.split(separator: ".").count > 1 ? "<i>\(body.split(separator: ".")[0]).<p></p>\(body.split(separator: ".")[1]).</i><p></p>" : "<i>\(body.split(separator: ".")[0]).</i><p></p>"
+        
+        let compiledRemainder = "<b>Project ID:</b> \(informationDictionary["projectIdentifier"]!)<p></p><b>Build SKU:</b> \(informationDictionary["buildSku"]!)<p></p><b>Occurrence Date:</b> \(secondaryDateFormatter.string(from: Date()))<p></p><b>Internet Connection Status:</b> \(connectionStatus)<p></p>\(extraInfo == nil ? "" : "<b>Extraneous Information:</b> \(extraInfo!)<p></p>")<b>Reference Code:</b> [\(code)]<p></p><b>\(prompt):</b> "
+        
+        let subject = "\((buildType == .generalRelease ? finalName : codeName)) (\(informationDictionary["bundleVersion"]!)) \(type == .bug ? "Bug" : (type == .error ? "Error" : "Feedback")) Report"
+        
+        composeMessage(withMessage: (bodySection + compiledRemainder), withRecipients: ["me@grantbrooks.io"], withSubject: subject, isHtmlMessage: true)
+    }
+    
+    func code(for type: ReportType, metadata: [Any]) -> String?
+    {
+        guard validateMetadata(metadata) else
+        {
+            report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil
+        }
+        
+        let rawFilename = metadata[0] as! String
+        let rawFunctionTitle = metadata[1] as! String
+        let lineNumber = metadata[2] as! Int
+        
+        let filePath = rawFilename.components(separatedBy: "/")
+        let filename = filePath[filePath.count - 1].components(separatedBy: ".")[0].replacingOccurrences(of: "-", with: "")
+        
+        let functionTitle = rawFunctionTitle.components(separatedBy: "(")[0].lowercased()
+        
+        guard let cipheredFilename = filename.ciphered(by: 14).randomlyCapitalised(with: lineNumber) else
+        {
+            report("Unable to unwrap ciphered filename.", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil
+        }
+        
+        let modelCode = SystemInformation.modelCode.lowercased()
+        let operatingSystemVersion = SystemInformation.operatingSystemVersion.lowercased()
+        
+        if type == .error
+        {
+            guard let cipheredFunctionName = functionTitle.ciphered(by: 14).randomlyCapitalised(with: lineNumber) else
+            {
+                report("Unable to unwrap ciphered function name.", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil
+            }
+            
+            return "\(modelCode).\(cipheredFilename)-\(lineNumber)-\(cipheredFunctionName).\(operatingSystemVersion)"
+        }
+        else
+        {
+            return "\(modelCode).\(cipheredFilename).\(operatingSystemVersion)"
+        }
+    }
+}
+
+extension String
+{
+    func ciphered(by modifier: Int) -> String
+    {
+        var shiftedCharacters = [Character]()
+        
+        for utf8Value in utf8
+        {
+            let shiftedValue = Int(utf8Value) + modifier
+            
+            let wrapAroundBy = shiftedValue > 97 + 25 ? -26 : (shiftedValue < 97 ? 26 : 0)
+            
+            shiftedCharacters.append(Character(UnicodeScalar(shiftedValue + wrapAroundBy)!))
+        }
+        
+        return String(shiftedCharacters)
+    }
+    
+    func randomlyCapitalised(with modifider: Int) -> String?
     {
         var returnedString = ""
-        var incrementCount = forString.count
+        var incrementCount = count
         
-        for individualCharacter in forString
+        for character in self
         {
             incrementCount = incrementCount - 1
             
-            if ((numericModifier + incrementCount) % 2) == 0
+            if ((modifider + incrementCount) % 2) == 0
             {
-                returnedString = returnedString + String(individualCharacter).uppercased()
+                returnedString = returnedString + String(character).uppercased()
             }
             else
             {
-                returnedString = returnedString + String(individualCharacter).lowercased()
+                returnedString = returnedString + String(character).lowercased()
             }
             
             if incrementCount == 0
@@ -848,42 +881,6 @@ class AlertKit
             }
         }
         
-        return ""
-    }
-    
-    ///Retrieves the error descriptor for a function, line number, and unique reference code.
-    private func retrieveErrorDescriptor(forFunction: String, withLineNumber: Int, withUniqueReferenceCode: String) -> String
-    {
-        let mainErrorCode = randomiseCapitalisation(forString: cipherString(withString: forFunction.components(separatedBy: "(")[0].lowercased(), shiftModifier: (14)), numericModifier: withLineNumber)
-        
-        let compiledDescriptor = "\(SystemInformation.modelCode.lowercased()).\(mainErrorCode)-\(withLineNumber)-\(withUniqueReferenceCode).\(SystemInformation.operatingSystemVersion.lowercased())"
-        
-        return compiledDescriptor
-    }
-    
-    ///Retrieves the event descriptor for a file name.
-    private func retrieveEventDescriptor(forFile: String) -> String
-    {
-        let mainEventCode = randomiseCapitalisation(forString: cipherString(withString: forFile.lowercased(), shiftModifier: (14)), numericModifier: 14)
-        
-        let compiledDescriptor = "\(SystemInformation.modelCode.lowercased()).\(mainEventCode).\(SystemInformation.operatingSystemVersion.lowercased())"
-        
-        return compiledDescriptor
-    }
-    
-    ///Retrieves a reference code for a given string.
-    private func retrieveUniqueReferenceCode(forString: String) -> String
-    {
-        var returnedString = String(forString.first!)
-        
-        for individualCharacter in forString
-        {
-            if String(individualCharacter).lowercased() != String(individualCharacter)
-            {
-                returnedString = returnedString + String(individualCharacter)
-            }
-        }
-        
-        return (returnedString + String(forString.last!))
+        return nil
     }
 }

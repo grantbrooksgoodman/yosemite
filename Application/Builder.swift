@@ -216,6 +216,8 @@ class Build
         //Dismiss the mail controller.
         withController.dismiss(animated: true)
         
+        isPresentingMailComposeViewController = false
+        
         //Wait for the controller to fully animate its dismissal.
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
             //If the message could not be sent.
