@@ -81,6 +81,8 @@ class QuickFactsController: UIViewController
                 line.frame.size.width = f.width(line.frame.size.width)
             }
         }
+        
+        view.updateFrame()
     }
     
     override func viewWillAppear(_ animated: Bool)

@@ -16,49 +16,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "50CAED75-ECA5-463C-86AD-1F0536DDC81F"
+            uuid = "AFFCD055-113C-4602-961F-AEB63C4BAA3C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Application/CardController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
             landmarkName = "koloda(_:didSwipeCardAt:in:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "50CAED75-ECA5-463C-86AD-1F0536DDC81F - 787251432f60c65"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Yosemite.CardController.koloda(_: Koloda.KolodaView, didSwipeCardAt: Swift.Int, in: Koloda.SwipeResultDirection) -&gt; ()"
-                  moduleName = "Yosemite"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grantbrooks/Documents/Projects/yosemite/Application/CardController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "348"
-                  endingLineNumber = "348"
-                  offsetFromSymbolStart = "585">
-               </Location>
-               <Location
-                  uuid = "50CAED75-ECA5-463C-86AD-1F0536DDC81F - f0a59a7453abd33b"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.String&gt;) -&gt; () in Yosemite.CardController.koloda(_: Koloda.KolodaView, didSwipeCardAt: Swift.Int, in: Koloda.SwipeResultDirection) -&gt; ()"
-                  moduleName = "Yosemite"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grantbrooks/Documents/Projects/yosemite/Application/CardController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "349"
-                  endingLineNumber = "349"
-                  offsetFromSymbolStart = "122">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
