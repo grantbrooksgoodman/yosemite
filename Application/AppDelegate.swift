@@ -69,8 +69,7 @@ var isPresentingMailComposeViewController = false
 
 //--------------------------------------------------//
 
-@UIApplicationMain
-class AppDelegate: UIResponder, MFMailComposeViewControllerDelegate, UIApplicationDelegate, UIGestureRecognizerDelegate, UNUserNotificationCenterDelegate
+@UIApplicationMain class AppDelegate: UIResponder, MFMailComposeViewControllerDelegate, UIApplicationDelegate, UIGestureRecognizerDelegate, UNUserNotificationCenterDelegate
 {
     //--------------------------------------------------//
     
@@ -1150,13 +1149,14 @@ extension UILabel
 
 extension UIView
 {
-    func addBlur(withActivityIndicator: Bool, withStyle: UIBlurEffect.Style, withTag: Int)
+    func addBlur(withActivityIndicator: Bool, withStyle: UIBlurEffect.Style, withTag: Int, alpha: CGFloat)
     {
         let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: withStyle))
         
         blurEffectView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         blurEffectView.frame = bounds
         blurEffectView.tag = withTag
+        blurEffectView.alpha = alpha
         
         addSubview(blurEffectView)
         

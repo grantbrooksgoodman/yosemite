@@ -64,7 +64,6 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
         
         lastInitialisedController = self
         buildInstance = Build(self)
-        currentFile = #file
     }
     
     //--------------------------------------------------//
@@ -91,19 +90,69 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
         
         //showProgressHud()
         
-        signInUserWithMatches()
-        //
-        //        if randomInteger(0, maximumValue: 10) % 2 == 0
-        //        {
-        //            createRandomUser()
-        //        }
+        //signInUserWithMatches()
+        signInRandomUser()
         
-        //        var i = 0
-        //        while i < 15
-        //        {
-        //            createRandomUser()
-        //            i += 1
-        //        }
+        if randomInteger(0, maximumValue: 10) % 2 == 0
+        {
+            createRandomUser()
+        }
+        
+        //                var i = 0
+        //                while i < 15
+        //                {
+        //                    createRandomUser()
+        //                    i += 1
+        //                }
+    }
+    
+    func signInRandomUser()
+    {
+        UserSerialiser().getRandomUsers(amountToGet: 1) { (wrappedReturnedUsers, getRandomUsersErrorDescriptor) in
+            if let returnedUsers = wrappedReturnedUsers
+            {
+                UserSerialiser().getUser(withIdentifier: returnedUsers[0]) { (wrappedReturnedUser, getUserError) in
+                    if let returnedUser = wrappedReturnedUser
+                    {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                            PKHUD.sharedHUD.contentView = PKHUDProgressView(title: nil, subtitle: "Found! Signing in...")
+                            PKHUD.sharedHUD.show(onView: self.view)
+                            
+                            PKHUD.sharedHUD.hide(afterDelay: 0.5) { success in
+                                currentUser = returnedUser
+                                
+                                currentUser!.updateLastActiveDate()
+                                
+                                accountIdentifier = returnedUser.associatedIdentifier
+                                
+                                Database.database().reference().child("allUsers").child(currentUser!.associatedIdentifier!).observe(.childChanged) { (returnedSnapshot) in
+                                    if returnedSnapshot.key == "openConversations"
+                                    {
+                                        if let openConversations = returnedSnapshot.value as? [String]
+                                        {
+                                            currentUser!.openConversations = openConversations
+                                        }
+                                    }
+                                }
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(600)) {
+                                    self.performSegue(withIdentifier: "cardFromMainSegue", sender: self)
+                                    //self.performSegue(withIdentifier: "welcomeFromMainSegue", sender: self)
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        report(getUserError ?? "An unknown error occurred.", errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
+                    }
+                }
+            }
+            else
+            {
+                report(getRandomUsersErrorDescriptor ?? "An unknown error occurred.", errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
+            }
+        }
     }
     
     func signInUserWithMatches()
@@ -162,10 +211,11 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
     {
         if informationDictionary["subtitleExpiryString"] == "Evaluation period ended." && preReleaseApplication
         {
-            view.addBlur(withActivityIndicator: false, withStyle: .light, withTag: 1)
+            view.addBlur(withActivityIndicator: false, withStyle: .light, withTag: 1, alpha: 1)
             view.isUserInteractionEnabled = false
         }
         
+        currentFile = #file
         buildInfoController?.view.isHidden = true
     }
     

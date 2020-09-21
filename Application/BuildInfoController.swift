@@ -91,11 +91,11 @@ class BuildInfoController: UIViewController
                 {
                     if option == 0
                     {
-                        AlertKit().fileReport(type: .feedback, body: "Appended below are various data points useful in analysing any potential problems within the application. Please do not edit the information contained in the lines below, with the exception of the last field, in which any general feedback is appreciated.", prompt: "General Feedback", extraInfo: nil, metadata: [#file, #function, #line])
+                        AlertKit().fileReport(type: .feedback, body: "Appended below are various data points useful in analysing any potential problems within the application. Please do not edit the information contained in the lines below, with the exception of the last field, in which any general feedback is appreciated.", prompt: "General Feedback", extraInfo: nil, metadata: [currentFile, #function, #line])
                     }
                     else if option == 1
                     {
-                        AlertKit().fileReport(type: .bug, body: "In the appropriate section, please describe the error encountered and the steps to reproduce it.", prompt: "Description/Steps to Reproduce", extraInfo: nil, metadata: [#file, #function, #line])
+                        AlertKit().fileReport(type: .bug, body: "In the appropriate section, please describe the error encountered and the steps to reproduce it.", prompt: "Description/Steps to Reproduce", extraInfo: nil, metadata: [currentFile, #function, #line])
                     }
                 }
             }

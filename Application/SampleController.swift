@@ -30,7 +30,6 @@ class SampleController: UIViewController, MFMailComposeViewControllerDelegate
     {
         lastInitialisedController = self
         buildInstance = Build(self)
-        currentFile = #file
     }
     
     //--------------------------------------------------//
@@ -53,6 +52,7 @@ class SampleController: UIViewController, MFMailComposeViewControllerDelegate
     {
         super.viewWillAppear(animated)
         
+        currentFile = #file
         buildInfoController?.view.isHidden = false
     }
     

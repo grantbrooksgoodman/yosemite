@@ -50,7 +50,6 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
     {
         lastInitialisedController = self
         buildInstance = Build(self)
-        currentFile = #file
     }
     
     //--------------------------------------------------//
@@ -73,6 +72,12 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
             
             destinationController.conversationArray = conversationsToPass
             destinationController.matchIdentifiers = matchesToPass
+        }
+        else if segue.identifier == "accountFromCardSegue"
+        {
+            //let destinationController = segue.destination as! AccountController
+            
+            
         }
     }
     
@@ -219,6 +224,7 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
     {
         super.viewWillAppear(animated)
         
+        currentFile = #file
         buildInfoController?.view.isHidden = false
     }
     
@@ -227,6 +233,11 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
         UIView.transition(with: self.navigationController!.navigationBar, duration: 0.1, options: [.transitionCrossDissolve], animations: {
             self.title = "glaid"
         })
+    }
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        title = ""
     }
     
     //--------------------------------------------------//
@@ -304,7 +315,7 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
     
     @IBAction func accountButton(_ sender: Any)
     {
-        
+        performSegue(withIdentifier: "accountFromCardSegue", sender: self)
     }
     
     @IBAction func sendFeedbackButton(_ sender: Any)

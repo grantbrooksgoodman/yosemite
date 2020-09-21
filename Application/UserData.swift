@@ -15,6 +15,16 @@ class UserData
     
     //Class-Level Variable Declarations
     
+    enum DataType
+    {
+        case sports
+        case greekLifeOrganisation
+        case callsHome
+        case openTo
+        
+        case `default`
+    }
+    
     //Arrays
     var lookingFor:       [String]?
     var profileImageData: [String]?
@@ -141,5 +151,69 @@ class UserData
         dataBundle["yearExplanation"] = yearExplanation ?? "!"
         
         return dataBundle
+    }
+    
+    func getYearString() -> String
+    {
+        switch yearCode as Int
+        {
+        case 0:
+            return "Freshman"
+        case 1:
+            return "Sophomore"
+        case 2:
+            return "Junior"
+        case 3:
+            return "Senior"
+        case 4:
+            return "5th year"
+        default:
+            return yearExplanation ?? "Other"
+        }
+    }
+    
+    func getSexualPreferenceString() -> String
+    {
+        switch sexualPreference as Int
+        {
+        case 1:
+            return "Males"
+        case 2:
+            return "Females"
+        case 12:
+            return "M & F"
+        case 13:
+            return "M & Other"
+        case 23:
+            return "F & Other"
+        default:
+            return "Other"
+        }
+    }
+    
+    func getGenderString(short: Bool) -> String
+    {
+        switch gender as Int
+        {
+        case 0:
+            return short ? "M" : "Male"
+        case 1:
+            return short ? "F" : "Female"
+        default:
+            return short ? "NB" : "Non-binary"
+        }
+    }
+    
+    func getStudentTypeString() -> String
+    {
+        switch studentType as Int
+        {
+        case 1:
+            return "Out-of-state"
+        case 2:
+            return "International"
+        default:
+            return "In-state"
+        }
     }
 }

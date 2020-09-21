@@ -18,6 +18,36 @@ class UserSerialiser
     
     //Public Functions
     
+    func updateCurrentUserData(type: UserData.DataType, with string: String)
+    {
+        guard let currentUser = currentUser else
+        {
+            report("No «currentUser».", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return
+        }
+        
+        switch type
+        {
+        case .sports:
+            if currentUser.userData.sports == nil
+            {
+                currentUser.userData.sports = [string]
+            }
+            else
+            {
+                currentUser.userData.sports!.append(string)
+            }
+            
+            GenericSerialiser().setValue(onKey: "/allUsers/\(currentUser.associatedIdentifier!)/userData/sports", withData: currentUser.userData.sports!) { (setValueError) in
+                if let setValueError = setValueError
+                {
+                    report(setValueError.localizedDescription, errorCode: (setValueError as NSError).code, isFatal: false, metadata: [#file, #function, #line])
+                }
+            }
+        default:
+            break
+        }
+    }
+    
     /**
      Creates a **User** on the server with a provided identifier.
      

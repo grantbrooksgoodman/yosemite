@@ -38,6 +38,7 @@
 		A239BFB224CB5D3700A94FEF /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A239BFB124CB5D3700A94FEF /* ChatCell.swift */; };
 		A23CB8AB24996B670059D350 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CB8AA24996B670059D350 /* ImagePicker.swift */; };
 		A23CB8AD2499B48F0059D350 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CB8AC2499B48F0059D350 /* SignInController.swift */; };
+		A24C9B0825170AC1000FC0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A24C9B0725170AC1000FC0E3 /* GoogleService-Info.plist */; };
 		A24D7C0C24986ECC0037E108 /* TraitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24D7C0B24986ECC0037E108 /* TraitsController.swift */; };
 		A259E7A1245A26B4004D0A77 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A259E7A0245A26B4004D0A77 /* Conversation.swift */; };
 		A25ADD99247330BB00275FC0 /* EmploymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25ADD98247330BB00275FC0 /* EmploymentController.swift */; };
@@ -128,6 +129,8 @@
 		A2C14629247DB81F00905637 /* TickSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C14628247DB81F00905637 /* TickSlider.swift */; };
 		A2C1462B247F4B6900905637 /* LivingSituationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1462A247F4B6800905637 /* LivingSituationController.swift */; };
 		A2C74EC92264ED830027EF35 /* Essential-Localisations.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2C74EC82264ED830027EF35 /* Essential-Localisations.plist */; };
+		A2C836842516E25800AD6010 /* FactoidCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C836832516E25800AD6010 /* FactoidCardCell.swift */; };
+		A2C836862516F76D00AD6010 /* FactoidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C836852516F76D00AD6010 /* FactoidCard.swift */; };
 		A2DA693324D74929000CD116 /* AlertKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA693224D74929000CD116 /* AlertKit.swift */; };
 		A2DA95AB24EEFF1A0047FCE7 /* ExpandedCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2DA95AA24EEFF1A0047FCE7 /* ExpandedCard.storyboard */; };
 		A2DA95AE24EF018A0047FCE7 /* QuickFactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA95AD24EF018A0047FCE7 /* QuickFactsController.swift */; };
@@ -147,6 +150,9 @@
 		A2E5606625049A7C001A0E03 /* San Francisco (Bold Italic).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2E5605A25049A7C001A0E03 /* San Francisco (Bold Italic).otf */; };
 		A2E5606725049A7C001A0E03 /* San Francisco (Light Italic).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2E5605B25049A7C001A0E03 /* San Francisco (Light Italic).otf */; };
 		A2EFEA3724DA511C00A5904B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2EFEA3624DA511C00A5904B /* GoogleService-Info.plist */; };
+		A2FE6B8325168B0D00070A76 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE6B8225168B0D00070A76 /* AccountController.swift */; };
+		A2FE6B8525169B4400070A76 /* PreferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE6B8425169B4400070A76 /* PreferenceCell.swift */; };
+		A2FE6B872516DD5D00070A76 /* FactoidCardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE6B862516DD5D00070A76 /* FactoidCardsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -185,6 +191,7 @@
 		A239BFB124CB5D3700A94FEF /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		A23CB8AA24996B670059D350 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = SOURCE_ROOT; };
 		A23CB8AC2499B48F0059D350 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
+		A24C9B0725170AC1000FC0E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A24D7C0B24986ECC0037E108 /* TraitsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraitsController.swift; sourceTree = "<group>"; };
 		A259E7A0245A26B4004D0A77 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		A25ADD98247330BB00275FC0 /* EmploymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmploymentController.swift; sourceTree = "<group>"; };
@@ -275,6 +282,8 @@
 		A2C14628247DB81F00905637 /* TickSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickSlider.swift; sourceTree = SOURCE_ROOT; };
 		A2C1462A247F4B6800905637 /* LivingSituationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivingSituationController.swift; sourceTree = "<group>"; };
 		A2C74EC82264ED830027EF35 /* Essential-Localisations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Essential-Localisations.plist"; sourceTree = "<group>"; };
+		A2C836832516E25800AD6010 /* FactoidCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoidCardCell.swift; sourceTree = SOURCE_ROOT; };
+		A2C836852516F76D00AD6010 /* FactoidCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoidCard.swift; sourceTree = "<group>"; };
 		A2DA693224D74929000CD116 /* AlertKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertKit.swift; sourceTree = "<group>"; };
 		A2DA95AA24EEFF1A0047FCE7 /* ExpandedCard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExpandedCard.storyboard; sourceTree = "<group>"; };
 		A2DA95AD24EF018A0047FCE7 /* QuickFactsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickFactsController.swift; sourceTree = "<group>"; };
@@ -295,6 +304,9 @@
 		A2E5605A25049A7C001A0E03 /* San Francisco (Bold Italic).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Bold Italic).otf"; sourceTree = "<group>"; };
 		A2E5605B25049A7C001A0E03 /* San Francisco (Light Italic).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Light Italic).otf"; sourceTree = "<group>"; };
 		A2EFEA3624DA511C00A5904B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A2FE6B8225168B0D00070A76 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
+		A2FE6B8425169B4400070A76 /* PreferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceCell.swift; sourceTree = "<group>"; };
+		A2FE6B862516DD5D00070A76 /* FactoidCardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactoidCardsController.swift; sourceTree = "<group>"; };
 		A7758FE924191F346B742096 /* Pods_Yosemite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yosemite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B38ED19D0819B455AFA08D33 /* Pods-Application.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Application.release.xcconfig"; path = "Pods/Target Support Files/Pods-Application/Pods-Application.release.xcconfig"; sourceTree = "<group>"; };
 		FBCB588F7934B4C55DF28C97 /* Pods-Gamma.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gamma.release.xcconfig"; path = "Pods/Target Support Files/Pods-Gamma/Pods-Gamma.release.xcconfig"; sourceTree = "<group>"; };
@@ -377,9 +389,11 @@
 			children = (
 				A2DA95AC24EF01790047FCE7 /* Expanded Card Controllers */,
 				A2C2B72C249C026100330D98 /* User Account Creation */,
+				A2FE6B8225168B0D00070A76 /* AccountController.swift */,
 				A2739E8C24C157CD00D1C412 /* CardController.swift */,
 				A239BFAF24CB5C4300A94FEF /* ConversationController.swift */,
 				A29C93ED24580B2A002EE615 /* CreateAccountController.swift */,
+				A2FE6B862516DD5D00070A76 /* FactoidCardsController.swift */,
 				68D29A121DD79C8A00BFF4D5 /* Initial-Controller.swift */,
 				687404471CB1AB3400BD2632 /* Main-Controller.swift */,
 				A238C5F524CF3FF100C679D4 /* MessagesController.swift */,
@@ -430,6 +444,9 @@
 		68C9FAFF1DD6F2F500E7DE4D /* Other Files */ = {
 			isa = PBXGroup;
 			children = (
+				A2C836852516F76D00AD6010 /* FactoidCard.swift */,
+				A2C836832516E25800AD6010 /* FactoidCardCell.swift */,
+				A2FE6B8425169B4400070A76 /* PreferenceCell.swift */,
 				A275742724F6D82000D42171 /* CollectionViewCell.swift */,
 				A239BFB124CB5D3700A94FEF /* ChatCell.swift */,
 				A27934D124B047590026F0C5 /* GradientLabel.swift */,
@@ -447,6 +464,7 @@
 			children = (
 				A2C74EC82264ED830027EF35 /* Essential-Localisations.plist */,
 				A2EFEA3624DA511C00A5904B /* GoogleService-Info.plist */,
+				A24C9B0725170AC1000FC0E3 /* GoogleService-Info.plist */,
 				687404491CB1AB4400BD2632 /* Info.plist */,
 			);
 			name = "PLIST Files";
@@ -762,6 +780,7 @@
 				A27C8B0224DBD37200FBC037 /* download-8.jpg in Resources */,
 				A2927FA924AEDBB200144493 /* MuseoSansRounded300.otf in Resources */,
 				A27C8B0D24DBD37200FBC037 /* download-13.jpg in Resources */,
+				A24C9B0825170AC1000FC0E3 /* GoogleService-Info.plist in Resources */,
 				A288DE4424DE3A96000516AE /* UniversLTStd-Obl.otf in Resources */,
 				A27C8B0324DBD37200FBC037 /* download-25.jpg in Resources */,
 				A288DE5124DE6077000516AE /* AppleGaramond.ttf in Resources */,
@@ -905,7 +924,9 @@
 				A29C93EA2457E211002EE615 /* UserSerialiser.swift in Sources */,
 				687404481CB1AB3400BD2632 /* Main-Controller.swift in Sources */,
 				A239BFB024CB5C4400A94FEF /* ConversationController.swift in Sources */,
+				A2FE6B872516DD5D00070A76 /* FactoidCardsController.swift in Sources */,
 				A2DA693324D74929000CD116 /* AlertKit.swift in Sources */,
+				A2FE6B8325168B0D00070A76 /* AccountController.swift in Sources */,
 				A239BFB224CB5D3700A94FEF /* ChatCell.swift in Sources */,
 				A2C0A43024C243B50022062E /* SwipeView.swift in Sources */,
 				A23CB8AB24996B670059D350 /* ImagePicker.swift in Sources */,
@@ -917,10 +938,12 @@
 				A261ADB6245E7AB000398050 /* ConversationSerialiser.swift in Sources */,
 				A2ACF70E22C58551007C24D2 /* Translated-Button.swift in Sources */,
 				68E73D321DEFB296008CD686 /* Rounded-Button.swift in Sources */,
+				A2C836862516F76D00AD6010 /* FactoidCard.swift in Sources */,
 				A2061B9F24C25A460020E120 /* InformationView.swift in Sources */,
 				68E3CD831EE32BEC00C688C5 /* Builder.swift in Sources */,
 				A23CB8AD2499B48F0059D350 /* SignInController.swift in Sources */,
 				A29C93EC2457F2BB002EE615 /* UserData.swift in Sources */,
+				A2C836842516E25800AD6010 /* FactoidCardCell.swift in Sources */,
 				A288DE5C24DE729F000516AE /* QuickFactsView.swift in Sources */,
 				A233769624994F510085ABDE /* BirthdateController.swift in Sources */,
 				A2B1F75E2458AAB000CB20AF /* RadioButton.swift in Sources */,
@@ -934,6 +957,7 @@
 				6881EA4C1E29CD360007D873 /* System-Information.swift in Sources */,
 				A28A2E15246B5A780058207D /* MessageSerialiser.swift in Sources */,
 				68D29A131DD79C8A00BFF4D5 /* Initial-Controller.swift in Sources */,
+				A2FE6B8525169B4400070A76 /* PreferenceCell.swift in Sources */,
 				A29C93E62457E071002EE615 /* GenericSerialiser.swift in Sources */,
 				A2C14629247DB81F00905637 /* TickSlider.swift in Sources */,
 				A238C5F624CF3FF100C679D4 /* MessagesController.swift in Sources */,

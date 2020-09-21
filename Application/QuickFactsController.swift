@@ -38,7 +38,7 @@ class QuickFactsController: UIViewController
     {
         super.viewDidLoad()
         
-        let user = (self.parent as! CardPageController).user!
+        let user = (self.parent as? CardPageController == nil) ? currentUser! : (self.parent as! CardPageController).user!
         
         let birthYear = Calendar.current.component(.year, from: user.userData.birthDate)
         let currentYear = Calendar.current.component(.year, from: Date())

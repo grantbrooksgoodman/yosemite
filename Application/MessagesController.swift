@@ -38,7 +38,6 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
     {
         lastInitialisedController = self
         buildInstance = Build(self)
-        currentFile = #file
     }
     
     //--------------------------------------------------//
@@ -188,6 +187,7 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
     {
         super.viewWillAppear(animated)
         
+        currentFile = #file
         buildInfoController?.view.isHidden = false
     }
     

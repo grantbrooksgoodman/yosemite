@@ -175,7 +175,7 @@ class CardView: UIView
         
         let buttonAlpha:             CGFloat = on ? 1 : 0
         let imageViewHeightModifier: CGFloat = on ? (isFourSevenInchScreen ? f.height(161) : f.height(131)) : f.height(-131)
-        let nameYOriginModifier:     CGFloat = on ? (isFourSevenInchScreen ? f.height(181) : f.height(131)) : f.y(-180)
+        let nameYOriginModifier:     CGFloat = on ? (isFourSevenInchScreen ? f.height(181) : f.height(180)) : f.y(-180)
         
         let originalImageViewHeight = profileImageView.frame.size.height
         

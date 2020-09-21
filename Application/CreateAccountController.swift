@@ -68,7 +68,6 @@ class CreateAccountController: UIViewController, MFMailComposeViewControllerDele
     {
         lastInitialisedController = self
         buildInstance = Build(self)
-        currentFile = #file
     }
     
     //--------------------------------------------------//
@@ -113,7 +112,7 @@ class CreateAccountController: UIViewController, MFMailComposeViewControllerDele
             
             if indicatorCount > 1
             {
-                self.view.addBlur(withActivityIndicator: true, withStyle: .light, withTag: aTagFor("BLUR"))
+                self.view.addBlur(withActivityIndicator: true, withStyle: .light, withTag: aTagFor("BLUR"), alpha: 1)
             }
         }
         
@@ -161,6 +160,7 @@ class CreateAccountController: UIViewController, MFMailComposeViewControllerDele
     {
         super.viewWillAppear(animated)
         
+        currentFile = #file
         buildInfoController?.view.isHidden = false
         
         if lastInitialisedController != self

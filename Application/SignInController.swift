@@ -54,7 +54,6 @@ class SignInController: UIViewController, MFMailComposeViewControllerDelegate
     {
         lastInitialisedController = self
         buildInstance = Build(self)
-        currentFile = #file
     }
     
     //--------------------------------------------------//
@@ -147,6 +146,7 @@ class SignInController: UIViewController, MFMailComposeViewControllerDelegate
     {
         super.viewWillAppear(animated)
         
+        currentFile = #file
         buildInfoController?.view.isHidden = false
     }
     
