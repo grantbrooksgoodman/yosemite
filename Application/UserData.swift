@@ -57,6 +57,8 @@ class UserData
     //workout partner
     //roommate
     //friend
+    //cuffing season date
+    
     //nothing in particular
     
     //sexualPreference:

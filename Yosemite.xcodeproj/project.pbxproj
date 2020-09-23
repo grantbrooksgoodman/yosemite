@@ -31,6 +31,7 @@
 		A203A2F124C15A97001B5C66 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A203A2F024C15A97001B5C66 /* OverlayView.xib */; };
 		A2061B9F24C25A460020E120 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2061B9E24C25A460020E120 /* InformationView.swift */; };
 		A2061BA124C270480020E120 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2061BA024C270480020E120 /* CardView.swift */; };
+		A227ABA2251AF5B500D9A9F9 /* PersonalQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A227ABA1251AF5B500D9A9F9 /* PersonalQuestion.swift */; };
 		A233769624994F510085ABDE /* BirthdateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A233769524994F510085ABDE /* BirthdateController.swift */; };
 		A23376982499621B0085ABDE /* BiographicController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23376972499621B0085ABDE /* BiographicController.swift */; };
 		A238C5F624CF3FF100C679D4 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A238C5F524CF3FF100C679D4 /* MessagesController.swift */; };
@@ -150,6 +151,8 @@
 		A2E5606625049A7C001A0E03 /* San Francisco (Bold Italic).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2E5605A25049A7C001A0E03 /* San Francisco (Bold Italic).otf */; };
 		A2E5606725049A7C001A0E03 /* San Francisco (Light Italic).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2E5605B25049A7C001A0E03 /* San Francisco (Light Italic).otf */; };
 		A2EFEA3724DA511C00A5904B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A2EFEA3624DA511C00A5904B /* GoogleService-Info.plist */; };
+		A2F4B400251AEE4500AC0ADF /* PersonalQuestionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4B3FF251AEE4400AC0ADF /* PersonalQuestionsController.swift */; };
+		A2F4B402251AEF6300AC0ADF /* PersonalQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F4B401251AEF6300AC0ADF /* PersonalQuestionCell.swift */; };
 		A2FE6B8325168B0D00070A76 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE6B8225168B0D00070A76 /* AccountController.swift */; };
 		A2FE6B8525169B4400070A76 /* PreferenceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE6B8425169B4400070A76 /* PreferenceCell.swift */; };
 		A2FE6B872516DD5D00070A76 /* FactoidCardsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FE6B862516DD5D00070A76 /* FactoidCardsController.swift */; };
@@ -184,6 +187,7 @@
 		A203A2F024C15A97001B5C66 /* OverlayView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		A2061B9E24C25A460020E120 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		A2061BA024C270480020E120 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		A227ABA1251AF5B500D9A9F9 /* PersonalQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalQuestion.swift; sourceTree = "<group>"; };
 		A233769524994F510085ABDE /* BirthdateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdateController.swift; sourceTree = "<group>"; };
 		A23376972499621B0085ABDE /* BiographicController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiographicController.swift; sourceTree = "<group>"; };
 		A238C5F524CF3FF100C679D4 /* MessagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
@@ -304,6 +308,8 @@
 		A2E5605A25049A7C001A0E03 /* San Francisco (Bold Italic).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Bold Italic).otf"; sourceTree = "<group>"; };
 		A2E5605B25049A7C001A0E03 /* San Francisco (Light Italic).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Light Italic).otf"; sourceTree = "<group>"; };
 		A2EFEA3624DA511C00A5904B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A2F4B3FF251AEE4400AC0ADF /* PersonalQuestionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalQuestionsController.swift; sourceTree = "<group>"; };
+		A2F4B401251AEF6300AC0ADF /* PersonalQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalQuestionCell.swift; sourceTree = "<group>"; };
 		A2FE6B8225168B0D00070A76 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		A2FE6B8425169B4400070A76 /* PreferenceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceCell.swift; sourceTree = "<group>"; };
 		A2FE6B862516DD5D00070A76 /* FactoidCardsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactoidCardsController.swift; sourceTree = "<group>"; };
@@ -397,6 +403,7 @@
 				68D29A121DD79C8A00BFF4D5 /* Initial-Controller.swift */,
 				687404471CB1AB3400BD2632 /* Main-Controller.swift */,
 				A238C5F524CF3FF100C679D4 /* MessagesController.swift */,
+				A2F4B3FF251AEE4400AC0ADF /* PersonalQuestionsController.swift */,
 				68EB1C821DD7B7070074737B /* SampleController.swift */,
 				A23CB8AC2499B48F0059D350 /* SignInController.swift */,
 				A2AB309024C9E4E10067DDE4 /* WelcomeController.swift */,
@@ -444,6 +451,8 @@
 		68C9FAFF1DD6F2F500E7DE4D /* Other Files */ = {
 			isa = PBXGroup;
 			children = (
+				A227ABA1251AF5B500D9A9F9 /* PersonalQuestion.swift */,
+				A2F4B401251AEF6300AC0ADF /* PersonalQuestionCell.swift */,
 				A2C836852516F76D00AD6010 /* FactoidCard.swift */,
 				A2C836832516E25800AD6010 /* FactoidCardCell.swift */,
 				A2FE6B8425169B4400070A76 /* PreferenceCell.swift */,
@@ -929,13 +938,16 @@
 				A2FE6B8325168B0D00070A76 /* AccountController.swift in Sources */,
 				A239BFB224CB5D3700A94FEF /* ChatCell.swift in Sources */,
 				A2C0A43024C243B50022062E /* SwipeView.swift in Sources */,
+				A2F4B402251AEF6300AC0ADF /* PersonalQuestionCell.swift in Sources */,
 				A23CB8AB24996B670059D350 /* ImagePicker.swift in Sources */,
 				A2DA95AE24EF018A0047FCE7 /* QuickFactsController.swift in Sources */,
 				A2DA95B424EF02220047FCE7 /* CardPageController.swift in Sources */,
+				A227ABA2251AF5B500D9A9F9 /* PersonalQuestion.swift in Sources */,
 				A273DE98250DF526005DB295 /* BuildInfoController.swift in Sources */,
 				A299749C22BBEF79007CD5D7 /* Translator.swift in Sources */,
 				A28A2E13246B582C0058207D /* Message.swift in Sources */,
 				A261ADB6245E7AB000398050 /* ConversationSerialiser.swift in Sources */,
+				A2F4B400251AEE4500AC0ADF /* PersonalQuestionsController.swift in Sources */,
 				A2ACF70E22C58551007C24D2 /* Translated-Button.swift in Sources */,
 				68E73D321DEFB296008CD686 /* Rounded-Button.swift in Sources */,
 				A2C836862516F76D00AD6010 /* FactoidCard.swift in Sources */,

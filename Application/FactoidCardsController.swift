@@ -161,6 +161,7 @@ extension FactoidCardsController: UITableViewDataSource, UITableViewDelegate
                 textView.backgroundColor = cardView.backgroundColor
                 textView.delegate = self
                 textView.font = UIFont(name: "SFUIText-Regular", size: 20)
+                textView.returnKeyType = .done
                 
                 if let genericController = factoidCards[indexPath.row].viewController as? GenericController
                 {

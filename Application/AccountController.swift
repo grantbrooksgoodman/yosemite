@@ -207,9 +207,16 @@ extension AccountController: UITableViewDataSource, UITableViewDelegate
         if tableView.tag == aTagFor("optionsTableView")
         {
             if let currentCell = tableView.cellForRow(at: indexPath),
-                currentCell.textLabel?.text == "Edit Factoid Cards"
+                let labelContent = currentCell.textLabel?.text
             {
-                performSegue(withIdentifier: "factoidCardsFromAccountSegue", sender: self)
+                if labelContent == "Edit Factoid Cards"
+                {
+                    performSegue(withIdentifier: "factoidCardsFromAccountSegue", sender: self)
+                }
+                else if labelContent == "Edit Personal Questions"
+                {
+                    performSegue(withIdentifier: "personalQuestionsFromAccountSegue", sender: self)
+                }
             }
         }
     }
