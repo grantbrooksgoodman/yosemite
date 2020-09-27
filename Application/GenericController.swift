@@ -39,9 +39,38 @@ class GenericController: UIViewController
     {
         super.viewDidLoad()
         
+        contentLabel.tag = aTagFor("contentLabel")
+        
         for subview in view.subviews
         {
-            subview.updateFrame()
+            if subview.tag != aTagFor("contentLabel")
+            {
+                subview.updateFrame()
+            }
+            else
+            {
+                if UIScreen.main.bounds.height == f.screenHeight(.fourInch)
+                {
+                    subview.frame.size.height = f.height(subview.frame.size.height)
+                    subview.frame.size.width = f.width(subview.frame.size.width)
+                    subview.center.x = view.center.x
+                    subview.center.y = view.center.y - 200
+                }
+                else if UIScreen.main.bounds.height == f.screenHeight(.fiveFiveInch)
+                {
+                    subview.frame.size.height = f.height(subview.frame.size.height)
+                    subview.frame.size.width = f.width(subview.frame.size.width)
+                    subview.center.x = view.center.x - 10
+                    subview.center.y = view.center.y - 290
+                }
+                else if UIScreen.main.bounds.height == f.screenHeight(.sixInch)
+                {
+                    subview.frame.size.height = f.height(subview.frame.size.height)
+                    subview.frame.size.width = f.width(subview.frame.size.width)
+                    subview.center.x = view.center.x - 10
+                    subview.center.y = view.center.y - 370
+                }
+            }
         }
         
         view.alpha = 0

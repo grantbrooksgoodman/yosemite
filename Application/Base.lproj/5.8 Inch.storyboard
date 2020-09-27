@@ -1754,7 +1754,7 @@ Account</string>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="6552.8000000000002" y="1065.5172413793105"/>
+            <point key="canvasLocation" x="6553" y="1066"/>
         </scene>
         <!--Personal Questions Controller-->
         <scene sceneID="f2i-rw-9Er">

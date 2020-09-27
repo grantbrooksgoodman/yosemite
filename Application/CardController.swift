@@ -83,6 +83,14 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
     
     func bottomButtonFrame(forButton: UIButton) -> CGRect
     {
+        if UIScreen.main.bounds.height == f.screenHeight(.fourInch)
+        {
+            return CGRect(x: f.x(forButton.frame.origin.x),
+                          y: f.y(forButton.frame.origin.y),
+                          width: 50,
+                          height: 50)
+        }
+        
         return f.frame(CGRect(x: forButton.frame.origin.x,
                               y: forButton.frame.origin.y,
                               width: 60,
@@ -127,10 +135,15 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
                                       shadowColour: UIColor(hex: 0x003262).cgColor,
                                       instanceName: "matchesButton")
         
-        accountButton.setImage(UIImage(named: "account.png")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: .normal)
+        let isFourInchScreen = UIScreen.main.bounds.height == f.screenHeight(.fourInch)
+        
+        let accountImage = UIImage(named: "account.png")?.scaled(with: isFourInchScreen ? 0.05 : 1)
+        let chatImage = UIImage(named: "chat.png")?.scaled(with: isFourInchScreen ? 0.07 : 1)
+        
+        accountButton.setImage(accountImage!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: .normal)
         accountButton.tintColor = UIColor(hex: 0xFEB516)
         
-        matchesButton.setImage(UIImage(named: "chat.png")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: .normal)
+        matchesButton.setImage(chatImage!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: .normal)
         matchesButton.tintColor = UIColor(hex: 0xFEB516)
         
         let aI = UIActivityIndicatorView(frame: f.frame(CGRect(x: 0, y: 0, width: 40, height: 40)))
@@ -446,6 +459,11 @@ extension CardController: KolodaViewDataSource
             cardView.nameLabel.frame.size.width = intrinsicNameContentWidth
             cardView.nameLabel.frame.size.width += 5
             cardView.nameLabel.updateFrame()
+            
+            if UIScreen.main.bounds.height == f.screenHeight(.fourInch) || UIScreen.main.bounds.height == f.screenHeight(.fourSevenInch)
+            {
+                cardView.nameLabel.font = UIFont(name: "UniversLTStd-Bold", size: 35)
+            }
         }
         
         #warning("FOR DEBUG ONLY!")
@@ -481,8 +499,8 @@ extension CardController: KolodaViewDataSource
         label.text = "\(percentage)% in common"
         label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont(name: "SFUIText-Semibold", size: 14)
-        label.frame = CGRect(x: 0, y: f.y(cardView.similarityView.frame.origin.y), width: 150, height: 20)
+        label.font = UIFont(name: "SFUIText-Semibold", size: UIScreen.main.bounds.height == f.screenHeight(.fourInch) ? 10 : 14)
+        label.frame = CGRect(x: 0, y: f.y(cardView.similarityView.frame.origin.y), width: 150, height: f.height(20))
         
         let intrinsicContentWidth = label.sizeThatFits(label.intrinsicContentSize).width
         label.frame.size.width = intrinsicContentWidth
@@ -511,6 +529,12 @@ extension CardController: KolodaViewDataSource
             label.center.x = progressView.center.x
         }
         
+        if UIScreen.main.bounds.height == f.screenHeight(.fourInch) || UIScreen.main.bounds.height == f.screenHeight(.fourSevenInch)
+        {
+            label.frame.origin.y -= 1
+            cardView.subtitleLabel.font = UIFont(name: "SFUIText-Semibold", size: 12)
+        }
+        
         label.tag = aTagFor("label")
         
         cardView.addSubview(label)
@@ -527,8 +551,14 @@ extension CardController: KolodaViewDataSource
         else
         {
             cardView.subtitleLabel.frame.size.width = intrinsicSubtitleContentWidth
-            cardView.subtitleLabel.frame.size.width += 5
-            cardView.subtitleLabel.updateFrame()
+            
+            cardView.subtitleLabel.frame.origin.x = f.x(cardView.subtitleLabel.frame.origin.x)
+            cardView.subtitleLabel.frame.origin.y = f.y(cardView.subtitleLabel.frame.origin.y)
+            
+            if cardView.subtitleLabel.frame.maxX < cardView.frame.maxX - 5
+            {
+                cardView.subtitleLabel.frame.size.width += 5
+            }
         }
         
         cardView.profileImageView.contentMode = .scaleAspectFill
@@ -578,6 +608,11 @@ extension CardController: KolodaViewDataSource
                                                    shadowColour: UIColor.clear.cgColor,
                                                    instanceName: nil)
         
+        if UIScreen.main.bounds.height == f.screenHeight(.fourInch)
+        {
+            cardView.informationButton.frame.origin.x = f.x(cardView.informationButton.frame.origin.x)
+        }
+        
         ancillaryRound(forViews: [cardView.nameLabel, cardView.subtitleLabel])
         
         cardView.tag = index
@@ -621,5 +656,19 @@ extension Sequence where Iterator.Element: Hashable {
     func unique() -> [Iterator.Element] {
         var seen: Set<Iterator.Element> = []
         return filter { seen.insert($0).inserted }
+    }
+}
+
+extension UIImage
+{
+    func scaled(with scale: CGFloat) -> UIImage?
+    {
+        // size has to be integer, otherwise it could get white lines
+        let size = CGSize(width: floor(self.size.width * scale), height: floor(self.size.height * scale))
+        UIGraphicsBeginImageContext(size)
+        draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
 }

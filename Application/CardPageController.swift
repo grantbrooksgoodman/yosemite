@@ -59,6 +59,20 @@ class CardPageController: UIPageViewController
         pageControl.currentPage = 0
         pageControl.center.x = view.center.x
         
+        switch UIScreen.main.bounds.height
+        {
+        case f.screenHeight(.fourInch):
+            pageControl.frame.origin.y += 36
+        case f.screenHeight(.fourSevenInch):
+            pageControl.frame.origin.y += 20
+        case f.screenHeight(.fiveFiveInch):
+            pageControl.frame.origin.y += 8.5
+        case f.screenHeight(.sixInch):
+            pageControl.frame.origin.y -= 20.5
+        default:
+            pageControl.frame.origin.y = 120
+        }
+        
         view.addSubview(pageControl)
         view.bringSubviewToFront(pageControl)
         

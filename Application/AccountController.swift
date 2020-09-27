@@ -147,6 +147,7 @@ class AccountController: UIViewController, MFMailComposeViewControllerDelegate
         UIView.transition(with: self.navigationController!.navigationBar, duration: 0.1, options: [.transitionCrossDissolve], animations: {
             self.title = "Account"
         })
+        
     }
     
     //--------------------------------------------------//
@@ -165,6 +166,20 @@ class AccountController: UIViewController, MFMailComposeViewControllerDelegate
 
 extension AccountController: UITableViewDataSource, UITableViewDelegate
 {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        if UIScreen.main.bounds.height == 667
+        {
+            return 40
+        }
+        else if UIScreen.main.bounds.height == 568
+        {
+            return 32
+        }
+        
+        return 44
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return tableView.tag == aTagFor("accountInfoTableView") ? accountInfoTupleArray.count : (tableView.tag == aTagFor("otherInfoTableView") ? otherInfoTupleArray.count : optionsArray.count)
@@ -179,6 +194,20 @@ extension AccountController: UITableViewDataSource, UITableViewDelegate
             currentCell.titleLabel.text = accountInfoTupleArray[indexPath.row].0
             currentCell.detailLabel.text = accountInfoTupleArray[indexPath.row].1
             
+            if UIScreen.main.bounds.height == 667
+            {
+                currentCell.titleLabel.frame.size.height -= 4
+                currentCell.detailLabel.frame.size.height -= 4
+            }
+            else if UIScreen.main.bounds.height == 568
+            {
+                currentCell.titleLabel.frame.size.height -= 12
+                currentCell.detailLabel.frame.size.height -= 12
+                
+                currentCell.titleLabel.font = UIFont.systemFont(ofSize: 12)
+                currentCell.detailLabel.font = UIFont.systemFont(ofSize: 12)
+            }
+            
             return currentCell
         }
         else if tableView.tag == aTagFor("otherInfoTableView")
@@ -188,6 +217,20 @@ extension AccountController: UITableViewDataSource, UITableViewDelegate
             currentCell.titleLabel.text = otherInfoTupleArray[indexPath.row].0
             currentCell.detailLabel.text = otherInfoTupleArray[indexPath.row].1
             
+            if UIScreen.main.bounds.height == 667
+            {
+                currentCell.titleLabel.frame.size.height -= 4
+                currentCell.detailLabel.frame.size.height -= 4
+            }
+            else if UIScreen.main.bounds.height == 568
+            {
+                currentCell.titleLabel.frame.size.height -= 12
+                currentCell.detailLabel.frame.size.height -= 12
+                
+                currentCell.titleLabel.font = UIFont.systemFont(ofSize: 12)
+                currentCell.detailLabel.font = UIFont.systemFont(ofSize: 12)
+            }
+            
             return currentCell
         }
         else
@@ -195,6 +238,17 @@ extension AccountController: UITableViewDataSource, UITableViewDelegate
             let currentCell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
             
             currentCell.textLabel!.text = optionsArray[indexPath.row]
+            
+            if UIScreen.main.bounds.height == 667
+            {
+                currentCell.textLabel!.frame.size.height -= 4
+            }
+            else if UIScreen.main.bounds.height == 568
+            {
+                currentCell.textLabel!.frame.size.height -= 12
+                
+                currentCell.textLabel!.font = UIFont.systemFont(ofSize: 12)
+            }
             
             return currentCell
         }

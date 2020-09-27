@@ -171,13 +171,75 @@ class CardView: UIView
     {
         let screenSize = UIScreen.main.bounds.size
         
+        let isFourInchScreen = screenSize.height == f.screenHeight(.fourInch)
         let isFourSevenInchScreen = screenSize.height == f.screenHeight(.fourSevenInch)
+        let isFiveFiveInchScreen = screenSize.height == f.screenHeight(.fiveFiveInch)
+        let isSixInchScreen = screenSize.height == f.screenHeight(.sixInch)
+        
+        var calculatedImageViewHeightModifier = f.height(131)
+        var calculatedNameYOriginModifier = f.height(180)
+        
+        var calculatedCardPageControllerHeight = f.height(150)
+        
+        if isFourInchScreen
+        {
+            calculatedImageViewHeightModifier = f.height(171) + 15
+            calculatedNameYOriginModifier = f.height(181)
+            calculatedCardPageControllerHeight = f.height(200)
+        }
+        else if isFourSevenInchScreen
+        {
+            calculatedImageViewHeightModifier = f.height(161)
+            calculatedNameYOriginModifier = f.height(181)
+            calculatedCardPageControllerHeight = f.height(170)
+        }
+        else if isFiveFiveInchScreen
+        {
+            calculatedImageViewHeightModifier += 8
+        }
+        else if isSixInchScreen
+        {
+            calculatedImageViewHeightModifier -= 25
+            calculatedNameYOriginModifier -= 25
+            calculatedCardPageControllerHeight -= 25
+        }
         
         let buttonAlpha:             CGFloat = on ? 1 : 0
-        let imageViewHeightModifier: CGFloat = on ? (isFourSevenInchScreen ? f.height(161) : f.height(131)) : f.height(-131)
-        let nameYOriginModifier:     CGFloat = on ? (isFourSevenInchScreen ? f.height(181) : f.height(180)) : f.y(-180)
+        let imageViewHeightModifier: CGFloat = on ? calculatedImageViewHeightModifier : -calculatedImageViewHeightModifier
+        let nameYOriginModifier:     CGFloat = on ? calculatedNameYOriginModifier : -calculatedNameYOriginModifier
         
         let originalImageViewHeight = profileImageView.frame.size.height
+        
+        var calculatedCardPageControllerYOrigin = (originalImageViewHeight - imageViewHeightModifier) + 3
+        
+        if isFourInchScreen && on
+        {
+            calculatedCardPageControllerYOrigin += 1
+            self.likeButton.frame.origin.y -= 35
+            self.dislikeButton.frame.origin.y -= 35
+            self.nameLabel.frame.origin.y -= 30
+            self.closeButton.frame.origin.y -= 40
+        }
+        else if isFourSevenInchScreen && on
+        {
+            calculatedCardPageControllerYOrigin += 1
+            self.likeButton.frame.origin.y -= 15
+            self.dislikeButton.frame.origin.y -= 15
+            self.nameLabel.frame.origin.y -= 10
+            self.closeButton.frame.origin.y -= 20
+        }
+        else if isFiveFiveInchScreen && on
+        {
+            calculatedCardPageControllerYOrigin += 1
+            calculatedCardPageControllerHeight += 8
+        }
+        else if isSixInchScreen && on
+        {
+            self.likeButton.frame.origin.y += 25
+            self.dislikeButton.frame.origin.y += 25
+            self.nameLabel.frame.origin.y += 20
+            self.closeButton.frame.origin.y += 30
+        }
         
         if let cardController = parentViewController as? CardController,
             let cardPageController = cardPageController,
@@ -194,8 +256,10 @@ class CardView: UIView
                 if cardController.view.viewWithTag(aTagFor("cardPageController")) == nil
                 {
                     //Set up the frame for the newly instantiated UIViewController.
-                    cardPageController.view.frame = CGRect(x: f.x(0), y: (originalImageViewHeight - imageViewHeightModifier) + 3, width: f.width(365),
-                                                           height: isFourSevenInchScreen ? f.height(170) : f.height(150))
+                    cardPageController.view.frame = CGRect(x: f.x(0),
+                                                           y: calculatedCardPageControllerYOrigin,
+                                                           width: f.width(365),
+                                                           height: calculatedCardPageControllerHeight)
                     
                     cardPageController.willMove(toParent: cardController)
                     addSubview(cardPageController.view)
@@ -227,6 +291,30 @@ class CardView: UIView
                 {
                     self.bringSubviewToFront(self.closeButton)
                 }
+                else
+                {
+                    if isFourInchScreen
+                    {
+                        self.likeButton.frame.origin.y += 35
+                        self.dislikeButton.frame.origin.y += 35
+                        self.nameLabel.frame.origin.y += 30
+                        self.closeButton.frame.origin.y += 40
+                    }
+                    else if isFourSevenInchScreen
+                    {
+                        self.likeButton.frame.origin.y += 15
+                        self.dislikeButton.frame.origin.y += 15
+                        self.nameLabel.frame.origin.y += 10
+                        self.closeButton.frame.origin.y += 20
+                    }
+                    else if isSixInchScreen
+                    {
+                        self.likeButton.frame.origin.y -= 25
+                        self.dislikeButton.frame.origin.y -= 25
+                        self.nameLabel.frame.origin.y -= 20
+                        self.closeButton.frame.origin.y -= 30
+                    }
+                }
                 
                 (self.parentViewController as! CardController).shouldSwipeCard = on ? false : true
                 
@@ -244,8 +332,10 @@ class CardView: UIView
                         closeStream(onLine: #line, withMessage: "GOT TO SET UP!")
                         
                         //Set up the frame for the newly instantiated UIViewController.
-                        cardPageController.view.frame = CGRect(x: f.x(0), y: (originalImageViewHeight - imageViewHeightModifier) + 3, width: f.width(365),
-                                                               height: isFourSevenInchScreen ? f.height(170) : f.height(150))
+                        cardPageController.view.frame = CGRect(x: f.x(0),
+                                                               y: calculatedCardPageControllerYOrigin,
+                                                               width: f.width(365),
+                                                               height: calculatedCardPageControllerHeight)
                         
                         cardPageController.willMove(toParent: cardController)
                         self.addSubview(cardPageController.view)

@@ -14,6 +14,11 @@ class BuildInfoController: UIViewController
     
     /* Class-level Declarations */
     
+    //Overriden Variables
+    override var prefersStatusBarHidden:            Bool                 { return false }
+    override var preferredStatusBarStyle:           UIStatusBarStyle     { return .lightContent }
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation { return .slide }
+    
     //Other Declarations
     let screenBounds = UIScreen.main.bounds
     private let window = BuildInfoWindow()
