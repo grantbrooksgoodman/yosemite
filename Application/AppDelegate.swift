@@ -672,6 +672,32 @@ func randomInteger(_ minimumValue: Int, maximumValue: Int) -> Int
     return minimumValue + Int(arc4random_uniform(UInt32(maximumValue - minimumValue + 1)))
 }
 
+///Returns a random integer value.
+func randInt(_ min: Int, max: Int, not: [Int]?) -> Int
+{
+    if let not = not
+    {
+        var iterated = 0
+        
+        var result = not[0]
+        
+        while not.contains(result) && iterated < 11
+        {
+            result = min + Int(arc4random_uniform(UInt32(max - min + 1)))
+            iterated += 1
+        }
+        
+        if iterated == 10
+        {
+            report("Exhausted possibilities.", errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
+        }
+        
+        return result
+    }
+    
+    return min + Int(arc4random_uniform(UInt32(max - min + 1)))
+}
+
 /**
  Rounds borders on a given UIView.
  

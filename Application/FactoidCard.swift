@@ -17,6 +17,7 @@ class FactoidCard
     
     //Booleans
     var isEditable: Bool!
+    var isHidden:   Bool!
     var isRequired: Bool!
     
     //Strings
@@ -24,20 +25,19 @@ class FactoidCard
     var subtitle: String!
     
     //Other Declarations
-    var dataType: UserData.DataType!
     var viewController: UIViewController!
     
     //--------------------------------------------------//
     
     /* Constructor Function */
     
-    init(title: String, subtitle: String, isEditable: Bool, isRequired: Bool, dataType: UserData.DataType, viewController: UIViewController)
+    init(title: String, subtitle: String, isEditable: Bool, isHidden: Bool, isRequired: Bool, viewController: UIViewController)
     {
         self.title = title
         self.subtitle = subtitle
         self.isEditable = isEditable
+        self.isHidden = isHidden
         self.isRequired = isRequired
-        self.dataType = dataType
         self.viewController = viewController
     }
 }

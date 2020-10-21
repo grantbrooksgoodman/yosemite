@@ -66,33 +66,33 @@ class FactoidCardsController: UIViewController, MFMailComposeViewControllerDeleg
         let quickFactsCard = FactoidCard(title: "Quick Facts Card",
                                          subtitle: "Displays basic information about your profile",
                                          isEditable: false,
+                                         isHidden: false,
                                          isRequired: true,
-                                         dataType: .`default`,
                                          viewController: UIStoryboard(name: "ExpandedCard", bundle: nil).instantiateViewController(withIdentifier: "QuickFactsController"))
         
         let sportsCard = FactoidCard(title: "Sports Card",
                                      subtitle: "Show off any sports you play",
                                      isEditable: true,
+                                     isHidden: currentUser!.factoidData.sports?.0.1 ?? true,
                                      isRequired: false,
-                                     dataType: .sports,
-                                     viewController: genericCard(title: "🏈 \(currentUser!.firstName.uppercased()) PLAYS", content: "\(currentUser!.userData.sports?.joined(separator: ", ") ?? "none")"))
+                                     viewController: genericCard(title: "🏈 \(currentUser!.firstName.uppercased()) PLAYS", content: "\(currentUser!.factoidData.sports?.1.joined(separator: ", ") ?? "none")"))
         
-        let glo = currentUser!.userData.greekLifeOrganisation ?? "none"
+        let glo = currentUser!.factoidData.greekLifeOrganisation?.1 ?? "none"
         
         let gloCard = FactoidCard(title: "Greek Life Card",
                                   subtitle: "Let people know that you're in a Greek life organisation",
                                   isEditable: true,
+                                  isHidden: currentUser!.factoidData.greekLifeOrganisation?.0.1 ?? true,
                                   isRequired: false,
-                                  dataType: .greekLifeOrganisation,
                                   viewController: genericCard(title: "⚔️ GREEK LIFE ORGANISATION", content:
                                     "\(glo == "!" ? "none" : glo)"))
         
         let openToCard = FactoidCard(title: "Open To Card",
                                      subtitle: "What are you looking for in a match?",
                                      isEditable: true,
+                                     isHidden: false,
                                      isRequired: true,
-                                     dataType: .openTo,
-                                     viewController: genericCard(title: "🔍 OPEN TO", content: currentUser!.userData.lookingFor?.joined(separator: ", ") ?? "nothing in particular"))
+                                     viewController: genericCard(title: "🔍 OPEN TO", content: currentUser!.factoidData.lookingFor?.joined(separator: ", ") ?? "nothing in particular"))
         
         factoidCards = [quickFactsCard, openToCard, sportsCard, gloCard]
         
@@ -275,6 +275,8 @@ extension FactoidCardsController: UITableViewDataSource, UITableViewDelegate
         currentCell.editLabel.alpha = currentFactoidCard.isEditable ? 1 : 0
         currentCell.requiredLabel.alpha = currentFactoidCard.isRequired ? 1 : 0
         currentCell.showRadioButton.alpha = currentFactoidCard.isRequired ? 0 : 1
+        
+        currentCell.showRadioButton.isSelected = !currentFactoidCard.isHidden
         
         currentCell.editLabel.attributedText = NSAttributedString(string: "Tap card to edit info", attributes:  [.underlineStyle: NSUnderlineStyle.single.rawValue])
         

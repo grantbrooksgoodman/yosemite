@@ -42,10 +42,10 @@ class AccountController: UIViewController, MFMailComposeViewControllerDelegate
     
     let accountInfoTupleArray = [("Birthdate", masterDateFormatter.string(from: currentUser!.userData.birthDate)),
                                  ("E-mail",    currentUser!.emailAddress),
-                                 ("Year",      currentUser!.userData.getYearString())]
+                                 ("Year",      currentUser!.factoidData.getYearString())]
     
-    let otherInfoTupleArray = [("Gender",            currentUser!.userData.getGenderString(short: false)),
-                               ("Major",             currentUser!.userData.major),
+    let otherInfoTupleArray = [("Gender",            currentUser!.factoidData.getGenderString(short: false)),
+                               ("Major",             currentUser!.factoidData.major()),
                                ("Phone number",      currentUser!.phoneNumber),
                                ("Sexual preference", currentUser!.userData.getSexualPreferenceString())]
     

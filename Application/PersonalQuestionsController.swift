@@ -9,6 +9,7 @@
 //First-party Frameworks
 import MessageUI
 import UIKit
+import SwiftRandom
 
 class PersonalQuestionsController: UIViewController, MFMailComposeViewControllerDelegate
 {

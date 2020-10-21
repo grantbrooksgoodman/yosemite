@@ -32,6 +32,9 @@ class CardView: UIView
     
     @IBOutlet weak var similarityView: UIView!
     
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     //--------------------------------------------------//
     
     /* Class-level Declarations */
@@ -60,6 +63,8 @@ class CardView: UIView
             closeButton.alpha = 0
             dislikeButton.alpha = 0
             likeButton.alpha = 0
+            
+            segmentedControl.alpha = 0
             
             closeButton.updateFrame()
             dislikeButton.updateFrame()
@@ -123,6 +128,26 @@ class CardView: UIView
         (parentViewController as! CardController).kolodaView.swipe(.right)
     }
     
+    @IBAction func nextButton(_ sender: Any)
+    {
+        
+    }
+    
+    @IBAction func segmentedControl(_ sender: Any)
+    {
+        if let cardPageController = cardPageController
+        {
+            if segmentedControl.selectedSegmentIndex == 0
+            {
+                cardPageController.displaysFactoids = true
+            }
+            else
+            {
+                cardPageController.displaysFactoids = false
+            }
+        }
+    }
+    
     //--------------------------------------------------//
     
     /* Independent Functions */
@@ -177,7 +202,7 @@ class CardView: UIView
         let isSixInchScreen = screenSize.height == f.screenHeight(.sixInch)
         
         var calculatedImageViewHeightModifier = f.height(131)
-        var calculatedNameYOriginModifier = f.height(180)
+        var calculatedNameYOriginModifier = f.height(200)
         
         var calculatedCardPageControllerHeight = f.height(150)
         
@@ -321,6 +346,7 @@ class CardView: UIView
                 self.closeButton.alpha        = buttonAlpha
                 self.dislikeButton.alpha      = buttonAlpha
                 self.likeButton.alpha         = buttonAlpha
+                self.segmentedControl.alpha   = buttonAlpha
                 cardPageController.view.alpha = buttonAlpha
             }) { (_) in
                 if on

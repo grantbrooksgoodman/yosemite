@@ -18,35 +18,35 @@ class UserSerialiser
     
     //Public Functions
     
-    func updateCurrentUserData(type: UserData.DataType, with string: String)
-    {
-        guard let currentUser = currentUser else
-        {
-            report("No «currentUser».", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return
-        }
-        
-        switch type
-        {
-        case .sports:
-            if currentUser.userData.sports == nil
-            {
-                currentUser.userData.sports = [string]
-            }
-            else
-            {
-                currentUser.userData.sports!.append(string)
-            }
-            
-            GenericSerialiser().setValue(onKey: "/allUsers/\(currentUser.associatedIdentifier!)/userData/sports", withData: currentUser.userData.sports!) { (setValueError) in
-                if let setValueError = setValueError
-                {
-                    report(setValueError.localizedDescription, errorCode: (setValueError as NSError).code, isFatal: false, metadata: [#file, #function, #line])
-                }
-            }
-        default:
-            break
-        }
-    }
+    //    func updateCurrentUserData(type: UserData.DataType, with string: String)
+    //    {
+    //        guard let currentUser = currentUser else
+    //        {
+    //            report("No «currentUser».", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return
+    //        }
+    //
+    //        switch type
+    //        {
+    //        case .sports:
+    //            if currentUser.userData.sports == nil
+    //            {
+    //                currentUser.userData.sports = [string]
+    //            }
+    //            else
+    //            {
+    //                currentUser.userData.sports!.append(string)
+    //            }
+    //
+    //            GenericSerialiser().setValue(onKey: "/allUsers/\(currentUser.associatedIdentifier!)/userData/sports", withData: currentUser.userData.sports!) { (setValueError) in
+    //                if let setValueError = setValueError
+    //                {
+    //                    report(setValueError.localizedDescription, errorCode: (setValueError as NSError).code, isFatal: false, metadata: [#file, #function, #line])
+    //                }
+    //            }
+    //        default:
+    //            break
+    //        }
+    //    }
     
     /**
      Creates a **User** on the server with a provided identifier.
@@ -61,7 +61,15 @@ class UserSerialiser
      - Parameter returnedUser: The resulting **User** to be returned upon success.
      - Parameter errorDescriptor: The error descriptor to be returned upon failure.
      */
-    func createUser(associatedIdentifier: String, emailAddress: String, firstName: String, lastName: String, userData: UserData, phoneNumber: String, completionHandler: @escaping(_ returnedUser: User?, _ errorDescriptor: String?) -> Void)
+    func createUser(associatedIdentifier: String,
+                    emailAddress:         String,
+                    factoidData:          FactoidData,
+                    userData:             UserData,
+                    firstName:            String,
+                    lastName:             String,
+                    phoneNumber:          String,
+                    questionsAnswered:    [String:String]?,
+                    completionHandler: @escaping(_ returnedUser: User?, _ errorDescriptor: String?) -> Void)
     {
         if verboseFunctionExposure { print("Creating User...") }
         
@@ -73,17 +81,29 @@ class UserSerialiser
         CFStringTransform((transformedLastName as! CFMutableString), nil, kCFStringTransformToLatin, false)
         CFStringTransform((transformedLastName as! CFMutableString), nil, kCFStringTransformStripCombiningMarks, false)
         
+        var questionsAnsweredArray: [String] = []
+        
+        if let questionsAnswered = questionsAnswered
+        {
+            for key in Array(questionsAnswered.keys)
+            {
+                questionsAnsweredArray.append("\(key) | \(questionsAnswered[key]!)")
+            }
+        }
+        
         var dataBundle: [String:Any] = [:]
         
         dataBundle["emailAddress"]      = emailAddress
+        dataBundle["factoidData"]       = factoidData.serialise()
+        dataBundle["userData"]          = userData.serialise()
         dataBundle["firstName"]         = firstName
         dataBundle["lastName"]          = lastName
         dataBundle["matches"]           = ["!"]
-        dataBundle["userData"]          = userData.convertToDataBundle()
         dataBundle["openConversations"] = ["!"]
         dataBundle["swipedLeftOn"]      = ["!"]
         dataBundle["swipedRightOn"]     = ["!"]
         dataBundle["phoneNumber"]       = phoneNumber
+        dataBundle["questionsAnswered"] = questionsAnsweredArray ?? ["!"]
         
         GenericSerialiser().updateValue(onKey: "/allUsers/\(associatedIdentifier)", withData: dataBundle) { (wrappedError) in
             if let returnedError = wrappedError
@@ -98,14 +118,16 @@ class UserSerialiser
                 
                 let createdUser = User(associatedIdentifier: associatedIdentifier,
                                        emailAddress: emailAddress,
+                                       factoidData: factoidData,
+                                       userData: userData,
                                        firstName: firstName,
                                        lastName: lastName,
                                        matches: nil,
                                        openConversations: nil,
                                        phoneNumber: phoneNumber,
+                                       questionsAnswered: nil,
                                        swipedLeftOn: nil,
-                                       swipedRightOn: nil,
-                                       userData: userData)
+                                       swipedRightOn: nil)
                 
                 completionHandler(createdUser, nil)
             }
@@ -513,12 +535,93 @@ class UserSerialiser
     
     //Private Functions
     
+    private func deSerialiseFactoidData(withBundle: [String:Any]) -> FactoidData?
+    {
+        var callsHomeTuple: ((Int, Bool), String)?
+        var greekLifeOrganisationTuple: ((Int, Bool), String)?
+        var sportsTuple: ((Int, Bool), [String])?
+        var lookingFor: [String]?
+        var quickFacts: [String:Any] = [:]
+        
+        if let callsHomeArray = withBundle["callsHome"] as? [Any]
+        {
+            if let callsHomePosition = callsHomeArray[0] as? Int,
+                let isCallsHomeHidden = callsHomeArray[1] as? Bool,
+                let callsHome = callsHomeArray[2] as? String
+            {
+                callsHomeTuple = ((callsHomePosition, isCallsHomeHidden), callsHome)
+            }
+        }
+        
+        if let greekLifeOrganisationArray = withBundle["greekLifeOrganisation"] as? [Any]
+        {
+            if let greekLifeOrganisationPosition = greekLifeOrganisationArray[0] as? Int,
+                let isGreekLifeOrganisationHidden = greekLifeOrganisationArray[1] as? Bool,
+                let greekLifeOrganisation = greekLifeOrganisationArray[2] as? String
+            {
+                greekLifeOrganisationTuple = ((greekLifeOrganisationPosition, isGreekLifeOrganisationHidden), greekLifeOrganisation)
+            }
+        }
+        
+        if let sportsArray = withBundle["sports"] as? [Any], sportsArray.count > 1
+        {
+            if let sportsPosition = sportsArray[0] as? Int,
+                let isSportsHidden = sportsArray[1] as? Bool
+            {
+                var sports: [String] = []
+                
+                for sport in sportsArray[2...sportsArray.count - 1]
+                {
+                    if let sport = sport as? String
+                    {
+                        sports.append(sport)
+                    }
+                }
+                
+                guard sports.count != 0
+                    else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
+                
+                sportsTuple = ((sportsPosition, isSportsHidden), sports)
+            }
+        }
+        
+        if let unwrappedLookingFor = withBundle["lookingFor"] as? [String], unwrappedLookingFor[0] != "!"
+        {
+            lookingFor = unwrappedLookingFor
+        }
+        
+        if let unwrappedQuickFacts = withBundle["quickFacts"] as? [String:Any]
+        {
+            guard let gender = unwrappedQuickFacts["gender"] as? Int
+                else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
+            
+            guard let major = unwrappedQuickFacts["major"] as? String
+                else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
+            
+            guard let yearCode = unwrappedQuickFacts["yearCode"] as? Int
+                else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
+            
+            quickFacts = ["gender": gender, "major": major, "yearCode": yearCode]
+            
+            if let yearExplanation = unwrappedQuickFacts["yearExplanation"] as? String, yearExplanation != "!"
+            {
+                quickFacts["yearExplanation"] = yearExplanation
+            }
+        }
+        
+        guard quickFacts.count != 0
+            else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
+        
+        return FactoidData(callsHome:             callsHomeTuple,
+                           greekLifeOrganisation: greekLifeOrganisationTuple,
+                           lookingFor:            lookingFor,
+                           quickFacts:            quickFacts,
+                           sports:                sportsTuple)
+    }
+    
     ////Converts a data bundle into a **UserData** object.
     private func deSerialiseUserData(withBundle: [String:Any]) -> UserData?
     {
-        guard let avatarImageData       = withBundle["avatarImageData"] as? String
-            else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
-        
         guard let bioText               = withBundle["bioText"] as? String
             else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
         
@@ -526,23 +629,8 @@ class UserSerialiser
             let birthDateAsDate         = masterDateFormatter.date(from: birthDate)
             else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
         
-        guard let callsHome             = withBundle["callsHome"] as? String
-            else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
-        
-        guard let gender                = withBundle["gender"] as? Int
-            else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
-        
-        guard let greekLifeOrganisation = withBundle["greekLifeOrganisation"] as? String
-            else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
-        
         guard let lastActive            = withBundle["lastActive"] as? String,
             let lastActiveDate          = secondaryDateFormatter.date(from: lastActive)
-            else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
-        
-        guard let lookingFor            = withBundle["lookingFor"] as? [String]
-            else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
-        
-        guard let major                 = withBundle["major"] as? String
             else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
         
         guard let profileImageData      = withBundle["profileImageData"] as? [String]
@@ -551,33 +639,15 @@ class UserSerialiser
         guard let sexualPreference      = withBundle["sexualPreference"] as? Int
             else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
         
-        guard let sports                = withBundle["sports"] as? [String]
-            else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
-        
         guard let studentType           = withBundle["studentType"] as? Int
             else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
         
-        guard let yearCode              = withBundle["yearCode"] as? Int
-            else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
-        
-        guard let yearExplanation       = withBundle["yearExplanation"] as? String
-            else { report("IFM", errorCode: nil, isFatal: false, metadata: [#file, #function, #line]); return nil }
-        
-        return UserData(avatarImageData: avatarImageData,
-                        bioText: bioText,
+        return UserData(bioText: bioText,
                         birthDate: birthDateAsDate,
-                        callsHome: callsHome == "!" ? nil : callsHome,
-                        gender: gender,
-                        greekLifeOrganisation: greekLifeOrganisation,
                         lastActiveDate: lastActiveDate,
-                        lookingFor: lookingFor == ["!"] ? nil : lookingFor,
-                        major: major,
                         profileImageData: profileImageData == ["!"] ? nil : profileImageData,
                         sexualPreference: sexualPreference,
-                        sports: sports == ["!"] ? nil : sports,
-                        studentType: studentType,
-                        yearCode: yearCode,
-                        yearExplanation: yearExplanation == "!" ? nil : yearExplanation)
+                        studentType: studentType)
     }
     
     private func deSerialiseUser(fromDataBundle: [String:Any], completionHandler: @escaping(_ deSerialisedUser: User?, _ errorDescriptor: String?) -> Void)
@@ -589,6 +659,12 @@ class UserSerialiser
         
         guard let emailAddress = fromDataBundle["emailAddress"] as? String
             else { completionHandler(nil, "Unable to deserialise «emailAddress»."); return }
+        
+        guard let factoidDataBundle = fromDataBundle["factoidData"] as? [String:Any]
+            else { completionHandler(nil, "Unable to deserialise «factoidDataBundle»."); return }
+        
+        guard let userDataBundle = fromDataBundle["userData"] as? [String:Any]
+            else { completionHandler(nil, "Unable to deserialise «userDataBundle»."); return }
         
         guard let firstName = fromDataBundle["firstName"] as? String
             else { completionHandler(nil, "Unable to deserialise «firstName»."); return }
@@ -605,30 +681,48 @@ class UserSerialiser
         guard let phoneNumber = fromDataBundle["phoneNumber"] as? String
             else { completionHandler(nil, "Unable to deserialise «phoneNumber»."); return }
         
+        guard let questionsAnsweredArray = fromDataBundle["questionsAnswered"] as? [String]
+            else { completionHandler(nil, "Unable to deserialise «questionsAnswered»."); return }
+        
+        var questionsAnswered: [String:String] = [:]
+        
+        for value in questionsAnsweredArray
+        {
+            let components = value.components(separatedBy: " | ")
+            
+            if components.count == 2
+            {
+                questionsAnswered[components[0]] = components[1]
+            }
+        }
+        
         guard let swipedLeftOn = fromDataBundle["swipedLeftOn"] as? [String]
             else { completionHandler(nil, "Unable to deserialise «swipedLeftOn»."); return }
         
         guard let swipedRightOn = fromDataBundle["swipedRightOn"] as? [String]
             else { completionHandler(nil, "Unable to deserialise «swipedRightOn»."); return }
         
-        guard let userDataBundle = fromDataBundle["userData"] as? [String:Any]
-            else { completionHandler(nil, "Unable to deserialise «userDataBundle»."); return }
-        
         guard let userData = deSerialiseUserData(withBundle: userDataBundle) else {
-            if verboseFunctionExposure { print("Finished deserialising the User!") }
             completionHandler(nil, "Unable to convert «userDataBundle» to UserData."); return
+        }
+        
+        guard let factoidData = deSerialiseFactoidData(withBundle: factoidDataBundle) else {
+            if verboseFunctionExposure { print("Finished deserialising the User!") }
+            completionHandler(nil, "Unable to convert «factoidDataBundle» to UserData."); return
         }
         
         let deSerialisedUser = User(associatedIdentifier: associatedIdentifier,
                                     emailAddress: emailAddress,
+                                    factoidData: factoidData,
+                                    userData: userData,
                                     firstName: firstName,
                                     lastName: lastName,
                                     matches: matches == ["!"] ? nil : matches,
                                     openConversations: openConversations == ["!"] ? nil : openConversations,
                                     phoneNumber: phoneNumber,
+                                    questionsAnswered: questionsAnswered.count == 0 ? nil : questionsAnswered,
                                     swipedLeftOn: swipedLeftOn == ["!"] ? nil : swipedLeftOn,
-                                    swipedRightOn: swipedRightOn == ["!"] ? nil : swipedRightOn,
-                                    userData: userData)
+                                    swipedRightOn: swipedRightOn == ["!"] ? nil : swipedRightOn)
         
         if verboseFunctionExposure { print("Finished deserialising the User!") }
         

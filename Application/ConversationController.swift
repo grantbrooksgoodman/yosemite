@@ -301,8 +301,8 @@ class ConversationController: UIViewController, MFMailComposeViewControllerDeleg
         cell.previewLabel.sizeToFit()
         
         //If the User has an avatar image and it can be converted to data.
-        if let imageDataString = otherUser.userData.avatarImageData,
-            let imageData = Data(base64Encoded: imageDataString, options: .ignoreUnknownCharacters)
+        if let profileImageData = otherUser.userData.profileImageData,
+            let imageData = Data(base64Encoded: profileImageData[0], options: .ignoreUnknownCharacters)
         {
             //Set «profileImageView's» image to the User's avatar and make its frame into a circle.
             cell.profileImageView.image = UIImage(data: imageData)
@@ -663,8 +663,8 @@ extension ConversationController: UICollectionViewDataSource, UICollectionViewDe
         let matchCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MatchCell", for: indexPath) as! MatchCell
         
         //If the User has an avatar image and it can be converted to data.
-        if let imageDataString = matchArray![indexPath.row].userData.avatarImageData,
-            let imageData = Data(base64Encoded: imageDataString, options: .ignoreUnknownCharacters)
+        if let profileImageData = matchArray![indexPath.row].userData.profileImageData,
+            let imageData = Data(base64Encoded: profileImageData[0], options: .ignoreUnknownCharacters)
         {
             //Set «matchCell's» image view's image to the User's avatar.
             matchCell.imageView.image = UIImage(data: imageData)

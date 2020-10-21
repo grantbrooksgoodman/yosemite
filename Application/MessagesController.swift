@@ -80,19 +80,19 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
         {
             profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
             
-            if let imageDataString = otherUser.userData.avatarImageData,
-                let imageData = Data(base64Encoded: imageDataString, options: .ignoreUnknownCharacters)
+            if let profileImageData = otherUser.userData.profileImageData,
+                let imageData = Data(base64Encoded: profileImageData[0], options: .ignoreUnknownCharacters)
             {
                 profileImageView!.image = UIImage(data: imageData)
-                
-                profileImageView!.layer.borderColor = UIColor(hex: 0xE1E0E1).cgColor
-                profileImageView!.layer.borderWidth = 3
-                
-                profileImageView!.layer.cornerRadius = profileImageView!.frame.size.width / 2
-                
-                profileImageView!.layer.masksToBounds = true
-                profileImageView!.clipsToBounds = true
             }
+            
+            profileImageView!.layer.borderColor = UIColor(hex: 0xE1E0E1).cgColor
+            profileImageView!.layer.borderWidth = 3
+            
+            profileImageView!.layer.cornerRadius = profileImageView!.frame.size.width / 2
+            
+            profileImageView!.layer.masksToBounds = true
+            profileImageView!.clipsToBounds = true
             
             profileImageView!.center = view.center
             view.addSubview(profileImageView!)
@@ -591,8 +591,8 @@ extension MessagesController: MessagesDisplayDelegate
     {
         if messageArray[indexPath.section].fromAccountIdentifier != accountIdentifier
         {
-            if let imageDataString = otherUser.userData.avatarImageData,
-                let imageData = Data(base64Encoded: imageDataString, options: .ignoreUnknownCharacters)
+            if let profileImageData = otherUser.userData.profileImageData,
+                let imageData = Data(base64Encoded: profileImageData[0], options: .ignoreUnknownCharacters)
             {
                 avatarView.image = UIImage(data: imageData)
             }

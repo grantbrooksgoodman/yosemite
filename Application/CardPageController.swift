@@ -32,6 +32,34 @@ class CardPageController: UIPageViewController
     var user: User!
     var pageControl: UIPageControl!
     
+    var displaysFactoids = true {
+        didSet {
+            if displaysFactoids
+            {
+                orderedViewControllers = displaysFactoids == true ? [UIStoryboard(name: "ExpandedCard", bundle: nil).instantiateViewController(withIdentifier: "QuickFactsController"), self.genericCard(title: "🏈 \(user.firstName.uppercased()) PLAYS", content: "\(user.factoidData.sports?.1.joined(separator: ", ") ?? "no sports")"), self.genericCard(title: "⚔️ GREEK LIFE ORGANISATION", content: "Pi Kappa Phi"), self.genericCard(title: "🔍 OPEN TO", content: user.factoidData.lookingFor?.joined(separator: ", ") ?? "nothing in particular")] : [self.genericCard(title: "❓ After work I like to...", content: "cook"), self.genericCard(title: "❓ I promise that...", content: "I'll never cheat"), self.genericCard(title: "❓ Never have I ever...", content: "been to DisneyLand")]
+            }
+            else
+            {
+                if let questionsAnswered = user.questionsAnswered
+                {
+                    orderedViewControllers = []
+                    
+                    for question in Array(questionsAnswered.keys)
+                    {
+                        orderedViewControllers.append(self.genericCard(title: question, content: questionsAnswered[question]!))
+                    }
+                }
+                else
+                {
+                    orderedViewControllers = [self.genericCard(title: "❓ After work I like to...", content: "cook"), self.genericCard(title: "❓ I promise that...", content: "I'll never cheat"), self.genericCard(title: "❓ Never have I ever...", content: "been to DisneyLand")]
+                }
+            }
+            
+            pageControl.numberOfPages = orderedViewControllers.count
+            scrollToViewController(viewController: orderedViewControllers.first!)
+        }
+    }
+    
     //--------------------------------------------------//
     
     /* Overridden Functions */
@@ -45,7 +73,75 @@ class CardPageController: UIPageViewController
     {
         super.viewDidLoad()
         
-        orderedViewControllers = [UIStoryboard(name: "ExpandedCard", bundle: nil).instantiateViewController(withIdentifier: "QuickFactsController"), self.genericCard(title: "🏈 \(user.firstName.uppercased()) PLAYS", content: "\(user.userData.sports?.joined(separator: ", ") ?? "no sports")"), self.genericCard(title: "⚔️ GREEK LIFE ORGANISATION", content: "Pi Kappa Phi"), self.genericCard(title: "🔍 OPEN TO", content: user.userData.lookingFor?.joined(separator: ", ") ?? "nothing in particular")]
+        if displaysFactoids
+        {
+            orderedViewControllers = [UIStoryboard(name: "ExpandedCard", bundle: nil).instantiateViewController(withIdentifier: "QuickFactsController")]
+            
+            orderedViewControllers.append(self.genericCard(title: "🔍 OPEN TO", content: user.factoidData.lookingFor?.joined(separator: ", ") ?? "nothing in particular"))
+            
+            var orderedCards: [Int : UIViewController] = [:]
+            
+            if let callsHome = user.factoidData.callsHome, callsHome.0.1 == false
+            {
+                let callsHomeCard = self.genericCard(title: "🏠 \(user.firstName.uppercased()) IS FROM", content: callsHome.1)
+                
+                if let lastValue = Array(orderedCards.keys).last
+                {
+                    orderedCards[lastValue + 1] = callsHomeCard
+                }
+                else
+                {
+                    orderedCards[0] = callsHomeCard
+                }
+            }
+            
+            if let sports = user.factoidData.sports, sports.0.1 == false
+            {
+                let sportsCard = self.genericCard(title: "🏈 \(user.firstName.uppercased()) PLAYS", content: "\(sports.1.joined(separator: ", "))")
+                
+                if let lastValue = Array(orderedCards.keys).last
+                {
+                    orderedCards[lastValue + 1] = sportsCard
+                }
+                else
+                {
+                    orderedCards[0] = sportsCard
+                }
+            }
+            
+            if let greekLifeOrganisation = user.factoidData.greekLifeOrganisation, greekLifeOrganisation.0.1 == false
+            {
+                let greekLifeOrganisationCard = self.genericCard(title: "⚔️ GREEK LIFE ORGANISATION", content: greekLifeOrganisation.1)
+                
+                if let lastValue = Array(orderedCards.keys).last
+                {
+                    orderedCards[lastValue + 1] = greekLifeOrganisationCard
+                }
+                else
+                {
+                    orderedCards[0] = greekLifeOrganisationCard
+                }
+            }
+            
+            for position in Array(orderedCards.keys).sorted()
+            {
+                orderedViewControllers.append(orderedCards[position]!)
+            }
+        }
+        else
+        {
+            if let questionsAnswered = user.questionsAnswered
+            {
+                for question in Array(questionsAnswered.keys)
+                {
+                    orderedViewControllers.append(self.genericCard(title: question, content: questionsAnswered[question]!))
+                }
+            }
+            else
+            {
+                orderedViewControllers = [self.genericCard(title: "❓ After work I like to...", content: "cook"), self.genericCard(title: "❓ I promise that...", content: "I'll never cheat"), self.genericCard(title: "❓ Never have I ever...", content: "been to DisneyLand")]
+            }
+        }
         
         view.tag = aTagFor("cardPageController")
         

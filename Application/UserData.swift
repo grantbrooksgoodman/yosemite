@@ -15,34 +15,15 @@ class UserData
     
     //Class-Level Variable Declarations
     
-    enum DataType
-    {
-        case sports
-        case greekLifeOrganisation
-        case callsHome
-        case openTo
-        
-        case `default`
-    }
-    
     //Arrays
-    var lookingFor:       [String]?
     var profileImageData: [String]?
-    var sports:           [String]? //10pts
     
     //Integers
-    var gender:           Int!
     var sexualPreference: Int!
     var studentType:      Int!
-    var yearCode:         Int!
     
     //Strings
-    var avatarImageData:       String?
     var bioText:               String?
-    var callsHome:             String? //20pts
-    var greekLifeOrganisation: String? //15pts
-    var major:                 String! //20pts
-    var yearExplanation:       String?
     
     //Other Declarations
     var birthDate: Date! //5pts
@@ -94,37 +75,19 @@ class UserData
     
     /* Initialiser Function */
     
-    init(avatarImageData: String?,
-         bioText: String?,
+    init(bioText: String?,
          birthDate: Date,
-         callsHome: String?,
-         gender: Int,
-         greekLifeOrganisation: String?,
          lastActiveDate: Date,
-         lookingFor: [String]?,
-         major: String,
          profileImageData: [String]?,
          sexualPreference: Int,
-         sports: [String]?,
-         studentType: Int,
-         yearCode: Int,
-         yearExplanation: String?)
+         studentType: Int)
     {
-        self.avatarImageData = avatarImageData
         self.bioText = bioText
         self.birthDate = birthDate
-        self.callsHome = callsHome
-        self.gender = gender
-        self.greekLifeOrganisation = greekLifeOrganisation
         self.lastActiveDate = lastActiveDate
-        self.lookingFor = lookingFor
-        self.major = major
         self.profileImageData = profileImageData
         self.sexualPreference = sexualPreference
-        self.sports = sports
         self.studentType = studentType
-        self.yearCode = yearCode
-        self.yearExplanation = yearExplanation
     }
     
     //--------------------------------------------------//
@@ -132,46 +95,18 @@ class UserData
     //Other Functions
     
     ///Serialises the **UserData's** metadata.
-    func convertToDataBundle() -> [String:Any]
+    func serialise() -> [String:Any]
     {
         var dataBundle: [String:Any] = [:]
         
-        dataBundle["avatarImageData"] = avatarImageData ?? "!"
         dataBundle["bioText"] = bioText ?? "!"
         dataBundle["birthDate"] = masterDateFormatter.string(from: birthDate)
-        dataBundle["callsHome"] = callsHome ?? "!"
-        dataBundle["gender"] = gender
-        dataBundle["greekLifeOrganisation"] = greekLifeOrganisation ?? "!"
         dataBundle["lastActive"] = secondaryDateFormatter.string(from: lastActiveDate)
-        dataBundle["lookingFor"] = lookingFor ?? ["!"]
-        dataBundle["major"] = major
         dataBundle["profileImageData"] = profileImageData ?? ["!"]
         dataBundle["sexualPreference"] = sexualPreference
-        dataBundle["sports"] = sports ?? ["!"]
         dataBundle["studentType"] = studentType
-        dataBundle["yearCode"] = yearCode
-        dataBundle["yearExplanation"] = yearExplanation ?? "!"
         
         return dataBundle
-    }
-    
-    func getYearString() -> String
-    {
-        switch yearCode as Int
-        {
-        case 0:
-            return "Freshman"
-        case 1:
-            return "Sophomore"
-        case 2:
-            return "Junior"
-        case 3:
-            return "Senior"
-        case 4:
-            return "5th year"
-        default:
-            return yearExplanation ?? "Other"
-        }
     }
     
     func getSexualPreferenceString() -> String
@@ -190,19 +125,6 @@ class UserData
             return "F & Other"
         default:
             return "Other"
-        }
-    }
-    
-    func getGenderString(short: Bool) -> String
-    {
-        switch gender as Int
-        {
-        case 0:
-            return short ? "M" : "Male"
-        case 1:
-            return short ? "F" : "Female"
-        default:
-            return short ? "NB" : "Non-binary"
         }
     }
     

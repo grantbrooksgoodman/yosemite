@@ -41,6 +41,8 @@
 		A23CB8AD2499B48F0059D350 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23CB8AC2499B48F0059D350 /* SignInController.swift */; };
 		A24C9B0825170AC1000FC0E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A24C9B0725170AC1000FC0E3 /* GoogleService-Info.plist */; };
 		A24D7C0C24986ECC0037E108 /* TraitsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24D7C0B24986ECC0037E108 /* TraitsController.swift */; };
+		A250D6D12532DDCD003D9C0F /* FactoidData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A250D6D02532DDCD003D9C0F /* FactoidData.swift */; };
+		A250D6D32532EF5F003D9C0F /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A250D6D22532EF5F003D9C0F /* UserData.swift */; };
 		A259E7A1245A26B4004D0A77 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A259E7A0245A26B4004D0A77 /* Conversation.swift */; };
 		A25ADD99247330BB00275FC0 /* EmploymentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25ADD98247330BB00275FC0 /* EmploymentController.swift */; };
 		A261ADB6245E7AB000398050 /* ConversationSerialiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A261ADB5245E7AB000398050 /* ConversationSerialiser.swift */; };
@@ -114,10 +116,11 @@
 		A2927FAD24AEDBB200144493 /* MuseoSansRounded900.otf in Resources */ = {isa = PBXBuildFile; fileRef = A2927FA724AEDBB200144493 /* MuseoSansRounded900.otf */; };
 		A2927FAF24AEE1CD00144493 /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = A2927FAE24AEE1CD00144493 /* bubble.png */; };
 		A299749C22BBEF79007CD5D7 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A299749B22BBEF79007CD5D7 /* Translator.swift */; };
+		A29A49B0253151A100A379EA /* lovesick.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A29A49AF253151A100A379EA /* lovesick.m4a */; };
+		A29A49B225315A5200A379EA /* lovesick(2).m4a in Resources */ = {isa = PBXBuildFile; fileRef = A29A49B125315A5200A379EA /* lovesick(2).m4a */; };
 		A29C93E62457E071002EE615 /* GenericSerialiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29C93E52457E071002EE615 /* GenericSerialiser.swift */; };
 		A29C93E92457E211002EE615 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29C93E72457E211002EE615 /* User.swift */; };
 		A29C93EA2457E211002EE615 /* UserSerialiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29C93E82457E211002EE615 /* UserSerialiser.swift */; };
-		A29C93EC2457F2BB002EE615 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29C93EB2457F2BB002EE615 /* UserData.swift */; };
 		A29C93EE24580B2A002EE615 /* CreateAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A29C93ED24580B2A002EE615 /* CreateAccountController.swift */; };
 		A2AB309124C9E4E10067DDE4 /* WelcomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AB309024C9E4E10067DDE4 /* WelcomeController.swift */; };
 		A2ACF70E22C58551007C24D2 /* Translated-Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2ACF70D22C58551007C24D2 /* Translated-Button.swift */; };
@@ -197,6 +200,8 @@
 		A23CB8AC2499B48F0059D350 /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		A24C9B0725170AC1000FC0E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A24D7C0B24986ECC0037E108 /* TraitsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraitsController.swift; sourceTree = "<group>"; };
+		A250D6D02532DDCD003D9C0F /* FactoidData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FactoidData.swift; sourceTree = "<group>"; };
+		A250D6D22532EF5F003D9C0F /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		A259E7A0245A26B4004D0A77 /* Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		A25ADD98247330BB00275FC0 /* EmploymentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmploymentController.swift; sourceTree = "<group>"; };
 		A261ADB5245E7AB000398050 /* ConversationSerialiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationSerialiser.swift; sourceTree = "<group>"; };
@@ -270,10 +275,11 @@
 		A2927FA724AEDBB200144493 /* MuseoSansRounded900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MuseoSansRounded900.otf; sourceTree = "<group>"; };
 		A2927FAE24AEE1CD00144493 /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
 		A299749B22BBEF79007CD5D7 /* Translator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator.swift; sourceTree = "<group>"; };
+		A29A49AF253151A100A379EA /* lovesick.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = lovesick.m4a; sourceTree = "<group>"; };
+		A29A49B125315A5200A379EA /* lovesick(2).m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lovesick(2).m4a"; sourceTree = "<group>"; };
 		A29C93E52457E071002EE615 /* GenericSerialiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericSerialiser.swift; sourceTree = "<group>"; };
 		A29C93E72457E211002EE615 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A29C93E82457E211002EE615 /* UserSerialiser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSerialiser.swift; sourceTree = "<group>"; };
-		A29C93EB2457F2BB002EE615 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		A29C93ED24580B2A002EE615 /* CreateAccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		A2AB309024C9E4E10067DDE4 /* WelcomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeController.swift; sourceTree = "<group>"; };
 		A2ACF70D22C58551007C24D2 /* Translated-Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Translated-Button.swift"; sourceTree = "<group>"; };
@@ -486,6 +492,8 @@
 				A288DE5924DE6841000516AE /* send.m4a */,
 				68D29A0E1DD79C7D00BFF4D5 /* Chime.mp3 */,
 				68D29A0F1DD79C7D00BFF4D5 /* Chord.mp3 */,
+				A29A49B125315A5200A379EA /* lovesick(2).m4a */,
+				A29A49AF253151A100A379EA /* lovesick.m4a */,
 			);
 			name = "Audio Files";
 			sourceTree = "<group>";
@@ -658,11 +666,12 @@
 			children = (
 				A259E7A0245A26B4004D0A77 /* Conversation.swift */,
 				A261ADB5245E7AB000398050 /* ConversationSerialiser.swift */,
+				A250D6D02532DDCD003D9C0F /* FactoidData.swift */,
 				A29C93E52457E071002EE615 /* GenericSerialiser.swift */,
 				A28A2E12246B582C0058207D /* Message.swift */,
 				A28A2E14246B5A780058207D /* MessageSerialiser.swift */,
 				A29C93E72457E211002EE615 /* User.swift */,
-				A29C93EB2457F2BB002EE615 /* UserData.swift */,
+				A250D6D22532EF5F003D9C0F /* UserData.swift */,
 				A29C93E82457E211002EE615 /* UserSerialiser.swift */,
 			);
 			name = "Serialisation Classes";
@@ -752,6 +761,7 @@
 				A26961F522376F4600812759 /* 6.x Inch.storyboard in Resources */,
 				68E589211DD6F6040028B703 /* NT (Black).png in Resources */,
 				A2E5606125049A7C001A0E03 /* San Francisco (Regular Italic).otf in Resources */,
+				A29A49B225315A5200A379EA /* lovesick(2).m4a in Resources */,
 				A27C8B1924DBD37200FBC037 /* download-7.jpg in Resources */,
 				A27C8B1324DBD37200FBC037 /* download-5.jpg in Resources */,
 				A27C8B0B24DBD37200FBC037 /* download-3.jpg in Resources */,
@@ -791,6 +801,7 @@
 				A27C8B0D24DBD37200FBC037 /* download-13.jpg in Resources */,
 				A24C9B0825170AC1000FC0E3 /* GoogleService-Info.plist in Resources */,
 				A288DE4424DE3A96000516AE /* UniversLTStd-Obl.otf in Resources */,
+				A29A49B0253151A100A379EA /* lovesick.m4a in Resources */,
 				A27C8B0324DBD37200FBC037 /* download-25.jpg in Resources */,
 				A288DE5124DE6077000516AE /* AppleGaramond.ttf in Resources */,
 				A2927FAA24AEDBB200144493 /* MuseoSansRounded700.otf in Resources */,
@@ -930,6 +941,7 @@
 				A2B1F75F2458AAB000CB20AF /* RadioButtonController.swift in Sources */,
 				A29C93EE24580B2A002EE615 /* CreateAccountController.swift in Sources */,
 				A23376982499621B0085ABDE /* BiographicController.swift in Sources */,
+				A250D6D32532EF5F003D9C0F /* UserData.swift in Sources */,
 				A29C93EA2457E211002EE615 /* UserSerialiser.swift in Sources */,
 				687404481CB1AB3400BD2632 /* Main-Controller.swift in Sources */,
 				A239BFB024CB5C4400A94FEF /* ConversationController.swift in Sources */,
@@ -954,7 +966,6 @@
 				A2061B9F24C25A460020E120 /* InformationView.swift in Sources */,
 				68E3CD831EE32BEC00C688C5 /* Builder.swift in Sources */,
 				A23CB8AD2499B48F0059D350 /* SignInController.swift in Sources */,
-				A29C93EC2457F2BB002EE615 /* UserData.swift in Sources */,
 				A2C836842516E25800AD6010 /* FactoidCardCell.swift in Sources */,
 				A288DE5C24DE729F000516AE /* QuickFactsView.swift in Sources */,
 				A233769624994F510085ABDE /* BirthdateController.swift in Sources */,
@@ -971,6 +982,7 @@
 				68D29A131DD79C8A00BFF4D5 /* Initial-Controller.swift in Sources */,
 				A2FE6B8525169B4400070A76 /* PreferenceCell.swift in Sources */,
 				A29C93E62457E071002EE615 /* GenericSerialiser.swift in Sources */,
+				A250D6D12532DDCD003D9C0F /* FactoidData.swift in Sources */,
 				A2C14629247DB81F00905637 /* TickSlider.swift in Sources */,
 				A238C5F624CF3FF100C679D4 /* MessagesController.swift in Sources */,
 				68E3CD801EE3278900C688C5 /* Presentation-Manager.swift in Sources */,

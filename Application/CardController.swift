@@ -285,12 +285,17 @@ class CardController: UIViewController, MFMailComposeViewControllerDelegate
                         {
                             if status == "No Conversations to deserialise." || status.contains("Null/first message processed.")
                             {
-                                self.title = ""
-                                self.matchesToPass = returnedUser.matches == nil ? nil : returnedUser.matches!
-                                self.conversationsToPass = nil
-                                self.performSegue(withIdentifier: "conversationFromCardSegue", sender: self)
-                                
-                                //AlertKit().successAlertController(withTitle: "No matches yet!", withMessage: "Try swiping some more. ;)", withCancelButtonTitle: nil, withAlternateSelectors: nil, preferredActionIndex: nil)
+                                if let matches = returnedUser.matches
+                                {
+                                    self.title = ""
+                                    self.matchesToPass = matches
+                                    self.conversationsToPass = nil
+                                    self.performSegue(withIdentifier: "conversationFromCardSegue", sender: self)
+                                }
+                                else
+                                {
+                                    AlertKit().successAlertController(withTitle: "No matches yet!", withMessage: "Try swiping some more. ;)", withCancelButtonTitle: nil, withAlternateSelectors: nil, preferredActionIndex: nil)
+                                }
                             }
                             
                             report(error ?? "An unknown error occurred.", errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
@@ -363,6 +368,20 @@ extension CardController: KolodaViewDataSource
         return shouldSwipeCard
     }
     
+    func kolodaPanFinished(_ koloda: KolodaView, card: DraggableCardView)
+    {
+        if card.swipedUp == true
+        {
+            if let cardView = koloda.viewForCard(at: koloda.currentCardIndex) as? CardView
+            {
+                if cardView.informationButton.alpha != 0
+                {
+                    cardView.toggleCardPageController(on: true)
+                }
+            }
+        }
+    }
+    
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection)
     {
         if direction == .right
@@ -424,6 +443,11 @@ extension CardController: KolodaViewDataSource
                 report(swipeError!, errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
             }
         }
+    }
+    
+    func koloda(_ koloda: KolodaView, allowedDirectionsForIndex index: Int) -> [SwipeResultDirection]
+    {
+        return [.left, .right, .up]
     }
     
     func koloda(_ koloda: KolodaView, shouldSwipeCardAt index: Int, in direction: SwipeResultDirection) -> Bool

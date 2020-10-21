@@ -45,13 +45,13 @@ class QuickFactsController: UIViewController
         
         ageLabel.text = "\(currentYear - birthYear)"
         
-        genderLabel.text = "\((user.userData.gender == 0 ? "M" : (user.userData.gender == 1 ? "F" : "NB")))"
+        genderLabel.text = "\((user.factoidData.gender() == 0 ? "M" : (user.factoidData.gender() == 1 ? "F" : "NB")))"
         
-        majorLabel.text = "\(user.userData.major!)"
+        majorLabel.text = "\(user.factoidData.major())"
         
         var yearText: String?
         
-        switch user.userData.yearCode as Int
+        switch user.factoidData.yearCode() as Int
         {
         case 0:
             yearText = "Freshman"
@@ -64,7 +64,7 @@ class QuickFactsController: UIViewController
         case 4:
             yearText = "5th year"
         case 6:
-            yearText = user.userData.yearExplanation!
+            yearText = user.factoidData.yearExplanation()
         default:
             yearText = nil
         }

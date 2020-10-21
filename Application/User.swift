@@ -29,6 +29,8 @@ class User
     var phoneNumber:          String!
     
     //Other Variables
+    var factoidData: FactoidData!
+    var questionsAnswered: [String:String]?
     var userData: UserData!
     
     private var DSOpenConversations: [Conversation]?
@@ -38,26 +40,30 @@ class User
     /* Initialiser Function */
     
     init(associatedIdentifier: String,
-         emailAddress: String,
-         firstName: String,
-         lastName: String,
-         matches: [String]?,
-         openConversations: [String]?,
-         phoneNumber: String,
-         swipedLeftOn: [String]?,
-         swipedRightOn: [String]?,
-         userData: UserData)
+         emailAddress:         String,
+         factoidData:          FactoidData,
+         userData:             UserData,
+         firstName:            String,
+         lastName:             String,
+         matches:              [String]?,
+         openConversations:    [String]?,
+         phoneNumber:          String,
+         questionsAnswered:    [String:String]?,
+         swipedLeftOn:         [String]?,
+         swipedRightOn:        [String]?)
     {
         self.associatedIdentifier = associatedIdentifier
         self.emailAddress = emailAddress
+        self.factoidData = factoidData
+        self.userData = userData
         self.firstName = firstName
         self.lastName = lastName
         self.matches = matches
         self.openConversations = openConversations
         self.phoneNumber = phoneNumber
+        self.questionsAnswered = questionsAnswered
         self.swipedLeftOn = swipedLeftOn
         self.swipedRightOn = swipedRightOn
-        self.userData = userData
     }
     
     //--------------------------------------------------//
@@ -112,8 +118,8 @@ class User
         
         openStream(forFile: #file, forFunction: #function, forLine: #line, withMessage: "For \(user.firstName!)")
         
-        if let mySports = userData.sports,
-            let otherSports = user.userData.sports
+        if let mySports = factoidData.sports?.1,
+            let otherSports = user.factoidData.sports?.1
         {
             let formattedMySports = mySports.lowercasedElements().removingSpecialCharacters()
             let formattedOtherSports = otherSports.lowercasedElements().removingSpecialCharacters()
@@ -141,8 +147,8 @@ class User
             }
         }
         
-        if let myCallsHome = userData.callsHome,
-            let otherCallsHome = user.userData.callsHome
+        if let myCallsHome = factoidData.callsHome?.1,
+            let otherCallsHome = user.factoidData.callsHome?.1
         {
             #warning("callsHome MUST BE A FORMATTED, RESTRICTED LOCATION STRING")
             if myCallsHome.lowercased() == otherCallsHome.lowercased()
@@ -154,14 +160,14 @@ class User
             pointsPossible += 20
         }
         
-        if userData.greekLifeOrganisation != nil && user.userData.greekLifeOrganisation != nil
+        if factoidData.greekLifeOrganisation != nil && user.factoidData.greekLifeOrganisation != nil
         {
             logToStream(forLine: #line, withMessage: "Shared GLO!")
             points += 15
             pointsPossible += 15
         }
         
-        if userData.major == user.userData.major
+        if factoidData.major() == user.factoidData.major()
         {
             logToStream(forLine: #line, withMessage: "Shared major!")
             points += 20
@@ -179,8 +185,8 @@ class User
             points += 5
         }
         
-        if let myLookingFor = userData.lookingFor,
-            let otherLookingFor = user.userData.lookingFor
+        if let myLookingFor = factoidData.lookingFor,
+            let otherLookingFor = user.factoidData.lookingFor
         {
             let formattedMyLookingFor = myLookingFor.lowercasedElements().removingSpecialCharacters()
             let formattedOtherLookingFor = otherLookingFor.lowercasedElements().removingSpecialCharacters()
@@ -208,7 +214,7 @@ class User
             points += 10
         }
         
-        if userData.yearCode == user.userData.yearCode
+        if factoidData.yearCode() == user.factoidData.yearCode()
         {
             logToStream(forLine: #line, withMessage: "Shared year!")
             points += 10

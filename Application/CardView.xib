@@ -80,7 +80,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </pageControl>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfJ-tS-M17" customClass="ShadowButton" customModule="Yosemite" customModuleProvider="target">
-                    <rect key="frame" x="48" y="377" width="110" height="48"/>
+                    <rect key="frame" x="48" y="347" width="110" height="48"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.9137254901960784" green="0.3529411764705882" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="30"/>
@@ -90,7 +90,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EXa-ct-QDY" customClass="ShadowButton" customModule="Yosemite" customModuleProvider="target">
-                    <rect key="frame" x="191" y="377" width="110" height="48"/>
+                    <rect key="frame" x="191" y="347" width="110" height="48"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.37647058823529411" green="0.75686274509803919" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="30"/>
@@ -104,6 +104,27 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.88235294119999996" green="0.87843137250000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fu7-c1-NR5">
+                    <rect key="frame" x="310" y="280" width="39" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="NEXT"/>
+                    <connections>
+                        <action selector="nextButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="VAK-nq-SbS"/>
+                    </connections>
+                </button>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PIl-Lu-7Of">
+                    <rect key="frame" x="7" y="422" width="189" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.90588235294117647" green="0.90196078431372551" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                    <segments>
+                        <segment title="FACTOIDS"/>
+                        <segment title="QUESTIONS"/>
+                    </segments>
+                    <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <action selector="segmentedControl:" destination="iN0-l3-epB" eventType="valueChanged" id="nbs-rU-MlR"/>
+                    </connections>
+                </segmentedControl>
             </subviews>
             <color key="backgroundColor" red="0.88235294117647056" green="0.8784313725490196" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -114,8 +135,10 @@
                 <outlet property="informationButton" destination="WEu-e0-GY0" id="Wnp-Pf-jdL"/>
                 <outlet property="likeButton" destination="EXa-ct-QDY" id="uFv-5v-kTW"/>
                 <outlet property="nameLabel" destination="FYc-hc-Wb9" id="btg-bb-bVg"/>
+                <outlet property="nextButton" destination="fu7-c1-NR5" id="vXp-4D-8NC"/>
                 <outlet property="photoPageControl" destination="e5j-f8-7KH" id="BMA-f2-aeK"/>
                 <outlet property="profileImageView" destination="Em7-hw-HUP" id="dTa-nJ-VM9"/>
+                <outlet property="segmentedControl" destination="PIl-Lu-7Of" id="kJj-1r-GIp"/>
                 <outlet property="similarityView" destination="1wb-Eq-PL5" id="X8z-QR-f3f"/>
                 <outlet property="subtitleLabel" destination="51n-3L-y5p" id="TFE-dN-rvW"/>
             </connections>
