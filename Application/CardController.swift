@@ -616,6 +616,7 @@ extension CardController: KolodaViewDataSource
         if let cardPageController = cardView.cardPageController
         {
             cardPageController.user = userForDisplay
+            cardView.user = userForDisplay
         }
         else
         {

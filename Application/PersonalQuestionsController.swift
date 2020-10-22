@@ -27,8 +27,24 @@ class PersonalQuestionsController: UIViewController, MFMailComposeViewController
     
     /* Class-level Declarations */
     
-    var buildInstance: Build!
+    let questionTitles = ["After work I like to...",
+                          "Berkeley bucket list...",
+                          "I love it when...",
+                          "I promise that...",
+                          "I would love to meet...",
+                          "It's a perfect match if...",
+                          "My dealbreakers are...",
+                          "My death row meal would be...",
+                          "My favourite Cal memory was when...",
+                          "My favourite quality in a person is...",
+                          "My favourite website is...",
+                          "My friends describe me as...",
+                          "My secret superpower is...",
+                          "Never have I ever...",
+                          "Nothing's better than...",
+                          "When nobody's looking, I..."]
     
+    var buildInstance: Build!
     var personalQuestions: [PersonalQuestion] = []
     
     //--------------------------------------------------//
@@ -56,22 +72,11 @@ class PersonalQuestionsController: UIViewController, MFMailComposeViewController
         
         initialiseController()
         
-        personalQuestions = [PersonalQuestion(title: "After work I like to...", text: nil),
-                             PersonalQuestion(title: "Berkeley sex location bucket list...", text: nil),
-                             PersonalQuestion(title: "I love it when...", text: nil),
-                             PersonalQuestion(title: "I promise that...", text: nil),
-                             PersonalQuestion(title: "I would love to meet...", text: "Your mother"),
-                             PersonalQuestion(title: "It's a perfect match if...", text: nil),
-                             PersonalQuestion(title: "My dealbreakers are...", text: nil),
-                             PersonalQuestion(title: "My death row meal would be...", text: nil),
-                             PersonalQuestion(title: "My favourite Cal memory was when...", text: nil),
-                             PersonalQuestion(title: "My favourite quality in a person is...", text: nil),
-                             PersonalQuestion(title: "My favourite website is...", text: nil),
-                             PersonalQuestion(title: "My friends describe me as...", text: nil),
-                             PersonalQuestion(title: "My secret superpower is...", text: "Flying"),
-                             PersonalQuestion(title: "Never have I ever...", text: nil),
-                             PersonalQuestion(title: "Nothing's better than...", text: nil),
-                             PersonalQuestion(title: "When nobody's looking, I...", text: nil)]
+        //O(n)
+        for question in questionTitles
+        {
+            personalQuestions.append(PersonalQuestion(title: question, text: currentUser?.questionsAnswered?[question] ?? nil))
+        }
         
         textView.delegate = self
         textView.textColor = .lightGray
@@ -130,24 +135,66 @@ class PersonalQuestionsController: UIViewController, MFMailComposeViewController
     
     @IBAction func doneButton(_ sender: Any)
     {
-        textView.resignFirstResponder()
-        
         personalQuestions = personalQuestions.filter({$0.title != titleLabel.text})
         
-        personalQuestions.append(PersonalQuestion(title: titleLabel.text!, text: textView.text))
+        if textView.text.noWhiteSpaceLowerCaseString != ""
+        {
+            if currentUser!.questionsAnswered != nil
+            {
+                currentUser!.questionsAnswered![titleLabel.text!] = textView.text
+            }
+            else
+            {
+                currentUser!.questionsAnswered = [titleLabel.text!: textView.text]
+            }
+            
+            personalQuestions.append(PersonalQuestion(title: titleLabel.text!, text: textView.text))
+        }
+        
         tableView.reloadData()
         
-        for individualCell in tableView.subviews
+        currentUser!.questionsAnswered = [:]
+        
+        for question in personalQuestions
         {
-            if let individualCell = individualCell as? PersonalQuestionCell
+            if question.text != nil
             {
-                individualCell.textView.alpha = 1
+                currentUser!.questionsAnswered![question.title] = question.text!
             }
         }
         
-        UIView.animate(withDuration: 0.2, animations: {
-            self.tableView.alpha = 1
-        })
+        GenericSerialiser().setValue(onKey: "/allUsers/\(currentUser!.associatedIdentifier!)/questionsAnswered", withData: currentUser!.serialiseQuestionsAnswered()) { (setValueError) in
+            if let setValueError = setValueError
+            {
+                report(setValueError.localizedDescription, errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
+                
+                AlertKit().errorAlertController(title: "Unable to edit question",
+                                                message: nil,
+                                                dismissButtonTitle: nil,
+                                                additionalSelectors: nil,
+                                                preferredAdditionalSelector: nil,
+                                                canFileReport: true,
+                                                extraInfo: "\(setValueError.localizedDescription) (\((setValueError as NSError).code))",
+                    metadata: [#file, #function, #line],
+                    networkDependent: true)
+            }
+            else
+            {
+                self.textView.resignFirstResponder()
+                
+                for individualCell in self.tableView.subviews
+                {
+                    if let individualCell = individualCell as? PersonalQuestionCell
+                    {
+                        individualCell.textView.alpha = 1
+                    }
+                }
+                
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.tableView.alpha = 1
+                })
+            }
+        }
     }
     
     //--------------------------------------------------//
@@ -295,6 +342,7 @@ extension PersonalQuestionsController: UITableViewDataSource, UITableViewDelegat
         if indexPath.section == 0
         {
             titleLabel.text = answeredQuestions[indexPath.row].title
+            textView.text = answeredQuestions[indexPath.row].text ?? ""
             
             UIView.animate(withDuration: 0.2, animations: {
                 tableView.alpha = 0

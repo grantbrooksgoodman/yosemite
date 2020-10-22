@@ -32,6 +32,7 @@ class CardView: UIView
     
     @IBOutlet weak var similarityView: UIView!
     
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -42,6 +43,9 @@ class CardView: UIView
     var quickFactsView: QuickFactsView!
     var cardPageController: CardPageController?
     var didDraw = false
+    
+    var currentImageIndex = 0
+    var user: User!
     
     //--------------------------------------------------//
     
@@ -91,6 +95,11 @@ class CardView: UIView
                                        shadowColour: UIColor(hex: 0x3B9A1B).cgColor,
                                        instanceName: nil)
             
+            backButton.tag = aTagFor("backButton")
+            
+            photoPageControl.numberOfPages = user.userData.profileImageData?.count ?? 0
+            photoPageControl.center.x = center.x
+            
             didDraw = true
             
             frame = f.frame(frame)
@@ -128,9 +137,30 @@ class CardView: UIView
         (parentViewController as! CardController).kolodaView.swipe(.right)
     }
     
-    @IBAction func nextButton(_ sender: Any)
+    @IBAction func photoButton(_ sender: Any)
     {
-        
+        if let button = sender as? UIButton
+        {
+            if let imageDataArray = user.userData.profileImageData
+            {
+                let generator = UIImpactFeedbackGenerator(style: .light)
+                generator.impactOccurred()
+                
+                let increment = (button.tag == aTagFor("backButton")) ? currentImageIndex - 1 : currentImageIndex + 1
+                
+                let boolTest = (button.tag == aTagFor("backButton")) ? increment > -1 : increment < imageDataArray.count
+                
+                if boolTest
+                {
+                    let imageData = Data(base64Encoded: imageDataArray[increment], options: .ignoreUnknownCharacters)
+                    
+                    profileImageView.image = UIImage(data: imageData!)
+                    currentImageIndex = increment
+                }
+                
+                photoPageControl.currentPage = currentImageIndex
+            }
+        }
     }
     
     @IBAction func segmentedControl(_ sender: Any)

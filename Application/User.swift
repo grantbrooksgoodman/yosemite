@@ -101,6 +101,21 @@ class User
         }
     }
     
+    func serialiseQuestionsAnswered() -> [String]
+    {
+        var questionsAnsweredArray: [String] = []
+        
+        if let questionsAnswered = questionsAnswered
+        {
+            for key in Array(questionsAnswered.keys)
+            {
+                questionsAnsweredArray.append("\(key) | \(questionsAnswered[key]!)")
+            }
+        }
+        
+        return questionsAnsweredArray
+    }
+    
     func updateLastActiveDate()
     {
         GenericSerialiser().setValue(onKey: "/allUsers/\(associatedIdentifier!)/userData/lastActive", withData: secondaryDateFormatter.string(from: Date())) { (setValueError) in

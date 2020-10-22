@@ -103,7 +103,7 @@ class UserSerialiser
         dataBundle["swipedLeftOn"]      = ["!"]
         dataBundle["swipedRightOn"]     = ["!"]
         dataBundle["phoneNumber"]       = phoneNumber
-        dataBundle["questionsAnswered"] = questionsAnsweredArray ?? ["!"]
+        dataBundle["questionsAnswered"] = questionsAnsweredArray
         
         GenericSerialiser().updateValue(onKey: "/allUsers/\(associatedIdentifier)", withData: dataBundle) { (wrappedError) in
             if let returnedError = wrappedError

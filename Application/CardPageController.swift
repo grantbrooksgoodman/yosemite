@@ -46,7 +46,7 @@ class CardPageController: UIPageViewController
                     
                     for question in Array(questionsAnswered.keys)
                     {
-                        orderedViewControllers.append(self.genericCard(title: question, content: questionsAnswered[question]!))
+                        orderedViewControllers.append(self.genericCard(title: "❓ \(question)", content: questionsAnswered[question]!))
                     }
                 }
                 else

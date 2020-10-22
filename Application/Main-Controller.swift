@@ -415,7 +415,33 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
             random = randomFirstName.stringCharacters[0...randomInteger(1, maximumValue: randomFirstName.length - 1)].joined() + consonants.chooseOne + vowels.chooseOne
         }
         
-        let metadata: [Any] = [factoidData, userData, "\(randomName.components(separatedBy: " ")[0])\(vowels.chooseOne)\(consonants.chooseOne)\(vowels.chooseOne)", random!, "818-555-5555", ["Who do you think you are?":"YOUR MOM", "It's a perfect match if": Randoms.randomFakeName()]]
+        let questionTitles = ["After work I like to...",
+                              "Berkeley bucket list...",
+                              "I love it when...",
+                              "I promise that...",
+                              "I would love to meet...",
+                              "It's a perfect match if...",
+                              "My dealbreakers are...",
+                              "My death row meal would be...",
+                              "My favourite Cal memory was when...",
+                              "My favourite quality in a person is...",
+                              "My favourite website is...",
+                              "My friends describe me as...",
+                              "My secret superpower is...",
+                              "Never have I ever...",
+                              "Nothing's better than...",
+                              "When nobody's looking, I..."].shuffled()[0...2]
+        var questionsAnswered: [String:String] = [:]
+        
+        for question in questionTitles
+        {
+            let answer = randomInteger(0, maximumValue: 1) == 0 ? Randoms.randomFakeName() : Randoms.randomFakeConversation()
+            
+            questionsAnswered[question] = answer
+        }
+        
+        
+        let metadata: [Any] = [factoidData, userData, "\(randomName.components(separatedBy: " ")[0])\(vowels.chooseOne)\(consonants.chooseOne)\(vowels.chooseOne)", random!, "818-555-5555", questionsAnswered]
         
         self.createAccount(email: "\(random.lowercased())@yosemite.app", password: "123456", orderedUserMetaData: metadata) { (wrappedUser, createAccountError) in
             if let returnedUser = wrappedUser
