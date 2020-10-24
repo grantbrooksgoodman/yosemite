@@ -17,35 +17,42 @@ class PersonalQuestionsController: UIViewController, MFMailComposeViewController
     
     /* Interface Builder UI Elements */
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
+    //ShadowButtons
     @IBOutlet weak var cancelButton: ShadowButton!
-    @IBOutlet weak var doneButton: ShadowButton!
+    @IBOutlet weak var doneButton:   ShadowButton!
+    
+    //Other Elements
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     //--------------------------------------------------//
     
     /* Class-level Declarations */
     
-    let questionTitles = ["After work I like to...",
-                          "Berkeley bucket list...",
-                          "I love it when...",
-                          "I promise that...",
-                          "I would love to meet...",
-                          "It's a perfect match if...",
-                          "My dealbreakers are...",
-                          "My death row meal would be...",
-                          "My favourite Cal memory was when...",
-                          "My favourite quality in a person is...",
-                          "My favourite website is...",
-                          "My friends describe me as...",
-                          "My secret superpower is...",
-                          "Never have I ever...",
-                          "Nothing's better than...",
-                          "When nobody's looking, I..."]
+    //Arrays
+    var answeredQuestions:   [PersonalQuestion] = []
+    var questionTitles =                          ["After work I like to...",
+                                                   "Berkeley bucket list...",
+                                                   "I love it when...",
+                                                   "I promise that...",
+                                                   "I would love to meet...",
+                                                   "It's a perfect match if...",
+                                                   "My dealbreakers are...",
+                                                   "My death row meal would be...",
+                                                   "My favourite Cal memory was when...",
+                                                   "My favourite quality in a person is...",
+                                                   "My favourite website is...",
+                                                   "My friends describe me as...",
+                                                   "My secret superpower is...",
+                                                   "Never have I ever...",
+                                                   "Nothing's better than...",
+                                                   "When nobody's looking, I..."]
+    var unansweredQuestions: [PersonalQuestion] = []
     
+    //Other Elements
     var buildInstance: Build!
-    var personalQuestions: [PersonalQuestion] = []
     
     //--------------------------------------------------//
     
@@ -73,9 +80,36 @@ class PersonalQuestionsController: UIViewController, MFMailComposeViewController
         initialiseController()
         
         //O(n)
+        //Loop through each question in the array of question titles.
         for question in questionTitles
         {
-            personalQuestions.append(PersonalQuestion(title: question, text: currentUser?.questionsAnswered?[question] ?? nil))
+            /*If the current User has answered questions,
+             AND there are some titles that match up with them,
+             AND if each question title can be found in the array.*/
+            if let questionsAnswered = currentUser!.questionsAnswered,
+                questionsAnswered.filter({$0.title == question}).count > 0,
+                let index = questionsAnswered.firstIndex(where: {$0.title == question})
+            {
+                //Append the question with the answer to the array of Personal Questions.
+                answeredQuestions.append(PersonalQuestion(title: question, text: questionsAnswered[index].text!))
+            }
+            else
+            { /*If none of the above applied, i.e.
+                 no answered questions ||
+                 no titles match up ||
+                 a question title couldn't be found in the array.*/
+                
+                //Append the question without an answer to the array of Personal Questions.
+                unansweredQuestions.append(PersonalQuestion(title: question, text: nil))
+            }
+        }
+        
+        //If there are questions that have been answered.
+        if answeredQuestions.count == 0
+        {
+            //Enable the Edit button.
+            editButton.tintColor = .clear
+            editButton.isEnabled = false
         }
         
         textView.delegate = self
@@ -110,6 +144,7 @@ class PersonalQuestionsController: UIViewController, MFMailComposeViewController
         title = "Personal Questions"
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidShow), name: UIResponder.keyboardDidShowNotification, object: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -135,35 +170,49 @@ class PersonalQuestionsController: UIViewController, MFMailComposeViewController
     
     @IBAction func doneButton(_ sender: Any)
     {
-        personalQuestions = personalQuestions.filter({$0.title != titleLabel.text})
+        var alreadyAnswered = false
         
         if textView.text.noWhiteSpaceLowerCaseString != ""
         {
-            if currentUser!.questionsAnswered != nil
+            if let questionsAnswered = currentUser!.questionsAnswered
             {
-                currentUser!.questionsAnswered![titleLabel.text!] = textView.text
+                if questionsAnswered.filter({$0.title == titleLabel.text}).count > 0,
+                    let index = questionsAnswered.firstIndex(where: {$0.title == titleLabel.text})
+                {
+                    currentUser!.questionsAnswered![index] = PersonalQuestion(title: titleLabel.text!, text: textView.text)
+                    answeredQuestions[index].text = textView.text
+                    alreadyAnswered = true
+                }
+                else
+                {
+                    if let index = unansweredQuestions.firstIndex(where: {$0.title == titleLabel.text!})
+                    {
+                        unansweredQuestions.remove(at: index)
+                        answeredQuestions.append(PersonalQuestion(title: titleLabel.text!, text: textView.text))
+                    }
+                    
+                    currentUser!.questionsAnswered!.append(PersonalQuestion(title: titleLabel.text!, text: textView.text))
+                }
             }
             else
             {
-                currentUser!.questionsAnswered = [titleLabel.text!: textView.text]
+                currentUser!.questionsAnswered = [PersonalQuestion(title: titleLabel.text!, text: textView.text)]
             }
+        }
+        
+        if let index = (alreadyAnswered ? answeredQuestions : unansweredQuestions).firstIndex(where: {$0.title == titleLabel.text!})
+        {
+            (alreadyAnswered ? answeredQuestions : unansweredQuestions)[index].text = textView.text == "" ? nil : textView.text
             
-            personalQuestions.append(PersonalQuestion(title: titleLabel.text!, text: textView.text))
+            if let index = currentUser!.questionsAnswered?.firstIndex(where: {$0.title == titleLabel.text!})
+            {
+                currentUser!.questionsAnswered![index] = PersonalQuestion(title: titleLabel.text!, text: textView.text == "" ? nil : textView.text)
+            }
         }
         
         tableView.reloadData()
         
-        currentUser!.questionsAnswered = [:]
-        
-        for question in personalQuestions
-        {
-            if question.text != nil
-            {
-                currentUser!.questionsAnswered![question.title] = question.text!
-            }
-        }
-        
-        GenericSerialiser().setValue(onKey: "/allUsers/\(currentUser!.associatedIdentifier!)/questionsAnswered", withData: currentUser!.serialiseQuestionsAnswered()) { (setValueError) in
+        GenericSerialiser().updateValue(onKey: "/allUsers/\(currentUser!.associatedIdentifier!)/", withData: ["questionsAnswered": currentUser!.serialiseQuestionsAnswered()]) { (setValueError) in
             if let setValueError = setValueError
             {
                 report(setValueError.localizedDescription, errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
@@ -180,6 +229,7 @@ class PersonalQuestionsController: UIViewController, MFMailComposeViewController
             }
             else
             {
+                
                 self.textView.resignFirstResponder()
                 
                 for individualCell in self.tableView.subviews
@@ -193,6 +243,40 @@ class PersonalQuestionsController: UIViewController, MFMailComposeViewController
                 UIView.animate(withDuration: 0.2, animations: {
                     self.tableView.alpha = 1
                 })
+                
+                self.textView.text = ""
+            }
+        }
+    }
+    
+    @IBAction func editButton(_ sender: Any)
+    {
+        tableView.isEditing = editButton.titleLabel!.text! == "Edit" ? true : false
+        editButton.setTitle(editButton.titleLabel!.text! == "Edit" ? "Done" : "Edit", for: .normal)
+        
+        if editButton.titleLabel!.text! == "Done"
+        {
+            currentUser!.questionsAnswered = answeredQuestions
+            
+            GenericSerialiser().updateValue(onKey: "/allUsers/\(currentUser!.associatedIdentifier!)/", withData: ["questionsAnswered": currentUser!.serialiseQuestionsAnswered()]) { (setValueError) in
+                if let setValueError = setValueError
+                {
+                    report(setValueError.localizedDescription, errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
+                    
+                    AlertKit().errorAlertController(title: "Unable to reorder",
+                                                    message: nil,
+                                                    dismissButtonTitle: nil,
+                                                    additionalSelectors: nil,
+                                                    preferredAdditionalSelector: nil,
+                                                    canFileReport: true,
+                                                    extraInfo: "\(setValueError.localizedDescription) (\((setValueError as NSError).code))",
+                        metadata: [#file, #function, #line],
+                        networkDependent: true)
+                }
+                else
+                {
+                    print("reorder successful")
+                }
             }
         }
     }
@@ -264,6 +348,53 @@ class PersonalQuestionsController: UIViewController, MFMailComposeViewController
 
 extension PersonalQuestionsController: UITableViewDataSource, UITableViewDelegate
 {
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool
+    {
+        if indexPath.section == 0
+        {
+            return true
+        }
+        
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath
+    {
+        if sourceIndexPath.section != proposedDestinationIndexPath.section
+        {
+            var row = 0
+            
+            if sourceIndexPath.section < proposedDestinationIndexPath.section
+            {
+                row = self.tableView(tableView, numberOfRowsInSection: sourceIndexPath.section) - 1
+            }
+            
+            return IndexPath(row: row, section: sourceIndexPath.section)
+        }
+        
+        return proposedDestinationIndexPath
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath)
+    {
+        let movedObject = answeredQuestions[sourceIndexPath.row]
+        
+        answeredQuestions[sourceIndexPath.row] = answeredQuestions[destinationIndexPath.row]
+        answeredQuestions[destinationIndexPath.row] = movedObject
+        
+        tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle
+    {
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool
+    {
+        return false
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int
     {
         return 2
@@ -285,11 +416,11 @@ extension PersonalQuestionsController: UITableViewDataSource, UITableViewDelegat
     {
         if section == 0
         {
-            return personalQuestions.filter({$0.text != nil}).count
+            return answeredQuestions.count
         }
         else
         {
-            return personalQuestions.filter({$0.text == nil}).count
+            return unansweredQuestions.count
         }
     }
     
@@ -309,11 +440,10 @@ extension PersonalQuestionsController: UITableViewDataSource, UITableViewDelegat
     {
         let currentCell = tableView.dequeueReusableCell(withIdentifier: "PersonalQuestionCell") as! PersonalQuestionCell
         
-        let answeredQuestions = personalQuestions.filter({$0.text != nil})
-        let unansweredQuestions = personalQuestions.filter({$0.text == nil})
-        
+        //If the index path is for the answered questions.
         if indexPath.section == 0
         {
+            //Set the current cell's text containers according to the answered questions array.
             currentCell.titleLabel.text = answeredQuestions[indexPath.row].title
             currentCell.textView.text = answeredQuestions[indexPath.row].text!
             toggleCheckmark(currentCell.tickButton, isChecked: true)
@@ -323,7 +453,9 @@ extension PersonalQuestionsController: UITableViewDataSource, UITableViewDelegat
             //currentCell.textView.textAlignment = .center
         }
         else
-        {
+        { //If the index path is for the unanswered questions.
+            
+            //Set the current cell's text containers according to the unanswered questions array.
             currentCell.titleLabel.text = unansweredQuestions[indexPath.row].title
             //currentCell.tickButton.frame.origin.y = currentCell.titleLabel.frame.origin.y - 5
             //currentCell.textView.alpha = 0
@@ -334,17 +466,19 @@ extension PersonalQuestionsController: UITableViewDataSource, UITableViewDelegat
         return currentCell
     }
     
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let answeredQuestions = personalQuestions.filter({$0.text != nil})
-        let unansweredQuestions = personalQuestions.filter({$0.text == nil})
-        
         if indexPath.section == 0
         {
             titleLabel.text = answeredQuestions[indexPath.row].title
             textView.text = answeredQuestions[indexPath.row].text ?? ""
             
-            UIView.animate(withDuration: 0.2, animations: {
+            UIView.animate(withDuration: 0.15, animations: {
                 tableView.alpha = 0
                 tableView.deselectRow(at: indexPath, animated: true)
             }) { (_) in
@@ -385,7 +519,7 @@ extension PersonalQuestionsController: UITextViewDelegate
         if textView.textColor == .lightGray
         {
             //Take the text view out of placeholder mode.
-            textView.text = ""
+            //textView.text = ""
             textView.textColor = .black
         }
         
@@ -394,9 +528,8 @@ extension PersonalQuestionsController: UITextViewDelegate
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool
     {
-        doneButton(doneButton!)
+        //doneButton(doneButton!)
         
         return true
     }
 }
-

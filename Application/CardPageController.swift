@@ -44,9 +44,9 @@ class CardPageController: UIPageViewController
                 {
                     orderedViewControllers = []
                     
-                    for question in Array(questionsAnswered.keys)
+                    for question in questionsAnswered
                     {
-                        orderedViewControllers.append(self.genericCard(title: "❓ \(question)", content: questionsAnswered[question]!))
+                        orderedViewControllers.append(self.genericCard(title: "❓ \(question.title!)", content: question.text!))
                     }
                 }
                 else
@@ -56,6 +56,8 @@ class CardPageController: UIPageViewController
             }
             
             pageControl.numberOfPages = orderedViewControllers.count
+            pageControl.currentPage = 0
+            
             scrollToViewController(viewController: orderedViewControllers.first!)
         }
     }
@@ -132,9 +134,9 @@ class CardPageController: UIPageViewController
         {
             if let questionsAnswered = user.questionsAnswered
             {
-                for question in Array(questionsAnswered.keys)
+                for question in questionsAnswered
                 {
-                    orderedViewControllers.append(self.genericCard(title: question, content: questionsAnswered[question]!))
+                    orderedViewControllers.append(self.genericCard(title: question.title, content: question.text!))
                 }
             }
             else

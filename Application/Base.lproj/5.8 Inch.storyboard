@@ -1826,7 +1826,6 @@ Account</string>
                                 </state>
                                 <connections>
                                     <action selector="doneButton:" destination="x5x-n3-yzy" eventType="touchUpInside" id="ZAI-dT-el6"/>
-                                    <action selector="signInButton:" destination="Cwa-RH-2j6" eventType="touchUpInside" id="Pna-WZ-5AV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ha6-aB-nbe" customClass="ShadowButton" customModule="Yosemite" customModuleProvider="target">
@@ -1839,7 +1838,6 @@ Account</string>
                                     <color key="titleColor" red="0.67450980390000004" green="0.6705882353" blue="0.6705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="backButton:" destination="9hV-Zf-r3u" eventType="touchUpInside" id="9eV-rm-eb2"/>
                                     <action selector="cancelButton:" destination="x5x-n3-yzy" eventType="touchUpInside" id="hXJ-RF-uuK"/>
                                 </connections>
                             </button>
@@ -1891,12 +1889,24 @@ Account</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" id="W7k-sd-EMZ"/>
+                    <navigationItem key="navigationItem" id="W7k-sd-EMZ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="uHt-N0-w1a">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="N8o-9X-hMb">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <action selector="editButton:" destination="x5x-n3-yzy" eventType="touchUpInside" id="awY-wh-ZlM"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="812"/>
                     <connections>
                         <outlet property="cancelButton" destination="Ha6-aB-nbe" id="TLd-nQ-3Qu"/>
                         <outlet property="doneButton" destination="zrJ-cT-LNh" id="l8k-k3-vOU"/>
+                        <outlet property="editButton" destination="N8o-9X-hMb" id="rdK-H5-ueE"/>
                         <outlet property="tableView" destination="2iK-Qy-WWA" id="YIb-o4-a6c"/>
                         <outlet property="textView" destination="I0A-hP-Sbd" id="TWs-3S-oSC"/>
                         <outlet property="titleLabel" destination="Elj-vP-m7L" id="0g7-Zn-Coz"/>

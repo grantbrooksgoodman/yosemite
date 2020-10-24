@@ -30,7 +30,7 @@ class User
     
     //Other Variables
     var factoidData: FactoidData!
-    var questionsAnswered: [String:String]?
+    var questionsAnswered: [PersonalQuestion]?
     var userData: UserData!
     
     private var DSOpenConversations: [Conversation]?
@@ -48,7 +48,7 @@ class User
          matches:              [String]?,
          openConversations:    [String]?,
          phoneNumber:          String,
-         questionsAnswered:    [String:String]?,
+         questionsAnswered:    [PersonalQuestion]?,
          swipedLeftOn:         [String]?,
          swipedRightOn:        [String]?)
     {
@@ -107,9 +107,10 @@ class User
         
         if let questionsAnswered = questionsAnswered
         {
-            for key in Array(questionsAnswered.keys)
+            #warning("Filter is perhaps unnecessary here.")
+            for question in questionsAnswered.filter({$0.text != nil})
             {
-                questionsAnsweredArray.append("\(key) | \(questionsAnswered[key]!)")
+                questionsAnsweredArray.append("\(question.title!) | \(question.text!)")
             }
         }
         

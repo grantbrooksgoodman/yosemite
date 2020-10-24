@@ -97,6 +97,25 @@ class ShadowButton: TranslatedButton
         super.touchesMoved(touches, with: event)
     }
     
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        super.touchesCancelled(touches, with: event)
+        
+        if animateTouches
+        {
+            if let borderFrame = borderFrame
+            {
+                borderFrame.layer.shadowOffset = CGSize(width: 0, height: 4)
+                
+                borderFrame.frame.origin.y = borderFrame.frame.origin.y - 3
+            }
+            
+            layer.shadowOffset = CGSize(width: 0, height: 4)
+            
+            frame.origin.y = frame.origin.y - 3
+        }
+    }
+    
     //--------------------------------------------------//
     
     //Constructor Function

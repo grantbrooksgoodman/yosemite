@@ -68,7 +68,7 @@ class UserSerialiser
                     firstName:            String,
                     lastName:             String,
                     phoneNumber:          String,
-                    questionsAnswered:    [String:String]?,
+                    questionsAnswered:    [String:(Int, String)]?,
                     completionHandler: @escaping(_ returnedUser: User?, _ errorDescriptor: String?) -> Void)
     {
         if verboseFunctionExposure { print("Creating User...") }
@@ -85,9 +85,9 @@ class UserSerialiser
         
         if let questionsAnswered = questionsAnswered
         {
-            for key in Array(questionsAnswered.keys)
+            for (key, value) in questionsAnswered.sorted(by: {$0.0 < $1.0})
             {
-                questionsAnsweredArray.append("\(key) | \(questionsAnswered[key]!)")
+                questionsAnsweredArray.append("\(key) | \(value.1)")
             }
         }
         
@@ -684,15 +684,15 @@ class UserSerialiser
         guard let questionsAnsweredArray = fromDataBundle["questionsAnswered"] as? [String]
             else { completionHandler(nil, "Unable to deserialise «questionsAnswered»."); return }
         
-        var questionsAnswered: [String:String] = [:]
+        var questionsAnswered: [PersonalQuestion] = []
         
-        for value in questionsAnsweredArray
+        for (index, value) in questionsAnsweredArray.enumerated()
         {
             let components = value.components(separatedBy: " | ")
             
             if components.count == 2
             {
-                questionsAnswered[components[0]] = components[1]
+                questionsAnswered.append(PersonalQuestion(title: components[0], text: components[1]))
             }
         }
         

@@ -116,12 +116,12 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
             createRandomUser()
         }
         
-        //        var i = 0
-        //        while i < 15
-        //        {
-        //            createRandomUser()
-        //            i += 1
-        //        }
+        //                var i = 0
+        //                while i < 15
+        //                {
+        //                    createRandomUser()
+        //                    i += 1
+        //                }
     }
     
     func signInRandomUser()
@@ -273,10 +273,10 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
         guard let lastName            = orderedUserMetaData[3] as? String    else { completionHandler(nil, "Improperly formatted metadata."); return }
         guard let phoneNumber         = orderedUserMetaData[4] as? String    else { completionHandler(nil, "Improperly formatted metadata."); return }
         
-        var questionsAnswered: [String:String]?
+        var questionsAnswered: [String:(Int, String)]?
         
-        if let unwrappedQuestionsAnswered = orderedUserMetaData[5] as? [String:String],
-            unwrappedQuestionsAnswered != ["!":"!"]
+        if let unwrappedQuestionsAnswered = orderedUserMetaData[5] as? [String:(Int, String)],
+            unwrappedQuestionsAnswered.count != 0
         {
             questionsAnswered = unwrappedQuestionsAnswered
         }
@@ -431,15 +431,14 @@ class MC: UIViewController, MFMailComposeViewControllerDelegate
                               "Never have I ever...",
                               "Nothing's better than...",
                               "When nobody's looking, I..."].shuffled()[0...2]
-        var questionsAnswered: [String:String] = [:]
+        var questionsAnswered: [String:(Int, String)] = [:]
         
-        for question in questionTitles
+        for (index, question) in questionTitles.enumerated()
         {
             let answer = randomInteger(0, maximumValue: 1) == 0 ? Randoms.randomFakeName() : Randoms.randomFakeConversation()
             
-            questionsAnswered[question] = answer
+            questionsAnswered[question] = (index, answer)
         }
-        
         
         let metadata: [Any] = [factoidData, userData, "\(randomName.components(separatedBy: " ")[0])\(vowels.chooseOne)\(consonants.chooseOne)\(vowels.chooseOne)", random!, "818-555-5555", questionsAnswered]
         
