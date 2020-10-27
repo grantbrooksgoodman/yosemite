@@ -104,10 +104,10 @@ class PersonalQuestionsController: UIViewController, MFMailComposeViewController
             }
         }
         
-        //If there are questions that have been answered.
+        //If there are no questions that have been answered.
         if answeredQuestions.count == 0
         {
-            //Enable the Edit button.
+            //Disable the Edit button.
             editButton.tintColor = .clear
             editButton.isEnabled = false
         }
@@ -256,6 +256,15 @@ class PersonalQuestionsController: UIViewController, MFMailComposeViewController
         
         if editButton.titleLabel!.text! == "Done"
         {
+            for cell in tableView.visibleCells
+            {
+                if let cell = cell as? PersonalQuestionCell
+                {
+                    cell.textView.frame.size.width += 70
+                    cell.titleLabel.frame.size.width += 70
+                }
+            }
+            
             currentUser!.questionsAnswered = answeredQuestions
             
             GenericSerialiser().updateValue(onKey: "/allUsers/\(currentUser!.associatedIdentifier!)/", withData: ["questionsAnswered": currentUser!.serialiseQuestionsAnswered()]) { (setValueError) in
@@ -276,6 +285,17 @@ class PersonalQuestionsController: UIViewController, MFMailComposeViewController
                 else
                 {
                     print("reorder successful")
+                }
+            }
+        }
+        else
+        {
+            for cell in tableView.visibleCells
+            {
+                if let cell = cell as? PersonalQuestionCell
+                {
+                    cell.textView.frame.size.width -= 70
+                    cell.titleLabel.frame.size.width -= 70
                 }
             }
         }
@@ -385,8 +405,58 @@ extension PersonalQuestionsController: UITableViewDataSource, UITableViewDelegat
         tableView.reloadData()
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if editingStyle == .delete
+        {
+            let unansweredQuestion = answeredQuestions[indexPath.row]
+            
+            if let questionsAnswered = currentUser!.questionsAnswered,
+                questionsAnswered.filter({$0.title == unansweredQuestion.title}).count > 0,
+                let index = questionsAnswered.firstIndex(where: {$0.title == unansweredQuestion.title})
+            {
+                currentUser!.questionsAnswered!.remove(at: index)
+            }
+            
+            GenericSerialiser().updateValue(onKey: "/allUsers/\(currentUser!.associatedIdentifier!)/", withData: ["questionsAnswered": currentUser!.serialiseQuestionsAnswered()]) { (updateValueError) in
+                if let updateValueError = updateValueError as NSError?
+                {
+                    report(updateValueError.localizedDescription, errorCode: updateValueError.code, isFatal: false, metadata: [#file, #function, #line])
+                    
+                    AlertKit().errorAlertController(title: "Couldn't delete question",
+                                                    message: nil,
+                                                    dismissButtonTitle: nil,
+                                                    additionalSelectors: nil,
+                                                    preferredAdditionalSelector: nil,
+                                                    canFileReport: true,
+                                                    extraInfo: "\(updateValueError.localizedDescription) (\(updateValueError.code)",
+                        metadata: [#file, #function, #line],
+                        networkDependent: true)
+                }
+                else
+                {
+                    report("Deleted Question successfully.", errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
+                    
+                    unansweredQuestion.text = nil
+                    
+                    self.unansweredQuestions.append(unansweredQuestion)
+                    self.unansweredQuestions = self.unansweredQuestions.sorted(by: {$0.title < $1.title})
+                    
+                    self.answeredQuestions.remove(at: indexPath.row)
+                    
+                    tableView.reloadData()
+                }
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle
     {
+        if indexPath.section == 0
+        {
+            return .delete
+        }
+        
         return .none
     }
     
