@@ -644,7 +644,7 @@ func politelyPresent(viewController: UIViewController)
             topController = presentedViewController
         }
         
-        if topController.presentedViewController == nil
+        if topController.presentedViewController == nil && !topController.isKind(of: UIAlertController.self)
         {
             if !Thread.isMainThread
             {

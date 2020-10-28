@@ -91,7 +91,12 @@ class BuildInfoController: UIViewController
         }
         else
         {
+            sendFeedbackButton.isEnabled = false
+            
             AlertKit().optionAlertController(withTitle: "File Report", withMessage: "Choose the option which best describes your intention.", withCancelButtonTitle: nil, withActions: ["Send Feedback", "Report a Bug"], preferredActionIndex: nil, destructiveActionIndex: nil, networkDependent: true) { (option) in
+                
+                self.sendFeedbackButton.isEnabled = true
+                
                 if let option = option
                 {
                     if option == 0
