@@ -141,6 +141,7 @@
 		A2DA95B024EF01900047FCE7 /* SportsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA95AF24EF01900047FCE7 /* SportsController.swift */; };
 		A2DA95B424EF02220047FCE7 /* CardPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA95B324EF02220047FCE7 /* CardPageController.swift */; };
 		A2DA95B724EF80730047FCE7 /* GenericController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DA95B624EF80730047FCE7 /* GenericController.swift */; };
+		A2DB49EB254E35E500E22F3A /* SportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB49EA254E35E500E22F3A /* SportCell.swift */; };
 		A2E5605C25049A7C001A0E03 /* San Francisco (Light).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2E5605025049A7C001A0E03 /* San Francisco (Light).otf */; };
 		A2E5605D25049A7C001A0E03 /* San Francisco (Heavy).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2E5605125049A7C001A0E03 /* San Francisco (Heavy).otf */; };
 		A2E5605E25049A7C001A0E03 /* San Francisco (Regular).otf in Resources */ = {isa = PBXBuildFile; fileRef = A2E5605225049A7C001A0E03 /* San Francisco (Regular).otf */; };
@@ -301,6 +302,7 @@
 		A2DA95B324EF02220047FCE7 /* CardPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardPageController.swift; sourceTree = "<group>"; };
 		A2DA95B524EF248D0047FCE7 /* Yosemite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Yosemite.entitlements; sourceTree = "<group>"; };
 		A2DA95B624EF80730047FCE7 /* GenericController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericController.swift; sourceTree = "<group>"; };
+		A2DB49EA254E35E500E22F3A /* SportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportCell.swift; sourceTree = "<group>"; };
 		A2E5605025049A7C001A0E03 /* San Francisco (Light).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Light).otf"; sourceTree = "<group>"; };
 		A2E5605125049A7C001A0E03 /* San Francisco (Heavy).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Heavy).otf"; sourceTree = "<group>"; };
 		A2E5605225049A7C001A0E03 /* San Francisco (Regular).otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "San Francisco (Regular).otf"; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				6874044A1CB1AB4400BD2632 /* AppDelegate.swift */,
+				A2DB49EC254E35EF00E22F3A /* Cells */,
 				A2ECF96B24C9D9EA00862AF0 /* Serialisation Classes */,
 				682A9B1E1C8E64CE00014EA5 /* Storyboard Files */,
 				682A9B211C8E64FC00014EA5 /* Supporting Files */,
@@ -458,12 +461,7 @@
 			isa = PBXGroup;
 			children = (
 				A227ABA1251AF5B500D9A9F9 /* PersonalQuestion.swift */,
-				A2F4B401251AEF6300AC0ADF /* PersonalQuestionCell.swift */,
 				A2C836852516F76D00AD6010 /* FactoidCard.swift */,
-				A2C836832516E25800AD6010 /* FactoidCardCell.swift */,
-				A2FE6B8425169B4400070A76 /* PreferenceCell.swift */,
-				A275742724F6D82000D42171 /* CollectionViewCell.swift */,
-				A239BFB124CB5D3700A94FEF /* ChatCell.swift */,
 				A27934D124B047590026F0C5 /* GradientLabel.swift */,
 				A23CB8AA24996B670059D350 /* ImagePicker.swift */,
 				A2B1F75C2458AAB000CB20AF /* RadioButton.swift */,
@@ -629,6 +627,19 @@
 				A2DA95AF24EF01900047FCE7 /* SportsController.swift */,
 			);
 			name = "Expanded Card Controllers";
+			sourceTree = "<group>";
+		};
+		A2DB49EC254E35EF00E22F3A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A239BFB124CB5D3700A94FEF /* ChatCell.swift */,
+				A275742724F6D82000D42171 /* CollectionViewCell.swift */,
+				A2C836832516E25800AD6010 /* FactoidCardCell.swift */,
+				A2F4B401251AEF6300AC0ADF /* PersonalQuestionCell.swift */,
+				A2FE6B8425169B4400070A76 /* PreferenceCell.swift */,
+				A2DB49EA254E35E500E22F3A /* SportCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		A2E5604F25049A7C001A0E03 /* San Francisco */ = {
@@ -977,6 +988,7 @@
 				687FEE2A1E9D9BAA007E304B /* Frame-Calculator.swift in Sources */,
 				A2739E8D24C157CD00D1C412 /* CardController.swift in Sources */,
 				A25ADD99247330BB00275FC0 /* EmploymentController.swift in Sources */,
+				A2DB49EB254E35E500E22F3A /* SportCell.swift in Sources */,
 				6881EA4C1E29CD360007D873 /* System-Information.swift in Sources */,
 				A28A2E15246B5A780058207D /* MessageSerialiser.swift in Sources */,
 				68D29A131DD79C8A00BFF4D5 /* Initial-Controller.swift in Sources */,

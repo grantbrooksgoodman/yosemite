@@ -36,7 +36,12 @@ class CardPageController: UIPageViewController
         didSet {
             if displaysFactoids
             {
-                orderedViewControllers = displaysFactoids == true ? [UIStoryboard(name: "ExpandedCard", bundle: nil).instantiateViewController(withIdentifier: "QuickFactsController"), self.genericCard(title: "🏈 \(user.firstName.uppercased()) PLAYS", content: "\(user.factoidData.sports?.1.joined(separator: ", ") ?? "no sports")"), self.genericCard(title: "⚔️ GREEK LIFE ORGANISATION", content: "Pi Kappa Phi"), self.genericCard(title: "🔍 OPEN TO", content: user.factoidData.lookingFor?.joined(separator: ", ") ?? "nothing in particular")] : [self.genericCard(title: "❓ After work I like to...", content: "cook"), self.genericCard(title: "❓ I promise that...", content: "I'll never cheat"), self.genericCard(title: "❓ Never have I ever...", content: "been to DisneyLand")]
+                orderedViewControllers = displaysFactoids == true ? [UIStoryboard(name: "ExpandedCard", bundle: nil).instantiateViewController(withIdentifier: "QuickFactsController"), self.genericCard(title: "⚔️ GREEK LIFE ORGANISATION", content: "Pi Kappa Phi"), self.genericCard(title: "🔍 OPEN TO", content: user.factoidData.lookingFor?.joined(separator: ", ") ?? "nothing in particular")] : [self.genericCard(title: "❓ After work I like to...", content: "cook"), self.genericCard(title: "❓ I promise that...", content: "I'll never cheat"), self.genericCard(title: "❓ Never have I ever...", content: "been to DisneyLand")]
+                
+                if let sportsCard = self.sportsCard(), displaysFactoids
+                {
+                    orderedViewControllers.append(sportsCard)
+                }
             }
             else
             {
@@ -97,10 +102,10 @@ class CardPageController: UIPageViewController
                 }
             }
             
-            if let sports = user.factoidData.sports, sports.0.1 == false
+            if let sports = user.factoidData.sports,
+                sports.0.1 == false,
+                let sportsCard = sportsCard()
             {
-                let sportsCard = self.genericCard(title: "🏈 \(user.firstName.uppercased()) PLAYS", content: "\(sports.1.joined(separator: ", "))")
-                
                 if let lastValue = Array(orderedCards.keys).last
                 {
                     orderedCards[lastValue + 1] = sportsCard
@@ -237,6 +242,23 @@ class CardPageController: UIPageViewController
         }
         
         return withController
+    }
+    
+    func sportsCard() -> UIViewController?
+    {
+        if let sports = user.factoidData.sports
+        {
+            let withController = UIStoryboard(name: "ExpandedCard", bundle: nil).instantiateViewController(withIdentifier: "SportsController")
+            
+            if let sportsController = withController as? SportsController
+            {
+                sportsController.sports = sports.1
+            }
+            
+            return withController
+        }
+        
+        return nil
     }
     
     /**
