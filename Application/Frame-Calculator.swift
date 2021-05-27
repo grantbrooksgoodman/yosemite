@@ -17,8 +17,7 @@ class Frame
     //--------------------------------------------------//
     
     //Enumerated Type Declarations
-    enum DevelopmentEnvironment
-    {
+    enum DevelopmentEnvironment {
         case sixInch
         case fiveEightInch
         case fiveFiveInch
@@ -30,12 +29,9 @@ class Frame
     private var heightValue: CGFloat!
     private var widthValue: CGFloat!
     
-    var originalDevelopmentEnvironment: DevelopmentEnvironment!
-    {
-        didSet
-        {
-            switch originalDevelopmentEnvironment
-            {
+    var originalDevelopmentEnvironment: DevelopmentEnvironment! {
+        didSet {
+            switch originalDevelopmentEnvironment {
             case .sixInch:
                 heightValue = 896
                 widthValue = 414
@@ -61,10 +57,8 @@ class Frame
         }
     }
     
-    func screenHeight(_ forDevice: DevelopmentEnvironment) -> CGFloat
-    {
-        switch forDevice
-        {
+    func screenHeight(_ forDevice: DevelopmentEnvironment) -> CGFloat {
+        switch forDevice {
         case .sixInch:
             return 896
         case .fiveEightInch:
@@ -80,10 +74,8 @@ class Frame
         }
     }
     
-    func screenWidth(_ forDevice: DevelopmentEnvironment) -> CGFloat
-    {
-        switch forDevice
-        {
+    func screenWidth(_ forDevice: DevelopmentEnvironment) -> CGFloat {
+        switch forDevice {
         case .sixInch:
             return 414
         case .fiveEightInch:
@@ -99,53 +91,49 @@ class Frame
         }
     }
     
-    func frame(_ forFrame: CGRect) -> CGRect
-    {
+    func frame(_ forFrame: CGRect) -> CGRect {
         return CGRect(x: x(forFrame.origin.x), y: y(forFrame.origin.y), width: width(forFrame.size.width), height: height(forFrame.size.height))
     }
     
-    func frame(_ forFrame: CGRect, toDevice: DevelopmentEnvironment) -> CGRect
-    {
+    func frame(_ forFrame: CGRect, toDevice: DevelopmentEnvironment) -> CGRect {
         return CGRect(x: x(forFrame.origin.x, toDevice: toDevice), y: y(forFrame.origin.y, toDevice: toDevice), width: width(forFrame.size.width, toDevice: toDevice), height: height(forFrame.size.height, toDevice: toDevice))
     }
     
-    func height(_ value: CGFloat) -> CGFloat
-    {
+    func height(_ value: CGFloat) -> CGFloat {
         return CGFloat(UIScreen.main.bounds.size.height * value) / heightValue
     }
     
-    func height(_ value: CGFloat, toDevice: DevelopmentEnvironment) -> CGFloat
-    {
+    func height(_ value: CGFloat, toDevice: DevelopmentEnvironment) -> CGFloat {
         return round(CGFloat(screenHeight(toDevice) * value) / heightValue)
     }
     
-    func width(_ value: CGFloat) -> CGFloat
-    {
+    func width(_ value: CGFloat) -> CGFloat {
         return CGFloat(UIScreen.main.bounds.size.width * value) / widthValue
     }
     
-    func width(_ value: CGFloat, toDevice: DevelopmentEnvironment) -> CGFloat
-    {
+    func width(_ value: CGFloat, toDevice: DevelopmentEnvironment) -> CGFloat {
         return round(CGFloat(screenWidth(toDevice) * value) / widthValue)
     }
     
-    func x(_ value: CGFloat) -> CGFloat
-    {
+    func x(_ value: CGFloat) -> CGFloat {
         return CGFloat(UIScreen.main.bounds.width * value) / widthValue
     }
     
-    func x(_ value: CGFloat, toDevice: DevelopmentEnvironment) -> CGFloat
-    {
+    func x(_ value: CGFloat, toDevice: DevelopmentEnvironment) -> CGFloat {
         return round(CGFloat(screenWidth(toDevice) * value) / widthValue)
     }
     
-    func y(_ value: CGFloat) -> CGFloat
-    {
+    func y(_ value: CGFloat) -> CGFloat {
         return CGFloat(UIScreen.main.bounds.height * value) / heightValue
     }
     
-    func y(_ value: CGFloat, toDevice: DevelopmentEnvironment) -> CGFloat
-    {
+    func y(_ value: CGFloat, toDevice: DevelopmentEnvironment) -> CGFloat {
         return round(CGFloat(screenHeight(toDevice) * value) / heightValue)
+    }
+}
+
+extension UIView {
+    func updateFrame() {
+        frame = f.frame(frame)
     }
 }

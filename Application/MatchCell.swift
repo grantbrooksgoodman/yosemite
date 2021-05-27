@@ -1,21 +1,32 @@
 //
 //  MatchCell.swift
-//  Yosemite
+//  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 26/08/2020.
-//  Copyright © 2020 NEOTechnica Corporation. All rights reserved.
+//  Copyright © 2013-2021 NEOTechnica Corporation. All rights reserved.
 //
 
+/* First-party Frameworks */
 import UIKit
 
-class MatchCell: UICollectionViewCell
-{
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+class MatchCell: UICollectionViewCell {
     
-    override func draw(_ rect: CGRect)
-    {
+    //==================================================//
+    
+    /* MARK: - Interface Builder UI Elements */
+    
+    //Other Elements
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    //==================================================//
+    
+    /* MARK: - Overridden Functions */
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
         imageView.layer.borderColor = UIColor(hex: 0xE1E0E1).cgColor
         imageView.layer.borderWidth = 2
         

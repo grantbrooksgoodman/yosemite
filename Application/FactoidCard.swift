@@ -1,19 +1,19 @@
 //
 //  FactoidCard.swift
-//  Yosemite
+//  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 19/09/2020.
-//  Copyright © 2020 NEOTechnica Corporation. All rights reserved.
+//  Copyright © 2013-2021 NEOTechnica Corporation. All rights reserved.
 //
 
-//First-party Frameworks
+/* First-party Frameworks */
 import UIKit
 
-class FactoidCard
-{
-    //--------------------------------------------------//
+class FactoidCard {
     
-    //Class-Level Variable Declarations
+    //==================================================//
+    
+    /* MARK: - Class-level Variable Declarations */
     
     //Booleans
     var isEditable: Bool!
@@ -27,12 +27,11 @@ class FactoidCard
     //Other Declarations
     var viewController: UIViewController!
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Constructor Function */
+    /* MARK: - Constructor Function */
     
-    init(title: String, subtitle: String, isEditable: Bool, isHidden: Bool, isRequired: Bool, viewController: UIViewController)
-    {
+    init(title: String, subtitle: String, isEditable: Bool, isHidden: Bool, isRequired: Bool, viewController: UIViewController) {
         self.title = title
         self.subtitle = subtitle
         self.isEditable = isEditable

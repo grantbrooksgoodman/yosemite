@@ -3,22 +3,23 @@
 //  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 27/07/2020.
-//  Copyright © 2013-2020 NEOTechnica Corporation. All rights reserved.
+//  Copyright © 2013-2021 NEOTechnica Corporation. All rights reserved.
 //
 
-//First-party Frameworks
+/* First-party Frameworks */
+import InputBarAccessoryView
+import MessageKit
 import MessageUI
 import UIKit
 
-import MessageKit
-import InputBarAccessoryView
+/* Third-party Frameworks */
 import FirebaseDatabase
 
-class MessagesController: MessagesViewController, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate
-{
-    //--------------------------------------------------//
+class MessagesController: MessagesViewController, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate {
     
-    /* Class-level Declarations */
+    //==================================================//
+    
+    /* MARK: - Class-level Variable Declarations */
     
     var buildInstance: Build!
     
@@ -30,42 +31,42 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
     var firstMoveLabel: UILabel?
     var profileImageView: UIImageView?
     
-    //--------------------------------------------------//
+    var readDateUpdateTimer: Timer?
     
-    /* Initialiser Function */
+    //==================================================//
     
-    func initialiseController()
-    {
-        lastInitialisedController = self
-        buildInstance = Build(self)
-    }
+    /* MARK: - Structures */
     
-    //--------------------------------------------------//
-    
-    /* Overridden Functions */
-    
-    public struct Sender: SenderType
-    {
+    public struct Sender: SenderType {
         public let senderId: String
-        
         public let displayName: String
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
+    //==================================================//
+    
+    /* MARK: - Initializer Function */
+    
+    func initializeController() {
+        lastInitializedController = self
+        buildInstance = Build(self)
+    }
+    
+    //==================================================//
+    
+    /* MARK: - Overridden Functions */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
     
-    @objc func sendFeedbackButtonAction()
-    {
-        PresentationManager().feedbackController(withFileName: #file)
+    @objc func sendFeedbackButtonAction() {
+        AlertKit().feedbackController(withFileName: #file)
     }
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
-        initialiseController()
+        initializeController()
         
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
@@ -76,13 +77,11 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
         title = otherUser.firstName
         messagesCollectionView.scrollToBottom(animated: true)
         
-        if messageArray.count == 0
-        {
+        if messageArray.count == 0 {
             profileImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
             
             if let profileImageData = otherUser.userData.profileImageData,
-                let imageData = Data(base64Encoded: profileImageData[0], options: .ignoreUnknownCharacters)
-            {
+               let imageData = Data(base64Encoded: profileImageData[0], options: .ignoreUnknownCharacters) {
                 profileImageView!.image = UIImage(data: imageData)
             }
             
@@ -112,165 +111,149 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
             //firstMoveLabel!.updateFrame()
         }
         
-        for individualMessage in messageArray
-        {
-            if individualMessage.fromAccountIdentifier != accountIdentifier && individualMessage.readDate == Date(timeIntervalSince1970: 0)
-            {
-                MessageSerialiser().getMessage(withIdentifier: individualMessage.associatedIdentifier) { (wrappedMessage, getMessageError) in
-                    if let returnedMessage = wrappedMessage
-                    {
-                        if returnedMessage.readDate == nil
-                        {
-                            MessageSerialiser().updateReadDate(onMessageWithIdentifier: individualMessage.associatedIdentifier) { (wrappedError) in
-                                if let updateReadDateError = wrappedError
-                                {
-                                    report(updateReadDateError, errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        print(getMessageError!)
-                    }
-                }
-            }
-        }
-        
-        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
-        {
+        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
             layout.textMessageSizeCalculator.outgoingAvatarSize = .zero
             layout.setMessageOutgoingCellBottomLabelAlignment(.init(textAlignment: .right, textInsets: .init(top: 2, left: 0, bottom: 0, right: 10)))
         }
         
         Database.database().reference().child("allConversations").child(conversationIdentifier).child("associatedMessages").observe(.childAdded, with: { (returnedSnapshot) in
             if let newMessageIdentifier = returnedSnapshot.value as? String,
-                newMessageIdentifier != "!"
-            {
+               newMessageIdentifier != "!" {
                 var shouldUpdateChat = true
                 
-                for individualMessage in self.messageArray
-                {
-                    if individualMessage.associatedIdentifier == newMessageIdentifier
-                    {
+                for individualMessage in self.messageArray {
+                    if individualMessage.associatedIdentifier == newMessageIdentifier {
                         shouldUpdateChat = false
                     }
                 }
                 
-                if shouldUpdateChat
-                {
-                    MessageSerialiser().getMessage(withIdentifier: newMessageIdentifier) { (wrappedMessage, getMessageError) in
-                        if let returnedMessage = wrappedMessage
-                        {
-                            if returnedMessage.fromAccountIdentifier != accountIdentifier
-                            {
+                if shouldUpdateChat {
+                    MessageSerializer().getMessage(withIdentifier: newMessageIdentifier) { (wrappedMessage, getMessageError) in
+                        if let returnedMessage = wrappedMessage {
+                            if returnedMessage.fromAccountIdentifier != accountIdentifier {
                                 self.messageArray.append(returnedMessage)
                                 self.messagesCollectionView.reloadData()
                                 self.messagesCollectionView.scrollToBottom(animated: true)
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+                                    self.checkReadDateNeedsUpdate()
+                                }
                             }
-                        }
-                        else
-                        {
+                        } else {
                             report(getMessageError ?? "An unknown error occurred.", errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
                         }
                     }
                 }
-            }
-            else
-            {
+            } else {
                 report("Null/first message; awaiting replacement.", errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
             }
         })
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         currentFile = #file
         buildInfoController?.view.isHidden = false
     }
     
-    override func viewWillDisappear(_ animated: Bool)
-    {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        readDateUpdateTimer = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(checkReadDateNeedsUpdate), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        if let timer = readDateUpdateTimer {
+            timer.invalidate()
+            readDateUpdateTimer = nil
+        }
+        
         if let conversationController = navigationController?.children[1] as? ConversationController,
-            let newConversation = newConversation
-        {
+           let newConversation = newConversation {
             conversationController.newConversation = nil
             
-            if messageArray.count == 0
-            {
-                ConversationSerialiser().deleteConversation(newConversation) { (error) in
-                    if let error = error
-                    {
+            if messageArray.count == 0 {
+                ConversationSerializer().deleteConversation(newConversation) { (error) in
+                    if let error = error {
                         report(error, errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
                     }
                 }
-            }
-            else
-            {
+            } else {
                 if let matchIdentifiers = conversationController.matchIdentifiers,
-                    let index = matchIdentifiers.firstIndex(of: newConversation.participantIdentifiers.filter({$0 != accountIdentifier})[0])
-                {
+                   let index = matchIdentifiers.firstIndex(of: newConversation.participantIdentifiers.filter({$0 != accountIdentifier})[0]) {
                     conversationController.matchIdentifiers!.remove(at: index)
                     conversationController.matchesUpdated = true
                 }
                 
-                guard conversationController.conversationArray != nil else { conversationController.conversationArray = [newConversation]; return }
+                guard conversationController.conversationArray != nil else {
+                    conversationController.conversationArray = [newConversation]
+                    return
+                }
                 
                 conversationController.conversationArray!.append(newConversation)
             }
         }
         
-        for individualMessage in messageArray
-        {
+        for individualMessage in messageArray {
             Database.database().reference().child("allMessages").child(individualMessage.associatedIdentifier).removeAllObservers()
         }
         
         Database.database().reference().child("allConversations").child(conversationIdentifier).child("associatedMessages").removeAllObservers()
     }
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Interface Builder Actions */
+    /* MARK: - Interface Builder Actions */
     
-    @IBAction func sendFeedbackButton(_ sender: Any)
-    {
-        PresentationManager().feedbackController(withFileName: #file)
+    //==================================================//
+    
+    /* MARK: - Other Functions */
+    
+    @objc func checkReadDateNeedsUpdate() {
+        for individualMessage in messageArray {
+            if individualMessage.fromAccountIdentifier != accountIdentifier && individualMessage.readDate == nil /*Date(timeIntervalSince1970: 0)*/ {
+                MessageSerializer().getMessage(withIdentifier: individualMessage.associatedIdentifier) { (wrappedMessage, getMessageError) in
+                    if let returnedMessage = wrappedMessage {
+                        if returnedMessage.readDate == nil {
+                            MessageSerializer().updateReadDate(onMessageWithIdentifier: individualMessage.associatedIdentifier) { (wrappedError) in
+                                if let updateReadDateError = wrappedError {
+                                    report(updateReadDateError, errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
+                                }
+                            }
+                        }
+                    } else {
+                        print(getMessageError!)
+                    }
+                }
+            }
+        }
     }
     
-    //--------------------------------------------------//
-    
-    /* Independent Functions */
-    
-    @objc func keyboardDidShow(_ withNotification: Notification)
-    {
-        //        if let firstMoveLabel = firstMoveLabel,
-        //            let messageField = inputAccessoryView,
-        //            let profileImageView = profileImageView,
-        //            findFirstResponder(inView: messageField) != nil
-        //        {
-        //            UIView.animate(withDuration: 0.2) {
-        //                firstMoveLabel.alpha = 0
-        //                profileImageView.alpha = 0
-        //            }
-        //        }
+    @objc func keyboardDidShow(_ withNotification: Notification) {
+        //                if let firstMoveLabel = firstMoveLabel,
+        //                    let messageField = inputAccessoryView,
+        //                    let profileImageView = profileImageView,
+        //                    findFirstResponder(inView: messageField) != nil {
+        //                    UIView.animate(withDuration: 0.2) {
+        //                        firstMoveLabel.alpha = 0
+        //                        profileImageView.alpha = 0
+        //                    }
+        //                }
         
         messagesCollectionView.scrollToBottom(animated: true)
     }
     
-    @objc func keyboardWillShow(_ withNotification: Notification)
-    {
+    @objc func keyboardWillShow(_ withNotification: Notification) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
             if let firstMoveLabel = self.firstMoveLabel,
-                let profileImageView = self.profileImageView,
-                let userInfo = withNotification.userInfo,
-                let keyboardFrame = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect,
-                keyboardFrame.origin.y != UIScreen.main.bounds.maxY,
-                findFirstResponder(inView: self.messageInputBar) != nil
-            {
+               let profileImageView = self.profileImageView,
+               let userInfo = withNotification.userInfo,
+               let keyboardFrame = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect,
+               keyboardFrame.origin.y != UIScreen.main.bounds.maxY,
+               findFirstResponder(inView: self.messageInputBar) != nil {
                 UIView.animate(withDuration: 0.15) {
                     firstMoveLabel.alpha = 0
                     profileImageView.alpha = 0
@@ -279,11 +262,9 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
         }
     }
     
-    @objc func keyboardWillHide(_ withNotification: Notification)
-    {
+    @objc func keyboardWillHide(_ withNotification: Notification) {
         if let firstMoveLabel = firstMoveLabel,
-            let profileImageView = profileImageView
-        {
+           let profileImageView = profileImageView {
             UIView.animate(withDuration: 0.15) {
                 firstMoveLabel.alpha = 1
                 profileImageView.alpha = 1
@@ -291,8 +272,7 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
         }
     }
     
-    func configureMessageInputBar()
-    {
+    func configureMessageInputBar() {
         messageInputBar.delegate = self
         //messageInputBar.inputTextView.tintColor = .systemRed
         //messageInputBar.sendButton.setTitleColor(UIColor(hex: 0x75B6EA), for: .normal)
@@ -307,8 +287,7 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func attributedString(_ forString: String, separationIndex: Int) -> NSAttributedString
-    {
+    func attributedString(_ forString: String, separationIndex: Int) -> NSAttributedString {
         let attributedString = NSMutableAttributedString(string: forString)
         
         let boldAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: 12),
@@ -324,8 +303,7 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
         return attributedString
     }
     
-    func separatorDateString(fromDate: Date) -> NSAttributedString
-    {
+    func separatorDateString(fromDate: Date) -> NSAttributedString {
         let differenceBetweenDates = Calendar.current.startOfDay(for: Date()).distance(to: Calendar.current.startOfDay(for: fromDate))
         
         let formattedTimeString = DateFormatter.localizedString(from: fromDate, dateStyle: .none, timeStyle: .short)
@@ -343,75 +321,62 @@ class MessagesController: MessagesViewController, MFMailComposeViewControllerDel
         
         let underYearDateString = underYearDateFormatter.string(from: fromDate)
         
-        if differenceBetweenDates == 0
-        {
+        if differenceBetweenDates == 0 {
             let separatorString = "Today"
             
             return attributedString("\(separatorString) \(formattedTimeString)", separationIndex: separatorString.count)
-        }
-        else if differenceBetweenDates == -86400
-        {
+        } else if differenceBetweenDates == -86400 {
             let separatorString = "Yesterday"
             
             return attributedString("\(separatorString) \(formattedTimeString)", separationIndex: separatorString.count)
-        }
-        else if differenceBetweenDates >= -604800
-        {
-            let fromDateDay = dayOfWeek(regularDateFormatter.string(from: fromDate))
+        } else if differenceBetweenDates >= -604800 {
+            let fromDateDay = regularDateFormatter.string(from: fromDate).dayOfWeek()
             
-            if fromDateDay != dayOfWeek(regularDateFormatter.string(from: Date()))
-            {
+            if fromDateDay != regularDateFormatter.string(from: Date()).dayOfWeek() {
                 return attributedString("\(fromDateDay) \(formattedTimeString)", separationIndex: fromDateDay.count)
-            }
-            else
-            {
+            } else {
                 return attributedString(underYearDateString + formattedTimeString, separationIndex: underYearDateString.components(separatedBy: ",")[0].count + 1)
             }
-        }
-        else if differenceBetweenDates < -604800 && differenceBetweenDates > -31540000
-        {
+        } else if differenceBetweenDates < -604800 && differenceBetweenDates > -31540000 {
             return attributedString(underYearDateString + formattedTimeString, separationIndex: underYearDateString.components(separatedBy: ",")[0].count + 1)
         }
         
         return attributedString(overYearDateString + formattedTimeString, separationIndex: overYearDateString.components(separatedBy: ",")[0].count + 1)
     }
     
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
-    {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         buildInstance.handleMailComposition(withController: controller, withResult: result, withError: error)
     }
 }
 
-extension MessagesController: MessagesDataSource
-{
+//==================================================//
+
+/* MARK: - Extensions */
+
+/**/
+
+/* MARK: MessagesDataSource */
+extension MessagesController: MessagesDataSource {
     func currentSender() -> SenderType {
         return Sender(senderId: accountIdentifier, displayName: "Steven")
     }
     
-    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int
-    {
+    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messageArray.count
     }
     
-    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType
-    {
+    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         let lastMessageIndex = messageArray.count - 1
         
-        if indexPath.section == lastMessageIndex
-        {
+        if indexPath.section == lastMessageIndex {
             Database.database().reference().child("allMessages").removeAllObservers()
             
             Database.database().reference().child("allMessages").child(messageArray[indexPath.section].associatedIdentifier!).observe(.childChanged, with: { (returnedSnapshot) in
-                if returnedSnapshot.key == "readDate"
-                {
-                    if let readDateString = returnedSnapshot.value as? String
-                    {
-                        if let readDate = secondaryDateFormatter.date(from: readDateString)
-                        {
+                if returnedSnapshot.key == "readDate" {
+                    if let readDateString = returnedSnapshot.value as? String {
+                        if let readDate = secondaryDateFormatter.date(from: readDateString) {
                             self.messageArray[indexPath.section].readDate = readDate
-                        }
-                        else if readDateString == "!"
-                        {
+                        } else if readDateString == "!" {
                             self.messageArray[indexPath.section].readDate = nil
                         }
                         
@@ -424,13 +389,11 @@ extension MessagesController: MessagesDataSource
         return messageArray[indexPath.section]
     }
     
-    //    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat
-    //    {
-    //        return 12
-    //    }
+    //        func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+    //            return 12
+    //        }
     
-    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString?
-    {
+    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         //        if indexPath.section % 3 == 0
         //        {
         return separatorDateString(fromDate: messageArray[indexPath.section].sentDate)
@@ -439,33 +402,26 @@ extension MessagesController: MessagesDataSource
         //return nil
     }
     
-    func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString?
-    {
+    func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         let lastMessageIndex = messageArray.count - 1
         
-        if indexPath.section == lastMessageIndex && messageArray[lastMessageIndex].fromAccountIdentifier == currentUser!.associatedIdentifier
-        {
-            let boldAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: 12),
-                                                                 .foregroundColor: UIColor.gray]
+        if indexPath.section == lastMessageIndex && messageArray[lastMessageIndex].fromAccountIdentifier == currentUser!.associatedIdentifier {
+            let boldAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: 12), .foregroundColor: UIColor.gray]
             
-            if let readDate = messageArray[lastMessageIndex].readDate
-            {
-                let readString = "Read \(formattedDateString(fromDate: readDate))"
+            if let readDate = messageArray[lastMessageIndex].readDate {
+                let readString = "Read \(readDate.formattedString())"
                 let attributedReadString = NSMutableAttributedString(string: readString)
                 
                 let readLength = "Read".count
                 
-                let regularAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 12),
-                                                                        .foregroundColor: UIColor.lightGray]
+                let regularAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 12), .foregroundColor: UIColor.lightGray]
                 
                 attributedReadString.addAttributes(boldAttributes, range: NSRange(location: 0, length: readLength))
                 
                 attributedReadString.addAttributes(regularAttributes, range: NSRange(location: readLength, length: attributedReadString.length - readLength))
                 
                 return attributedReadString
-            }
-            else
-            {
+            } else {
                 return NSAttributedString(string: "Delivered", attributes: boldAttributes)
             }
         }
@@ -473,9 +429,7 @@ extension MessagesController: MessagesDataSource
         return nil
     }
     
-    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString?
-    {
-        
+    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         let dateString = secondaryDateFormatter.string(from: message.sentDate)
         return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
     }
@@ -486,46 +440,36 @@ extension MessagesController: MessagesDataSource
     //    }
 }
 
-extension MessagesController: MessagesLayoutDelegate
-{
-    func cellBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat
-    {
+/* MARK: MessagesLayoutDelegate */
+extension MessagesController: MessagesLayoutDelegate {
+    func cellBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         let lastMessageIndex = messageArray.count - 1
         
-        if indexPath.section == lastMessageIndex && messageArray[lastMessageIndex].fromAccountIdentifier == currentUser!.associatedIdentifier
-        {
+        if indexPath.section == lastMessageIndex && messageArray[lastMessageIndex].fromAccountIdentifier == currentUser!.associatedIdentifier {
             return 20.0
-        }
-        else if indexPath.section == lastMessageIndex
-        {
+        } else if indexPath.section == lastMessageIndex {
             return 5
         }
-        //
+        
         return 0
     }
     
-    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat
-    {
-        if indexPath.section == 0
-        {
+    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        if indexPath.section == 0 {
             return 10
         }
         
         return 0
     }
     
-    func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat
-    {
-        if (indexPath.section - 1) > -1
-        {
-            if messageArray[indexPath.section].sentDate.amountOfSeconds(from: messageArray[indexPath.section - 1].sentDate) > 5400
-            {
+    func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        if (indexPath.section - 1) > -1 {
+            if messageArray[indexPath.section].sentDate.amountOfSeconds(from: messageArray[indexPath.section - 1].sentDate) > 5400 {
                 return 25
             }
         }
         
-        if indexPath.section == 0
-        {
+        if indexPath.section == 0 {
             return 15
         }
         
@@ -533,10 +477,9 @@ extension MessagesController: MessagesLayoutDelegate
     }
 }
 
-extension MessagesController: InputBarAccessoryViewDelegate
-{
-    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String)
-    {
+/* MARK: InputBarAccessoryViewDelegate */
+extension MessagesController: InputBarAccessoryViewDelegate {
+    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         inputBar.sendButton.startAnimating()
         inputBar.inputTextView.text = ""
         inputBar.inputTextView.placeholder = "Sending..."
@@ -544,9 +487,8 @@ extension MessagesController: InputBarAccessoryViewDelegate
         
         let sentDate = Date()
         
-        MessageSerialiser().createMessage(fromAccountWithIdentifier: accountIdentifier, inConversationWithIdentifier: conversationIdentifier, messageContent: text) { (wrappedIdentifier, createMessageError) in
-            if let returnedIdentifier = wrappedIdentifier
-            {
+        MessageSerializer().createMessage(fromAccountWithIdentifier: accountIdentifier, inConversationWithIdentifier: conversationIdentifier, messageContent: text) { (wrappedIdentifier, createMessageError) in
+            if let returnedIdentifier = wrappedIdentifier {
                 let newMessage = Message(associatedIdentifier: returnedIdentifier,
                                          fromAccountIdentifier: accountIdentifier,
                                          messageContent: text,
@@ -557,27 +499,19 @@ extension MessagesController: InputBarAccessoryViewDelegate
                 inputBar.inputTextView.placeholder = "Aa"
                 inputBar.inputTextView.tintColor = .systemRed
                 
-                if let newConversation = self.newConversation
-                {
+                if let newConversation = self.newConversation {
                     newConversation.associatedMessages.append(newMessage)
                 }
                 
                 self.messageArray.append(newMessage)
                 self.messagesCollectionView.reloadData()
                 self.messagesCollectionView.scrollToBottom(animated: true)
-            }
-            else
-            {
-                PresentationManager().errorAlertController(withTitle: nil,
-                                                           withMessage: nil,
-                                                           extraneousInformation: createMessageError!,
-                                                           withCancelButtonTitle: nil,
-                                                           withAlternateSelectors: nil,
-                                                           preferredActionIndex: nil,
-                                                           withFileName: #file,
-                                                           withLineNumber: #line,
-                                                           withFunctionTitle: #function,
-                                                           networkDependent: true, canFileReport: true)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+                    self.checkReadDateNeedsUpdate()
+                }
+            } else {
+                AlertKit().errorAlertController(title: nil, message: nil, dismissButtonTitle: nil, additionalSelectors: nil, preferredAdditionalSelector: nil, canFileReport: true, extraInfo: createMessageError, metadata: [#file, #function, #line], networkDependent: true)
                 
                 report(createMessageError ?? "An unknown error occurred.", errorCode: nil, isFatal: false, metadata: [#file, #function, #line])
             }
@@ -585,57 +519,44 @@ extension MessagesController: InputBarAccessoryViewDelegate
     }
 }
 
-extension MessagesController: MessagesDisplayDelegate
-{
-    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView)
-    {
-        if messageArray[indexPath.section].fromAccountIdentifier != accountIdentifier
-        {
+/* MARK: MessagesDisplayDelegate */
+extension MessagesController: MessagesDisplayDelegate {
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        if messageArray[indexPath.section].fromAccountIdentifier != accountIdentifier {
             if let profileImageData = otherUser.userData.profileImageData,
-                let imageData = Data(base64Encoded: profileImageData[0], options: .ignoreUnknownCharacters)
-            {
+               let imageData = Data(base64Encoded: profileImageData[0], options: .ignoreUnknownCharacters) {
                 avatarView.image = UIImage(data: imageData)
-            }
-            else
-            {
-                avatarView.set(avatar: Avatar(image: nil, initials: "\(otherUser.firstName.stringCharacters[0].uppercased())\(otherUser.lastName.stringCharacters[0].uppercased())"))
+            } else {
+                avatarView.set(avatar: Avatar(image: nil, initials: "\(otherUser.firstName.characters[0].uppercased())\(otherUser.lastName.characters[0].uppercased())"))
             }
         }
     }
     
-    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle
-    {
+    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
         return message.sender.senderId == accountIdentifier ? .bubbleTail(.bottomRight, .curved) : .bubbleTail(.bottomLeft, .curved)
     }
     
-    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor
-    {
+    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         return message.sender.senderId == accountIdentifier ? UIColor(hex: 0x75B6EA) /*.systemBlue*/ : UIColor(hex: 0xE5E5EA)
     }
-    
 }
 
-extension Message: MessageType
-{
-    public struct Sender: SenderType
-    {
+/* MARK: MessageType */
+extension Message: MessageType {
+    public struct Sender: SenderType {
         public let senderId: String
-        
         public let displayName: String
     }
     
-    var messageId: String
-    {
+    var messageId: String {
         return associatedIdentifier
     }
     
-    var sender: SenderType
-    {
+    var sender: SenderType {
         return Sender(senderId: fromAccountIdentifier, displayName: "??")
     }
     
-    var kind: MessageKind
-    {
+    var kind: MessageKind {
         return .text(messageContent)
     }
 }

@@ -1,30 +1,29 @@
 //
 //  PersonalQuestion.swift
-//  Yosemite
+//  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 22/09/2020.
-//  Copyright © 2020 NEOTechnica Corporation. All rights reserved.
+//  Copyright © 2013-2021 NEOTechnica Corporation. All rights reserved.
 //
 
-//First-party Frameworks
+/* First-party Frameworks */
 import UIKit
 
-class PersonalQuestion
-{
-    //--------------------------------------------------//
+class PersonalQuestion {
     
-    //Class-Level Variable Declarations
+    //==================================================//
+    
+    /* MARK: - Class-level Variable Declarations */
     
     //Strings
     var title: String!
     var text: String?
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Constructor Function */
+    /* MARK: - Constructor Function */
     
-    init(title: String, text: String?)
-    {
+    init(title: String, text: String?) {
         self.title = title
         self.text = text
     }

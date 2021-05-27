@@ -3,16 +3,17 @@
 //  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 07/08/2020.
-//  Copyright © 2013-2020 NEOTechnica Corporation. All rights reserved.
+//  Copyright © 2013-2021 NEOTechnica Corporation. All rights reserved.
 //
 
+/* First-party Frameworks */
 import UIKit
 
-class QuickFactsView: UIView
-{
-    //--------------------------------------------------//
+class QuickFactsView: UIView {
     
-    /* Interface Builder UI Elements */
+    //==================================================//
+    
+    /* MARK: - Interface Builder UI Elements */
     
     //UILabels
     @IBOutlet weak var ageLabel:    UILabel!
@@ -21,18 +22,15 @@ class QuickFactsView: UIView
     @IBOutlet weak var titleLabel:  UILabel!
     @IBOutlet weak var yearLabel:   UILabel!
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Overridden Function */
+    /* MARK: - Overridden Functions */
     
-    override func draw(_ rect: CGRect)
-    {
+    override func draw(_ rect: CGRect) {
         frame.origin.y = f.y(460)
         
-        for line in subviews
-        {
-            if line.tag == aTagFor("lineView")
-            {
+        for line in subviews {
+            if line.tag == aTagFor("lineView") {
                 line.updateFrame()
             }
         }

@@ -3,29 +3,26 @@
 //  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 28/04/2020.
-//  Copyright © 2013-2020 NEOTechnica Corporation. All rights reserved.
+//  Copyright © 2013-2021 NEOTechnica Corporation. All rights reserved.
 //
 
-//First-party Frameworks
+/* First-party Frameworks */
 import Foundation
 import UIKit
 
 @IBDesignable
-class SSRadioButton: UIButton
-{
-    //--------------------------------------------------//
+class RadioButton: UIButton {
     
-    /* Interface Builder UI Elements */
+    //==================================================//
+    
+    /* MARK: - Interface Builder UI Elements */
     
     //CGFloats
-    @IBInspectable var circleRadius: CGFloat = 5.0
+    @IBInspectable var circleRadius: CGFloat = 5
     @IBInspectable var cornerRadius: CGFloat {
-        get
-        {
+        get {
             return layer.cornerRadius
-        }
-        set
-        {
+        } set {
             layer.cornerRadius = newValue
             layer.masksToBounds = newValue > 0
         }
@@ -33,16 +30,15 @@ class SSRadioButton: UIButton
     
     //Other Elements
     @IBInspectable var circleColor: UIColor = UIColor.red {
-        didSet
-        {
+        didSet {
             circleLayer.strokeColor = circleColor.cgColor
-            self.toggleButon()
+            self.toggle()
         }
     }
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    //Class-Level Variable Declarations
+    /* MARK: - Class-level Variable Declarations */
     
     //CAShapeLayer Declarations
     fileprivate var circleLayer     = CAShapeLayer()
@@ -50,25 +46,22 @@ class SSRadioButton: UIButton
     
     //Other Declarations
     override var isSelected: Bool {
-        didSet
-        {
-            toggleButon()
+        didSet {
+            toggle()
         }
     }
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Overridden Functions */
+    /* MARK: - Overridden Functions */
     
-    override init(frame: CGRect)
-    {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         
         initialize()
     }
     
-    override func layoutSubviews()
-    {
+    override func layoutSubviews() {
         super.layoutSubviews()
         
         circleLayer.frame = bounds
@@ -77,52 +70,59 @@ class SSRadioButton: UIButton
         fillCircleLayer.frame = bounds
         fillCircleLayer.path = fillCirclePath().cgPath
         
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: (2*circleRadius + 4*circleLayer.lineWidth), bottom: 0, right: 0)
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: (2 * circleRadius + 4 * circleLayer.lineWidth), bottom: 0, right: 0)
     }
     
-    override func prepareForInterfaceBuilder()
-    {
+    override func prepareForInterfaceBuilder() {
         initialize()
     }
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    //Required Initialisation Function
+    /* MARK: - Initializer Function */
     
-    required init?(coder aDecoder: NSCoder)
-    {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         initialize()
     }
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    //Private Functions
+    /* MARK: - Public Functions */
     
-    fileprivate func circleFrame() -> CGRect
-    {
-        var circleFrame = CGRect(x: 0, y: 0, width: 2*circleRadius, height: 2*circleRadius)
+    ///Toggles the selected state of the radio button.
+    func toggle() {
+        if self.isSelected {
+            fillCircleLayer.fillColor = circleColor.cgColor
+        } else {
+            fillCircleLayer.fillColor = UIColor.clear.cgColor
+        }
+    }
+    
+    //==================================================//
+    
+    /* MARK: - Private Functions */
+    
+    fileprivate func circleFrame() -> CGRect {
+        var circleFrame = CGRect(x: 0, y: 0, width: 2 * circleRadius, height: 2 * circleRadius)
         
         circleFrame.origin.x = circleLayer.lineWidth
         
-        circleFrame.origin.y = bounds.height/2 - circleFrame.height/2
+        circleFrame.origin.y = bounds.height / 2 - circleFrame.height / 2
         
         return circleFrame
     }
     
-    fileprivate func circlePath() -> UIBezierPath
-    {
+    fileprivate func circlePath() -> UIBezierPath {
         return UIBezierPath(ovalIn: circleFrame())
     }
     
-    fileprivate func fillCirclePath() -> UIBezierPath
-    {
+    fileprivate func fillCirclePath() -> UIBezierPath {
         return UIBezierPath(ovalIn: circleFrame().insetBy(dx: 2, dy: 2))
     }
     
-    fileprivate func initialize()
-    {
+    fileprivate func initialize() {
         circleLayer.frame = bounds
         circleLayer.lineWidth = 2
         circleLayer.fillColor = UIColor.clear.cgColor
@@ -135,24 +135,7 @@ class SSRadioButton: UIButton
         fillCircleLayer.strokeColor = UIColor.clear.cgColor
         layer.addSublayer(fillCircleLayer)
         
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: (4*circleRadius + 4*circleLayer.lineWidth), bottom: 0, right: 0)
-        self.toggleButon()
-    }
-    
-    //--------------------------------------------------//
-    
-    //Public Function
-    
-    ///Toggles the selected state of the radio button.
-    func toggleButon()
-    {
-        if self.isSelected
-        {
-            fillCircleLayer.fillColor = circleColor.cgColor
-        }
-        else
-        {
-            fillCircleLayer.fillColor = UIColor.clear.cgColor
-        }
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: (4 * circleRadius + 4 * circleLayer.lineWidth), bottom: 0, right: 0)
+        self.toggle()
     }
 }

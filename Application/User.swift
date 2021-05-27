@@ -1,43 +1,43 @@
 //
-//  UserObject.swift
+//  User.swift
 //  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 05/08/2020.
-//  Copyright © 2013-2020 NEOTechnica Corporation. All rights reserved.
+//  Copyright © 2013-2021 NEOTechnica Corporation. All rights reserved.
 //
 
-//First-party Frameworks
+/* First-party Frameworks */
 import UIKit
 
-class User
-{
-    //--------------------------------------------------//
+class User {
     
-    //Class-Level Variable Declarations
+    //==================================================//
     
-    //Array Variables
+    /* MARK: - Class-level Variable Declarations */
+    
+    //Arrays
     var matches:           [String]?
     var openConversations: [String]?
     var swipedLeftOn:      [String]?
     var swipedRightOn:     [String]?
     
-    //String Variables
+    //Strings
     var associatedIdentifier: String!
     var emailAddress:         String!
     var firstName:            String!
     var lastName:             String!
     var phoneNumber:          String!
     
-    //Other Variables
+    //Other Declarations
     var factoidData: FactoidData!
     var questionsAnswered: [PersonalQuestion]?
     var userData: UserData!
     
     private var DSOpenConversations: [Conversation]?
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Initialiser Function */
+    /* MARK: - Constructor Function */
     
     init(associatedIdentifier: String,
          emailAddress:         String,
@@ -50,8 +50,7 @@ class User
          phoneNumber:          String,
          questionsAnswered:    [PersonalQuestion]?,
          swipedLeftOn:         [String]?,
-         swipedRightOn:        [String]?)
-    {
+         swipedRightOn:        [String]?) {
         self.associatedIdentifier = associatedIdentifier
         self.emailAddress = emailAddress
         self.factoidData = factoidData
@@ -66,50 +65,37 @@ class User
         self.swipedRightOn = swipedRightOn
     }
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    //Public Functions
+    /* MARK: - Other Functions */
     
-    func deSerialiseConversations(completion: @escaping(_ conversations: [Conversation]?, _ error: String?) -> Void)
-    {
-        if let openConversations = openConversations
-        {
-            if let DSOpenConversations = DSOpenConversations
-            {
+    func deSerializeConversations(completion: @escaping(_ conversations: [Conversation]?, _ error: String?) -> Void) {
+        if let openConversations = openConversations {
+            if let DSOpenConversations = DSOpenConversations {
                 completion(DSOpenConversations, nil)
-            }
-            else
-            {
-                ConversationSerialiser().getConversations(withIdentifiers: openConversations) { (wrappedConversations, getConversationsErrorDescriptors) in
-                    if let returnedConversations = wrappedConversations
-                    {
+            } else {
+                ConversationSerializer().getConversations(withIdentifiers: openConversations) { (wrappedConversations, getConversationsErrorDescriptors) in
+                    if let returnedConversations = wrappedConversations {
                         //if a user has a conversation, that means they have a match already. it must.
                         self.DSOpenConversations = returnedConversations
                         
                         completion(returnedConversations, nil)
-                    }
-                    else if let errorDescriptors = getConversationsErrorDescriptors
-                    {
+                    } else if let errorDescriptors = getConversationsErrorDescriptors {
                         completion(nil, errorDescriptors.joined(separator: "\n"))
                     }
                 }
             }
-        }
-        else
-        {
-            completion(nil, "No Conversations to deserialise.")
+        } else {
+            completion(nil, "No Conversations to deserialize.")
         }
     }
     
-    func serialiseQuestionsAnswered() -> [String]
-    {
+    func serializeQuestionsAnswered() -> [String] {
         var questionsAnsweredArray: [String] = []
         
-        if let questionsAnswered = questionsAnswered
-        {
+        if let questionsAnswered = questionsAnswered {
             #warning("Filter is perhaps unnecessary here.")
-            for question in questionsAnswered.filter({$0.text != nil})
-            {
+            for question in questionsAnswered.filter({$0.text != nil}) {
                 questionsAnsweredArray.append("\(question.title!) | \(question.text!)")
             }
         }
@@ -117,35 +103,28 @@ class User
         return questionsAnsweredArray
     }
     
-    func updateLastActiveDate()
-    {
-        GenericSerialiser().setValue(onKey: "/allUsers/\(associatedIdentifier!)/userData/lastActive", withData: secondaryDateFormatter.string(from: Date())) { (setValueError) in
-            if let setValueError = setValueError
-            {
+    func updateLastActiveDate() {
+        GenericSerializer().setValue(onKey: "/allUsers/\(associatedIdentifier!)/userData/lastActive", withData: secondaryDateFormatter.string(from: Date())) { (setValueError) in
+            if let setValueError = setValueError {
                 report("Update last active date failed! \(setValueError.localizedDescription)", errorCode: (setValueError as NSError).code, isFatal: false, metadata: [#file, #function, #line])
             }
         }
     }
     
-    func similarity(to user: User) -> (Int, Int)
-    {
+    func similarity(to user: User) -> (Int, Int) {
         var points = 0
         var pointsPossible = 45
         
         openStream(forFile: #file, forFunction: #function, forLine: #line, withMessage: "For \(user.firstName!)")
         
         if let mySports = factoidData.sports?.1,
-            let otherSports = user.factoidData.sports?.1
-        {
+           let otherSports = user.factoidData.sports?.1 {
             let formattedMySports = mySports.lowercasedElements().removingSpecialCharacters()
             let formattedOtherSports = otherSports.lowercasedElements().removingSpecialCharacters()
             
-            if formattedMySports.containsAny(in: formattedOtherSports)
-            {
-                for individualSport in formattedMySports
-                {
-                    if formattedOtherSports.contains(individualSport)
-                    {
+            if formattedMySports.containsAny(in: formattedOtherSports) {
+                for individualSport in formattedMySports {
+                    if formattedOtherSports.contains(individualSport) {
                         logToStream(forLine: #line, withMessage: "Shared sport!")
                         
                         points += 10
@@ -153,9 +132,7 @@ class User
                     
                     pointsPossible += 10
                 }
-            }
-            else
-            {
+            } else {
                 logToStream(forLine: #line, withMessage: "Also plays a sport!")
                 
                 points += 5
@@ -164,11 +141,9 @@ class User
         }
         
         if let myCallsHome = factoidData.callsHome?.1,
-            let otherCallsHome = user.factoidData.callsHome?.1
-        {
+           let otherCallsHome = user.factoidData.callsHome?.1 {
             #warning("callsHome MUST BE A FORMATTED, RESTRICTED LOCATION STRING")
-            if myCallsHome.lowercased() == otherCallsHome.lowercased()
-            {
+            if myCallsHome.lowercased() == otherCallsHome.lowercased() {
                 logToStream(forLine: #line, withMessage: "Shared home!")
                 points += 20
             }
@@ -176,15 +151,13 @@ class User
             pointsPossible += 20
         }
         
-        if factoidData.greekLifeOrganisation != nil && user.factoidData.greekLifeOrganisation != nil
-        {
+        if factoidData.greekLifeOrganisation != nil && user.factoidData.greekLifeOrganisation != nil {
             logToStream(forLine: #line, withMessage: "Shared GLO!")
             points += 15
             pointsPossible += 15
         }
         
-        if factoidData.major() == user.factoidData.major()
-        {
+        if factoidData.major() == user.factoidData.major() {
             logToStream(forLine: #line, withMessage: "Shared major!")
             points += 20
         }
@@ -195,24 +168,19 @@ class User
         let myBirthDateString = monthDayFormatter.string(from: userData.birthDate)
         let otherBirthDateString = monthDayFormatter.string(from: user.userData.birthDate)
         
-        if myBirthDateString == otherBirthDateString
-        {
+        if myBirthDateString == otherBirthDateString {
             logToStream(forLine: #line, withMessage: "Shared birthday!")
             points += 5
         }
         
         if let myLookingFor = factoidData.lookingFor,
-            let otherLookingFor = user.factoidData.lookingFor
-        {
+           let otherLookingFor = user.factoidData.lookingFor {
             let formattedMyLookingFor = myLookingFor.lowercasedElements().removingSpecialCharacters()
             let formattedOtherLookingFor = otherLookingFor.lowercasedElements().removingSpecialCharacters()
             
-            if formattedMyLookingFor.containsAny(in: formattedOtherLookingFor)
-            {
-                for individualLookingFor in formattedMyLookingFor
-                {
-                    if formattedOtherLookingFor.contains(individualLookingFor)
-                    {
+            if formattedMyLookingFor.containsAny(in: formattedOtherLookingFor) {
+                for individualLookingFor in formattedMyLookingFor {
+                    if formattedOtherLookingFor.contains(individualLookingFor) {
                         logToStream(forLine: #line, withMessage: "Shared looking for!")
                         
                         points += 10
@@ -224,14 +192,12 @@ class User
             pointsPossible += 10
         }
         
-        if userData.studentType == user.userData.studentType
-        {
+        if userData.studentType == user.userData.studentType {
             logToStream(forLine: #line, withMessage: "Shared student type!")
             points += 10
         }
         
-        if factoidData.yearCode() == user.factoidData.yearCode()
-        {
+        if factoidData.yearCode() == user.factoidData.yearCode() {
             logToStream(forLine: #line, withMessage: "Shared year!")
             points += 10
         }
@@ -242,14 +208,14 @@ class User
     }
 }
 
-extension Sequence where Iterator.Element == String
-{
-    func containsAny(in array: [String]) -> Bool
-    {
-        for individualString in array
-        {
-            if contains(individualString)
-            {
+//==================================================//
+
+/* MARK: - Extensions */
+
+extension Sequence where Iterator.Element == String {
+    func containsAny(in array: [String]) -> Bool {
+        for individualString in array {
+            if contains(individualString) {
                 return true
             }
         }
@@ -257,29 +223,26 @@ extension Sequence where Iterator.Element == String
         return false
     }
     
-    func lowercasedElements() -> [String]
-    {
+    func lowercasedElements() -> [String] {
         var finalArray: [String]! = []
         
-        for individualString in self
-        {
+        for individualString in self {
             finalArray.append(individualString.lowercased())
         }
         
         return finalArray
     }
     
-    func removingSpecialCharacters() -> [String]
-    {
+    func removingSpecialCharacters() -> [String] {
         let acceptableCharacters = Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890")
         
         var finalArray: [String]! = []
         
-        for individualString in self
-        {
+        for individualString in self {
             finalArray.append(individualString.filter { acceptableCharacters.contains($0) })
         }
         
         return finalArray
     }
 }
+

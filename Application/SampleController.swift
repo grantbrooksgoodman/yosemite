@@ -3,69 +3,64 @@
 //  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 04/08/2020.
-//  Copyright © 2013-2020 NEOTechnica Corporation. All rights reserved.
+//  Copyright © 2013-2021 NEOTechnica Corporation. All rights reserved.
 //
 
-//First-party Frameworks
+/* First-party Frameworks */
 import MessageUI
 import UIKit
 
-class SampleController: UIViewController, MFMailComposeViewControllerDelegate
-{
-    //--------------------------------------------------//
+class SampleController: UIViewController, MFMailComposeViewControllerDelegate {
     
-    /* Interface Builder UI Elements */
+    //==================================================//
     
-    //--------------------------------------------------//
+    /* MARK: - Interface Builder UI Elements */
     
-    /* Class-level Declarations */
+    //==================================================//
+    
+    /* MARK: - Class-level Variable Declarations */
     
     var buildInstance: Build!
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Initialiser Function */
+    /* MARK: - Initializer Function */
     
-    func initialiseController()
-    {
-        lastInitialisedController = self
+    func initializeController() {
+        lastInitializedController = self
         buildInstance = Build(self)
     }
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Overridden Functions */
+    /* MARK: - Overridden Functions */
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        
-    }
-    
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
-        initialiseController()
+        initializeController()
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         currentFile = #file
-        buildInfoController?.view.isHidden = false
+        buildInfoController?.view.isHidden = !preReleaseApplication
     }
     
-    //--------------------------------------------------//
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
     
-    /* Interface Builder Actions */
+    //==================================================//
     
-    //--------------------------------------------------//
+    /* MARK: - Interface Builder Actions */
     
-    /* Independent Functions */
+    //==================================================//
     
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
-    {
+    /* MARK: - Other Functions */
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         buildInstance.handleMailComposition(withController: controller, withResult: result, withError: error)
     }
 }

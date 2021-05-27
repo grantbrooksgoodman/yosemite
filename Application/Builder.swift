@@ -5,77 +5,56 @@
 //  Copyright © NEOTechnica Corporation. All rights reserved.
 //
 
-//First-party frameworks
+/* First-party Frameworks */
 import MessageUI
 import UIKit
 
-class Build
-{
+class Build {
+    
+    //==================================================//
+    
+    /* MARK: - Class-level Variable Declarations */
+    
     var extraneousInformationView: UIView!
     var sendFeedbackButton: UIButton!
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Enumerated Type Declarations */
-    enum BuildType
-    {
-        case preAlpha
-        case alpha
-        case beta
-        case releaseCandidate
+    /* MARK: - Enumerated Type Declarations */
+    
+    enum BuildType {
+        case preAlpha         /* Typically builds 0-1500 */
+        case alpha            /* Typically builds 1500-3000 */
+        case beta             /* Typically builds 3000-6000 */
+        case releaseCandidate /* Typically builds 6000 onwards */
         case generalRelease
     }
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Constructor Function */
+    /* MARK: - Constructor Function */
     
-    @discardableResult required init(_ viewController: UIViewController?)
-    {
+    @discardableResult required init(_ viewController: UIViewController?) {
         //If there is no global information dictionary, generate and set one.
         //If there already is one, then just set it to currentInformationDictionary here.
         let currentInformationDictionary = informationDictionary != nil ? informationDictionary! : generateInformationDictionary()
         
         informationDictionary = currentInformationDictionary
         
-        let screenHeight = UIScreen.main.bounds.height
-        
-        if let viewController = viewController
-        {
-            //If the application is pre-release and the screen height matches that of an iPhone X or Xs.
-            if buildType != .generalRelease && (screenHeight == 812 || screenHeight == 896)
-            {
-                //Set appropriate location values for an iPhone X or Xs.
-                let topYOrigin = (screenHeight == 812 ? 32 : 35)
-                let bottomYOrigin = (screenHeight == 812 ? 792 : 873)
-                let widthValue = (screenHeight == 812 ? 375 : 414)
-                
-                //Set up the topmost safe area indicator.
-                let topSafeAreaIndicator = UIView(frame: CGRect(x: 0, y: topYOrigin, width: widthValue, height: 1))
-                topSafeAreaIndicator.backgroundColor = .white
-                viewController.view.addSubview(topSafeAreaIndicator)
-                viewController.view.bringSubviewToFront(topSafeAreaIndicator)
-                
-                //Set up the bottom-most safe area indicator.
-                let bottomSafeAreaIndicator = UIView(frame: CGRect(x: 0, y: bottomYOrigin, width: widthValue, height: 1))
-                bottomSafeAreaIndicator.backgroundColor = .white
-                viewController.view.addSubview(bottomSafeAreaIndicator)
-                viewController.view.bringSubviewToFront(bottomSafeAreaIndicator)
-            }
-            
-            if let mainController = viewController as? MC
-            {
+        if let viewController = viewController {
+            if let mainController = viewController as? MainController {
                 buildMain(mainController)
-            }
-            else
-            {
+            } else {
                 buildGeneric(viewController)
             }
         }
     }
     
-    func buildMain(_ main: MC)
-    {
+    //==================================================//
+    
+    /* MARK: - Public Functions */
+    
+    func buildMain(_ main: MainController) {
         extraneousInformationView = main.extraneousInformationView
         sendFeedbackButton = main.sendFeedbackButton
         
@@ -84,19 +63,16 @@ class Build
         
         //Unwrap the required elements in the informationDictionary.
         if let buildSku                 = informationDictionary["buildSku"],
-            let bundleVersion           = informationDictionary["bundleVersion"],
-            let preReleaseNotifier      = informationDictionary["preReleaseNotifier"],
-            let projectIdentifier       = informationDictionary["projectIdentifier"],
-            let subtitleExpiryString    = informationDictionary["subtitleExpiryString"]
-        {
-            if buildType != .generalRelease
-            {
+           let bundleVersion           = informationDictionary["bundleVersion"],
+           let preReleaseNotifier      = informationDictionary["preReleaseNotifier"],
+           let projectIdentifier       = informationDictionary["projectIdentifier"],
+           let subtitleExpiryString    = informationDictionary["subtitleExpiryString"] {
+            if buildType != .generalRelease {
                 //If this build has expired.
-                if subtitleExpiryString == "Evaluation period ended."
-                {
+                if subtitleExpiryString == "Evaluation period ended." {
                     //After 1 second, display the expiryAlertController.
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-                        PresentationManager().expiryAlertController()
+                        AlertKit().expiryAlertController()
                     })
                 }
                 
@@ -106,102 +82,63 @@ class Build
                 main.skuLabel.text = buildSku
                 
                 //Set the project name label text.
-                //If the languageCode is not English.
-                if languageCode != "en"
-                {
-                    //Get a translation for "Project Name."
-                    Translator().dirtyGetTranslation(forString: "Project Name", requiresHud: false) { (returnedString) in
-                        
-                        //Send our button and its titleLabel's text to a function to be processed and set appropriately.
-                        DispatchQueue.main.async {
-                            //Set the title's text.
-                            main.codeNameButton.setTitle("\(returnedString): \(codeName)", for: .normal)
-                            
-                            //Scale the button's titleLabel to the size required for it to fit within the constraints of the minimum size chosen.
-                            main.codeNameButton.titleLabel!.scaleToMinimum(alternateText: "Project Code Name: \(codeName)", originalText: "\(returnedString): \(codeName)", minimumSize: 6)
-                        }
-                    }
-                }
-                else
-                {
-                    //Set the title's text.
-                    main.codeNameButton.setTitle("Project Code Name: \(codeName)", for: .normal)
-                    
-                    //Scale the button's titleLabel to the size required for it to fit within the constraints of the minimum size chosen.
-                    main.codeNameButton.titleLabel!.scaleToMinimum(alternateText: nil, originalText: nil, minimumSize: 6)
-                }
+                //Set the title's text.
+                main.codeNameButton.setTitle("Project Code Name: \(codeName)", for: .normal)
+                
+                //Scale the button's titleLabel to the size required for it to fit within the constraints of the minimum size chosen.
+                main.codeNameButton.titleLabel!.scaleToMinimum(alternateText: nil, originalText: nil, minimumSize: 6)
                 
                 //Set the subtitleButton's titleLabel's text.
-                Translator().dirtyGetTranslation(forString: preReleaseNotifier, requiresHud: false) { (returnedString) in
-                    
-                    DispatchQueue.main.async {
-                        //Set the title of the button.
-                        main.subtitleButton.setTitle(returnedString, for: .normal)
-                        
-                        //Adjust the font to fit the new text.
-                        main.subtitleButton.titleLabel!.font = main.subtitleButton.titleLabel!.font.withSize(main.subtitleButton.titleLabel!.fontSizeThatFits(returnedString))
-                        
-                        //Animate the presentation of the preReleaseInformationView, if applicable, and of sendFeedbackButton.
-                        UIView.animate(withDuration: 0.2, delay: 1.5, animations: {
-                            main.preReleaseInformationView.alpha = (preReleaseApplication ? 1 : 0)
-                            main.sendFeedbackButton.alpha = 1
-                        })
-                    }
-                }
-            }
-            else
-            {
+                main.subtitleButton.setTitle(preReleaseNotifier, for: .normal)
+                
+                //Adjust the font to fit the new text.
+                main.subtitleButton.titleLabel!.font = main.subtitleButton.titleLabel!.font.withSize(main.subtitleButton.titleLabel!.fontSizeThatFits(preReleaseNotifier))
+                
+                //Animate the presentation of the preReleaseInformationView, if applicable, and of sendFeedbackButton.
+                UIView.animate(withDuration: 0.2, delay: 1.5, animations: {
+                    main.preReleaseInformationView.alpha = (preReleaseApplication ? 1 : 0)
+                    main.sendFeedbackButton.alpha = 1
+                })
+            } else {
                 //Move sendFeedbackButton to the bottom right of the screen.
                 main.sendFeedbackButton.frame.origin.x = main.view.frame.maxX - main.sendFeedbackButton.frame.size.width - CGFloat((UIScreen.main.bounds.height == 812 ? 10 : 5))
                 
                 //Show sendFeedbackButton.
                 main.sendFeedbackButton.alpha = 1
             }
-        }
-        else //Couldn't unwrap some or all of the required information.
-        {
+        } else { /* Couldn't unwrap some or all of the required information. */
             report("Unable to unwrap required information.", errorCode: nil, isFatal: true, metadata: [#file, #function, #line])
         }
     }
     
-    func buildGeneric(_ viewController: UIViewController)
-    {
-        if buildType != .generalRelease && buildInfoController == nil
-        {
+    func buildGeneric(_ viewController: UIViewController) {
+        if buildType != .generalRelease && buildInfoController == nil {
             buildInfoController = BuildInfoController()
             buildInfoController?.sendFeedbackButton.addTarget(nil, action: #selector(buildInfoController!.sendFeedbackButtonAction), for: .touchUpInside)
         }
     }
     
-    //--------------------------------------------------//
-    
-    //Public Functions
-    
     ///Action for codeNameButton.
-    func codeNameButtonAction()
-    {
+    func codeNameButtonAction() {
         //Animates the toggling of extraneousInformationView and sendFeedbackButton.
-        UIView.animate(withDuration: 0.4)
-        {
+        UIView.animate(withDuration: 0.4) {
             self.extraneousInformationView!.alpha = (self.extraneousInformationView!.alpha == 0 ? 1 : 0)
             self.sendFeedbackButton.alpha = (self.extraneousInformationView!.alpha == 1 ? 0 : 1)
         }
     }
     
     ///Displays build information in an alert controller.
-    func displayBuildInformation()
-    {
+    func displayBuildInformation() {
         let buildTypeString = buildTypeAsString(short: false)
         
-        var messageToDisplay = "This is a\(buildTypeString == "alpha" ? "n" : "") \(buildTypeString) version of project code name *\(codeName)*.\n\n\(informationDictionary["expiryInformationString"]!)\n\nAll features presented here are subject to change, and any new or previously undisclosed information presented within this software is to remain strictly confidential.\n\nRedistribution of this software by unauthorised parties in any way, shape, or form is strictly prohibited.\n\nBy continuing your use of this software, you acknowledge your agreement to the above terms.\n\nAll content herein, unless otherwise stated, is copyright © \(Calendar.current.dateComponents([.year], from: Date()).year!) *NEOTechnica Corporation*. All rights reserved."
+        var messageToDisplay = "This is a\(buildTypeString == "alpha" ? "n" : "") \(buildTypeString) version of project code name \(codeName).\n\n\(informationDictionary["expiryInformationString"]!)\n\nAll features presented here are subject to change, and any new or previously undisclosed information presented within this software is to remain strictly confidential.\n\nRedistribution of this software by unauthorized parties in any way, shape, or form is strictly prohibited.\n\nBy continuing your use of this software, you acknowledge your agreement to the above terms.\n\nAll content herein, unless otherwise stated, is copyright © \(Calendar.current.dateComponents([.year], from: Date()).year!) NEOTechnica Corporation. All rights reserved."
         
-        if buildTypeString == "general"
-        {
-            messageToDisplay = "This is a pre-release update to *\(finalName)*.\n\n\(informationDictionary["expiryInformationString"]!)\n\nAll features presented here are subject to change, and any new or previously undisclosed information presented within this software is to remain strictly confidential.\n\nRedistribution of this software by unauthorised parties in any way, shape, or form is strictly prohibited.\n\nBy continuing your use of this software, you acknowledge your agreement to the above terms.\n\nAll content herein, unless otherwise stated, is copyright © \(Calendar.current.dateComponents([.year], from: Date()).year!) *NEOTechnica Corporation*. All rights reserved."
+        if buildTypeString == "general" {
+            messageToDisplay = "This is a pre-release update to \(finalName).\n\n\(informationDictionary["expiryInformationString"]!)\n\nAll features presented here are subject to change, and any new or previously undisclosed information presented within this software is to remain strictly confidential.\n\nRedistribution of this software by unauthorized parties in any way, shape, or form is strictly prohibited.\n\nBy continuing your use of this software, you acknowledge your agreement to the above terms.\n\nAll content herein, unless otherwise stated, is copyright © \(Calendar.current.dateComponents([.year], from: Date()).year!) NEOTechnica Corporation. All rights reserved."
         }
         
         //Display a successAlertController with information about the build.
-        PresentationManager().successAlertController(withTitle: "Project \(codeName)", withMessage: messageToDisplay, withCancelButtonTitle: "Dismiss", withAlternateSelectors: nil, preferredActionIndex: nil)
+        AlertKit().successAlertController(withTitle: "Project \(codeName)", withMessage: messageToDisplay, withCancelButtonTitle: "Dismiss", withAlternateSelectors: nil, preferredActionIndex: nil)
     }
     
     /**
@@ -211,8 +148,7 @@ class Build
      - Parameter withResult: The result of the attempted sending.
      - Parameter withError: An optional instance of **Error**, if one did occur.
      */
-    func handleMailComposition(withController: MFMailComposeViewController, withResult: MFMailComposeResult, withError: Error?)
-    {
+    func handleMailComposition(withController: MFMailComposeViewController, withResult: MFMailComposeResult, withError: Error?) {
         //Dismiss the mail controller.
         withController.dismiss(animated: true)
         
@@ -221,94 +157,77 @@ class Build
         //Wait for the controller to fully animate its dismissal.
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
             //If the message could not be sent.
-            if withResult == .failed
-            {
+            if withResult == .failed {
                 //Display an errorAlertController telling the user the message could not be sent.
-                PresentationManager().errorAlertController(withTitle: "Unable to Send", withMessage: "Unfortunately, the message was unable to be sent. Please try again.", extraneousInformation: (withError != nil ? errorInformation(forError: withError! as NSError) : nil), withCancelButtonTitle: nil, withAlternateSelectors: nil, preferredActionIndex: nil, withFileName: #file, withLineNumber: #line, withFunctionTitle: #function, networkDependent: false, canFileReport: true)
-            }
-            else if withResult == .sent //If the message did send.
-            {
+                AlertKit().errorAlertController(title: "Unable to Send", message: "The message failed to send. Please try again.", dismissButtonTitle: nil, additionalSelectors: nil, preferredAdditionalSelector: nil, canFileReport: true, extraInfo: (withError != nil ? errorInfo(withError!) : nil), metadata: [#file, #function, #line], networkDependent: false)
+            } else if withResult == .sent {  //If the message did send.
                 //Display a successAlertController telling the user the message sent successfully.
-                PresentationManager().successAlertController(withTitle: "Message Sent", withMessage: "The message was successfully sent.", withCancelButtonTitle: nil, withAlternateSelectors: nil, preferredActionIndex: nil)
+                AlertKit().successAlertController(withTitle: "Message Sent", withMessage: "The message was successfully sent.", withCancelButtonTitle: nil, withAlternateSelectors: nil, preferredActionIndex: nil)
             }
         })
     }
     
     ///Action for subtitleButton.
-    func subtitleButtonAction(withButton: UIButton)
-    {
+    func subtitleButtonAction(withButton: UIButton) {
         //Animate the hiding of the button.
-        UIView.animate(withDuration: 0.2, animations: {
-            withButton.alpha = 0
-        }) { (didComplete) in
-            if didComplete
-            {
+        UIView.animate(withDuration: 0.2, animations: { withButton.alpha = 0 }) { (didComplete) in
+            if didComplete {
                 //Set the font size back up to its original.
                 withButton.titleLabel!.font = withButton.titleLabel!.font.withSize(12)
                 
-                //Get translations for both possible string settings.
-                Translator().getArrayOfTranslations(fromArray: [informationDictionary["preReleaseNotifier"]!, informationDictionary["subtitleExpiryString"]!], requiresHud: false) { (returnedStrings) in
-                    
-                    DispatchQueue.main.async {
-                        //The appropriate title to set for the button.
-                        let titleToSet = withButton.titleLabel!.text == returnedStrings[0] ? returnedStrings[1] : returnedStrings[0]
-                        
-                        //Set the title of the button.
-                        withButton.setTitle(titleToSet, for: .normal)
-                        
-                        //Adjust the font to fit the new text.
-                        withButton.titleLabel!.font = withButton.titleLabel!.font.withSize(withButton.titleLabel!.fontSizeThatFits(titleToSet))
-                        
-                        //Animate the presentation of the button.
-                        UIView.animate(withDuration: 0.2, delay: 0.1, animations: {
-                            withButton.alpha = 1
-                        })
-                    }
-                }
+                //The appropriate title to set for the button.
+                let titleToSet = withButton.titleLabel!.text == informationDictionary["preReleaseNotifier"]! ? informationDictionary["subtitleExpiryString"]! : informationDictionary["preReleaseNotifier"]!
+                
+                //Set the title of the button.
+                withButton.setTitle(titleToSet, for: .normal)
+                
+                //Adjust the font to fit the new text.
+                withButton.titleLabel!.font = withButton.titleLabel!.font.withSize(withButton.titleLabel!.fontSizeThatFits(titleToSet))
+                
+                //Animate the presentation of the button.
+                UIView.animate(withDuration: 0.2, delay: 0.1, animations: {
+                    withButton.alpha = 1
+                })
             }
         }
     }
     
     ///Toggles dark mode on the current controller.
-    func toggleDarkMode(_ viewController: MC)
-    {
-        //Ternary conditionals describing the image and text colour for dark or light mode.
+    func toggleDarkMode(_ viewController: MainController) {
+        //Ternary conditionals describing the image and text color for dark or light mode.
         let imageToUse = UIImage(named: "NT (\(darkMode ? "Black" : "White")).png")
-        let textColour = (darkMode ? UIColor(hex: 0x282828) : .white)
+        let textColor = (darkMode ? UIColor(hex: 0x282828) : .white)
         
-        let sendFeedbackAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: textColour,
+        let sendFeedbackAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: textColor,
                                                                      .underlineStyle: NSUnderlineStyle.single.rawValue]
-        let sendFeedbackString = (viewController.sendFeedbackButton.titleLabel!.fontSizeThatFits(sendFeedbackDictionary[languageCode]!) >= 9 ? sendFeedbackDictionary[languageCode]! : "Send Feedback")
         
-        //An attributed string with a string in the current langugage, if it fits.
-        let sendFeedbackAttributedString = NSMutableAttributedString(string: sendFeedbackString, attributes: sendFeedbackAttributes)
+        //An attributed string.
+        let sendFeedbackAttributedString = NSMutableAttributedString(string: "Send Feedback", attributes: sendFeedbackAttributes)
         
         //Scales sendFeedbackButton's titleLabel to a minimum size of 9 if it needs adjustment.
-        viewController.sendFeedbackButton.titleLabel!.scaleToMinimum(alternateText: "Send Feedback", originalText: sendFeedbackDictionary[languageCode]!, minimumSize: 9)
+        viewController.sendFeedbackButton.titleLabel!.scaleToMinimum(alternateText: nil, originalText: "Send Feedback", minimumSize: 9)
         
         //Sets sendFeedbackButton's attributed title.
         viewController.sendFeedbackButton.setAttributedTitle(sendFeedbackAttributedString, for: .normal)
         
-        //Set the title colour appropriately.
-        viewController.codeNameButton.setTitleColor(textColour, for: .normal)
-        viewController.subtitleButton.setTitleColor(textColour, for: .normal)
+        //Set the title color appropriately.
+        viewController.codeNameButton.setTitleColor(textColor, for: .normal)
+        viewController.subtitleButton.setTitleColor(textColor, for: .normal)
         
         //Set the image appropriately.
         viewController.informationButton.setImage(imageToUse, for: .normal)
         
-        //For each subview that is a label on unwrappedExtraneousInformationView, set the text colour appropriately.
-        for individualSubview in viewController.extraneousInformationView.subviews
-        {
-            if let currentLabel = individualSubview as? UILabel
-            {
-                currentLabel.textColor = textColour
+        //For each subview that is a label on unwrappedExtraneousInformationView, set the text color appropriately.
+        for individualSubview in viewController.extraneousInformationView.subviews {
+            if let currentLabel = individualSubview as? UILabel {
+                currentLabel.textColor = textColor
             }
         }
     }
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    //Private Functions
+    /* MARK: - Private Functions */
     
     /**
      Generates the build's SKU.
@@ -316,8 +235,7 @@ class Build
      - Parameter buildDateUnixDouble: The application's build date as a Unix epoch double.
      - Parameter buildNumber: The application's build number.
      */
-    private func generateBuildSku(buildDateUnixDouble: TimeInterval, buildNumber: Int) -> String
-    {
+    private func generateBuildSku(buildDateUnixDouble: TimeInterval, buildNumber: Int) -> String {
         //Date formatter to convert Unix epoch time to a "ddMMyy" date.
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "ddMMyy"
@@ -327,7 +245,7 @@ class Build
         
         //If the code name is longer than 3 letters, set threeLetterCodeNameIdentifier to the first, middle, and last letters of the code name, uppercased.
         //If the code name is exactly 3 letters, set threeLetterCodeNameIdentifier to the entire code name, uppercased.
-        let threeLetterCodeNameIdentifier = (codeName.length > 3 ? "\(String(codeName.first!))\(String(codeName[codeName.index(codeName.startIndex, offsetBy: Int((Double(codeName.count) / 2).rounded(.down)))]))\(String(codeName.last!))".uppercased() : codeName.uppercased())
+        let threeLetterCodeNameIdentifier = (codeName.count > 3 ? "\(String(codeName.first!))\(String(codeName[codeName.index(codeName.startIndex, offsetBy: Int((Double(codeName.count) / 2).rounded(.down)))]))\(String(codeName.last!))".uppercased() : codeName.uppercased())
         
         return "\(formattedBuildDateString)-\(threeLetterCodeNameIdentifier)-\(String(format: "%06d", buildNumber))\(buildTypeAsString(short: true))"
     }
@@ -337,8 +255,7 @@ class Build
      
      - Parameter buildDateUnixDouble: The application's build date as a Unix epoch double.
      */
-    private func generateExpiryInformation(buildDateUnixDouble: TimeInterval) -> (informationString: String, subtitleString: String)
-    {
+    private func generateExpiryInformation(buildDateUnixDouble: TimeInterval) -> (informationString: String, subtitleString: String) {
         //Thirty days from when the application was last built.
         let expiryDate = Calendar.current.date(byAdding: .day, value: 30, to: Date(timeIntervalSince1970: buildDateUnixDouble))!
         
@@ -365,8 +282,7 @@ class Build
     }
     
     ///Generates a dictionary with accessible information about the current build.
-    private func generateInformationDictionary() -> [String: String]
-    {
+    private func generateInformationDictionary() -> [String: String] {
         //The Unix epoch build date as a string.
         let cfBuildDate = Bundle.main.infoDictionary!["CFBuildDate"] as! String
         
@@ -383,20 +299,19 @@ class Build
         let fullBuildNumber = Int(Bundle.main.infoDictionary!["CFBundleVersion"] as! String)!
         
         //Pre-release notifier strings.
-        let preReleaseNotifierStringArray = ["All features subject to change.", "Contents strictly confidential.", "Evaluation version.", "For testing purposes only.", "For use by authorised parties only.", "Not for public use.", "Redistribution is prohibited.", "This is pre-release software."]
+        let preReleaseNotifierStringArray = ["All features subject to change.", "Contents strictly confidential.", "Evaluation version.", "For testing purposes only.", "For use by authorized parties only.", "Not for public use.", "Redistribution is prohibited.", "This is pre-release software."]
         
         return ["buildNumberAsString": String(fullBuildNumber),
                 "buildSku": generateBuildSku(buildDateUnixDouble: buildDateUnixDouble, buildNumber: fullBuildNumber),
                 "bundleVersion": bundleVersion,
                 "expiryInformationString": generateExpiryInformation(buildDateUnixDouble: buildDateUnixDouble).informationString,
-                "preReleaseNotifier": preReleaseNotifierStringArray[randomInteger(0, maximumValue: preReleaseNotifierStringArray.count - 1)],
+                "preReleaseNotifier": preReleaseNotifierStringArray[Int().random(min: 0, max: preReleaseNotifierStringArray.count - 1)],
                 "projectIdentifier": generateProjectIdentifier(),
                 "subtitleExpiryString": generateExpiryInformation(buildDateUnixDouble: buildDateUnixDouble).subtitleString]
     }
     
     ///Generates the project's unique identifier.
-    private func generateProjectIdentifier() -> String
-    {
+    private func generateProjectIdentifier() -> String {
         //Declare the serial array.
         var projectIdentifierAsStringCharacterArray: [String]! = []
         
@@ -408,8 +323,8 @@ class Build
         let firstCompileDate = identifierDateFormatter.date(from: dmyFirstCompileDateString) ?? identifierDateFormatter.date(from: "24011984")!
         
         //The first and last letters of the code name as their positions within the alphabet.
-        let codeNameFirstLetterPositionValue = String(codeName.first!).alphabeticalPositionValue
-        let codeNameLastLetterPositionValue = String(codeName.last!).alphabeticalPositionValue
+        let codeNameFirstLetterPositionValue = String(codeName.first!).alphabeticalPosition
+        let codeNameLastLetterPositionValue = String(codeName.last!).alphabeticalPosition
         
         //The day, month, and year from the first compile date.
         let dayFromFirstCompileDate = Calendar.current.component(.day, from: firstCompileDate)
@@ -426,16 +341,15 @@ class Build
         let middleLetter = String(codeName[middleLetterIndex])
         
         //An array, which contains each digit in the value returned by multiplying every relevant numerical value, as a string.
-        let multipliedConstantArray = String(codeNameFirstLetterPositionValue * middleLetter.alphabeticalPositionValue * codeNameLastLetterPositionValue * dayFromFirstCompileDate * monthFromFirstCompileDate * yearFromFirstCompileDate).map({ String($0) })
+        let multipliedConstantArray = String(codeNameFirstLetterPositionValue * middleLetter.alphabeticalPosition * codeNameLastLetterPositionValue * dayFromFirstCompileDate * monthFromFirstCompileDate * yearFromFirstCompileDate).map({String($0)})
         
         //Iterate over multipliedConstantArray.
-        for individualIntegerAsString in multipliedConstantArray
-        {
+        for individualIntegerAsString in multipliedConstantArray {
             //Append the current integer as a string to our project identifier array.
             projectIdentifierAsStringCharacterArray.append(individualIntegerAsString)
             
             //The middle letter advanced by the value of the current integer.
-            let cipheredMiddleLetter = PresentationManager().cipherString(withString: middleLetter, shiftModifier: Int(individualIntegerAsString)!).uppercased()
+            let cipheredMiddleLetter = AlertKit().cipherString(withString: middleLetter, shiftModifier: Int(individualIntegerAsString)!).uppercased()
             
             //Append the ciphered middle letter.
             projectIdentifierAsStringCharacterArray.append(cipheredMiddleLetter)
@@ -445,29 +359,23 @@ class Build
         projectIdentifierAsStringCharacterArray = (Array(NSOrderedSet(array: projectIdentifierAsStringCharacterArray)) as! [String])
         
         //If the count of our project identifier array is greater than 8.
-        if projectIdentifierAsStringCharacterArray.count > 8
-        {
+        if projectIdentifierAsStringCharacterArray.count > 8 {
             //While the count of our project identifier array is greater than 8.
-            while projectIdentifierAsStringCharacterArray.count > 8
-            {
+            while projectIdentifierAsStringCharacterArray.count > 8 {
                 //Remove the last value.
                 projectIdentifierAsStringCharacterArray.remove(at: projectIdentifierAsStringCharacterArray.count - 1)
             }
-        }
-        else if projectIdentifierAsStringCharacterArray.count < 8 //If the count is less than 8.
-        {
+        } else if projectIdentifierAsStringCharacterArray.count < 8 { //If the count is less than 8.
             //Set the letter in use.
             var letterInUse = middleLetter
             
             //While the count of our project identifier array is less than 8.
-            while projectIdentifierAsStringCharacterArray.count < 8
-            {
+            while projectIdentifierAsStringCharacterArray.count < 8 {
                 //Cipher the letter in use by its position in the alphabet.
-                letterInUse = PresentationManager().cipherString(withString: letterInUse, shiftModifier: letterInUse.alphabeticalPositionValue)
+                letterInUse = AlertKit().cipherString(withString: letterInUse, shiftModifier: letterInUse.alphabeticalPosition)
                 
                 //If our project identifier array doesn't contain this letter, append it to the array.
-                if !projectIdentifierAsStringCharacterArray.contains(letterInUse)
-                {
+                if !projectIdentifierAsStringCharacterArray.contains(letterInUse) {
                     projectIdentifierAsStringCharacterArray.append(letterInUse)
                 }
             }

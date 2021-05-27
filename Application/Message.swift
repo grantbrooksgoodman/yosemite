@@ -3,17 +3,17 @@
 //  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 12/05/2020.
-//  Copyright © 2013-2020 NEOTechnica Corporation. All rights reserved.
+//  Copyright © 2013-2021 NEOTechnica Corporation. All rights reserved.
 //
 
-//First-party Frameworks
+/* First-party Frameworks */
 import UIKit
 
-class Message
-{
-    //--------------------------------------------------//
+class Message {
     
-    //Class-Level Variable Declarations
+    //==================================================//
+    
+    /* MARK: - Class-level Variable Declarations */
     
     //Dates
     var readDate: Date?
@@ -24,18 +24,11 @@ class Message
     var fromAccountIdentifier: String!
     var messageContent:        String!
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Initialiser Function */
+    /* MARK: - Constructor Function */
     
-    /**
-     - Parameter associatedIdentifier:
-     - Parameter fromAccount: Must be an instance of either **Animal** or **User**.
-     - Parameter messageContent:
-     - Parameter sentDate:
-     */
-    init(associatedIdentifier: String, fromAccountIdentifier: String, messageContent: String, readDate: Date?, sentDate: Date)
-    {
+    init(associatedIdentifier: String, fromAccountIdentifier: String, messageContent: String, readDate: Date?, sentDate: Date) {
         self.associatedIdentifier  = associatedIdentifier
         self.fromAccountIdentifier = fromAccountIdentifier
         self.messageContent        = messageContent
@@ -43,14 +36,13 @@ class Message
         self.sentDate              = sentDate
     }
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    //Other Functions
+    /* MARK: - Other Functions */
     
-    ///Serialises the **Message's** metadata.
-    func convertToDataBundle() -> [String:Any]
-    {
-        var dataBundle: [String:Any] = [:]
+    ///Serializes the **Message's** metadata.
+    func serialize() -> [String: Any] {
+        var dataBundle: [String: Any] = [:]
         
         dataBundle["fromAccount"]          = fromAccountIdentifier
         dataBundle["messageContent"]       = messageContent

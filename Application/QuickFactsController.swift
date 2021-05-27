@@ -3,39 +3,33 @@
 //  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 20/08/2020.
-//  Copyright © 2013-2020 NEOTechnica Corporation. All rights reserved.
+//  Copyright © 2013-2021 NEOTechnica Corporation. All rights reserved.
 //
 
-//First-party Frameworks
+/* First-party Frameworks */
 import MessageUI
 import UIKit
 
-class QuickFactsController: UIViewController
-{
-    //--------------------------------------------------//
+class QuickFactsController: UIViewController {
     
-    /* Interface Builder UI Elements */
+    //==================================================//
+    
+    /* MARK: - Interface Builder UI Elements */
     
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var majorLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Class-level Declarations */
+    /* MARK: - Overridden Functions */
     
-    //--------------------------------------------------//
-    
-    /* Overridden Functions */
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         let user = (self.parent as? CardPageController == nil) ? currentUser! : (self.parent as! CardPageController).user!
@@ -51,8 +45,7 @@ class QuickFactsController: UIViewController
         
         var yearText: String?
         
-        switch user.factoidData.yearCode() as Int
-        {
+        switch user.factoidData.yearCode() as Int {
         case 0:
             yearText = "Freshman"
         case 1:
@@ -69,32 +62,20 @@ class QuickFactsController: UIViewController
             yearText = nil
         }
         
-        if let year = yearText
-        {
+        if let year = yearText {
             yearLabel.text = "\(year)"
         }
         
-        for line in view.subviews
-        {
-            if line.tag == aTagFor("lineView")
-            {
+        for line in view.subviews {
+            if line.tag == aTagFor("lineView") {
                 line.frame.size.width = f.width(line.frame.size.width)
             }
         }
         
-        view.updateFrame()
+        //view.updateFrame()
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
+    override func viewWillAppear(_ animated: Bool) {
         view.tag += 1
     }
-    
-    //--------------------------------------------------//
-    
-    /* Interface Builder Actions */
-    
-    //--------------------------------------------------//
-    
-    /* Independent Functions */
 }

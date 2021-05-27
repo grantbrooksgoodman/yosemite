@@ -1,19 +1,19 @@
 //
-//  UserDataBundle.swift
+//  UserData.swift
 //  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 05/08/2020.
-//  Copyright © 2013-2020 NEOTechnica Corporation. All rights reserved.
+//  Copyright © 2013-2021 NEOTechnica Corporation. All rights reserved.
 //
 
-//First-party Frameworks
+/* First-party Frameworks */
 import UIKit
 
-class UserData
-{
-    //--------------------------------------------------//
+class UserData {
     
-    //Class-Level Variable Declarations
+    //==================================================//
+    
+    /* MARK: - Class-level Variable Declarations */
     
     //Arrays
     var profileImageData: [String]?
@@ -71,17 +71,16 @@ class UserData
     //max 100 pts.
     //decreases with each thing both don't specify
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Initialiser Function */
+    /* MARK: - Constructor Function */
     
     init(bioText: String?,
          birthDate: Date,
          lastActiveDate: Date,
          profileImageData: [String]?,
          sexualPreference: Int,
-         studentType: Int)
-    {
+         studentType: Int) {
         self.bioText = bioText
         self.birthDate = birthDate
         self.lastActiveDate = lastActiveDate
@@ -90,29 +89,12 @@ class UserData
         self.studentType = studentType
     }
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    //Other Functions
+    /* MARK: - Other Functions */
     
-    ///Serialises the **UserData's** metadata.
-    func serialise() -> [String:Any]
-    {
-        var dataBundle: [String:Any] = [:]
-        
-        dataBundle["bioText"] = bioText ?? "!"
-        dataBundle["birthDate"] = masterDateFormatter.string(from: birthDate)
-        dataBundle["lastActive"] = secondaryDateFormatter.string(from: lastActiveDate)
-        dataBundle["profileImageData"] = profileImageData ?? ["!"]
-        dataBundle["sexualPreference"] = sexualPreference
-        dataBundle["studentType"] = studentType
-        
-        return dataBundle
-    }
-    
-    func getSexualPreferenceString() -> String
-    {
-        switch sexualPreference as Int
-        {
+    func getSexualPreferenceString() -> String {
+        switch sexualPreference as Int {
         case 1:
             return "Males"
         case 2:
@@ -128,10 +110,8 @@ class UserData
         }
     }
     
-    func getStudentTypeString() -> String
-    {
-        switch studentType as Int
-        {
+    func getStudentTypeString() -> String {
+        switch studentType as Int {
         case 1:
             return "Out-of-state"
         case 2:
@@ -139,5 +119,19 @@ class UserData
         default:
             return "In-state"
         }
+    }
+    
+    ///Serializes the **UserData's** metadata.
+    func serialize() -> [String: Any] {
+        var dataBundle: [String: Any] = [:]
+        
+        dataBundle["bioText"] = bioText ?? "!"
+        dataBundle["birthDate"] = masterDateFormatter.string(from: birthDate)
+        dataBundle["lastActive"] = secondaryDateFormatter.string(from: lastActiveDate)
+        dataBundle["profileImageData"] = profileImageData ?? ["!"]
+        dataBundle["sexualPreference"] = sexualPreference
+        dataBundle["studentType"] = studentType
+        
+        return dataBundle
     }
 }

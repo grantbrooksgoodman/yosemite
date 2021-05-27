@@ -3,24 +3,24 @@
 //  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 04/08/2020.
-//  Copyright © 2013-2020 NEOTechnica Corporation. All rights reserved.
+//  Copyright © 2013-2021 NEOTechnica Corporation. All rights reserved.
 //
 
-//First-party Frameworks
+/* First-party Frameworks */
 import MessageUI
 import UIKit
 
-class FactoidCardsController: UIViewController, MFMailComposeViewControllerDelegate
-{
-    //--------------------------------------------------//
+class FactoidCardsController: UIViewController, MFMailComposeViewControllerDelegate {
     
-    /* Interface Builder UI Elements */
+    //==================================================//
+    
+    /* MARK: - Interface Builder UI Elements */
     
     @IBOutlet weak var tableView: UITableView!
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Class-level Declarations */
+    /* MARK: - Class-level Variable Declarations */
     
     //Arrays
     var factoidCards: [FactoidCard]!
@@ -31,37 +31,33 @@ class FactoidCardsController: UIViewController, MFMailComposeViewControllerDeleg
     var currentIndexPath: IndexPath?
     var originalContentOffset: CGPoint?
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Initialiser Function */
+    /* MARK: - Initializer Function */
     
-    func initialiseController()
-    {
-        lastInitialisedController = self
+    func initializeController() {
+        lastInitializedController = self
         buildInstance = Build(self)
     }
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Overridden Functions */
+    /* MARK: - Overridden Functions */
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
     
-    override func viewDidAppear(_ animated: Bool)
-    {
+    override func viewDidAppear(_ animated: Bool) {
         UIView.transition(with: self.navigationController!.navigationBar, duration: 0.1, options: [.transitionCrossDissolve], animations: {
             self.title = "Factoid Cards"
         })
     }
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
-        initialiseController()
+        initializeController()
         
         let quickFactsCard = FactoidCard(title: "Quick Facts Card",
                                          subtitle: "Displays basic information about your profile",
@@ -85,7 +81,7 @@ class FactoidCardsController: UIViewController, MFMailComposeViewControllerDeleg
                                   isHidden: currentUser!.factoidData.greekLifeOrganisation?.0.1 ?? true,
                                   isRequired: false,
                                   viewController: genericCard(title: "⚔️ GREEK LIFE ORGANISATION", content:
-                                    "\(glo == "!" ? "none" : glo)"))
+                                                                "\(glo == "!" ? "none" : glo)"))
         
         let openToCard = FactoidCard(title: "Open To Card",
                                      subtitle: "What are you looking for in a match?",
@@ -100,29 +96,22 @@ class FactoidCardsController: UIViewController, MFMailComposeViewControllerDeleg
         tableView.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         currentFile = #file
         buildInfoController?.view.isHidden = false
     }
     
-    override func viewWillDisappear(_ animated: Bool)
-    {
+    override func viewWillDisappear(_ animated: Bool) {
         title = ""
     }
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Interface Builder Actions */
+    /* MARK: - Other Functions */
     
-    //--------------------------------------------------//
-    
-    /* Independent Functions */
-    
-    func genericCard(title: String, content: String) -> UIViewController
-    {
+    func genericCard(title: String, content: String) -> UIViewController {
         let withController = UIStoryboard(name: "ExpandedCard", bundle: nil).instantiateViewController(withIdentifier: "GenericController")
         
         if let genericController = withController as? GenericController
@@ -134,28 +123,29 @@ class FactoidCardsController: UIViewController, MFMailComposeViewControllerDeleg
         return withController
     }
     
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
-    {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         buildInstance.handleMailComposition(withController: controller, withResult: result, withError: error)
     }
 }
 
-extension FactoidCardsController: UITableViewDataSource, UITableViewDelegate
-{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+//==================================================//
+
+/* MARK: - Extensions */
+
+/**/
+
+/* MARK: UITableViewDataSource, UITableViewDelegate */
+extension FactoidCardsController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return factoidCards.count
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //If the currently selected card is editable and a cell is not currently being edited already.
-        if factoidCards[indexPath.row].isEditable && originalContentOffset == nil
-        {
+        if factoidCards[indexPath.row].isEditable && originalContentOffset == nil {
             //Get the currently selected «FactoidCardCell» and its associated view controller.
             if let currentCell = tableView.cellForRow(at: indexPath) as? FactoidCardCell,
-                let cardView = factoidCards[indexPath.row].viewController.view
-            {
+               let cardView = factoidCards[indexPath.row].viewController.view {
                 //Instantiate the text view to be added to the current cell.
                 let textView = UITextView(frame: cardView.frame)
                 textView.backgroundColor = cardView.backgroundColor
@@ -163,10 +153,8 @@ extension FactoidCardsController: UITableViewDataSource, UITableViewDelegate
                 textView.font = UIFont(name: "SFUIText-Regular", size: 20)
                 textView.returnKeyType = .done
                 
-                if let genericController = factoidCards[indexPath.row].viewController as? GenericController
-                {
-                    if genericController.content != "none" && genericController.content != ""
-                    {
+                if let genericController = factoidCards[indexPath.row].viewController as? GenericController {
+                    if genericController.content != "none" && genericController.content != "" {
                         textView.text = genericController.content
                     }
                 }
@@ -179,17 +167,14 @@ extension FactoidCardsController: UITableViewDataSource, UITableViewDelegate
                 //If the index path (stored in the tag) is greater than can be displayed on a 5.8 inch screen.
                 //i.e. The selected cell wouldn't be seen if the table view was scrolled to the top.
                 #warning("The comparison value must be tailored to screen size.")
-                if tableView.visibleCells.last!.tag > 2
-                {
+                if tableView.visibleCells.last!.tag > 2 {
                     //Animate the hiding of the table view and then scroll it to the top.
                     UIView.animate(withDuration: 0.15, animations: {
                         tableView.alpha = 0
                     }) { (_) in
                         tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
                     }
-                }
-                else //If the selected cell would be visible if the table view was scrolled to the top.
-                {
+                } else /* If the selected cell would be visible if the table view was scrolled to the top. */ {
                     //Scroll the table view to the top.
                     tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
                 }
@@ -198,8 +183,7 @@ extension FactoidCardsController: UITableViewDataSource, UITableViewDelegate
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(250)) {
                     //If the last visible cell's index path is greater than or equal to that of the currently selected cell.
                     //i.e. The selected cell can be seen from the top of the table view.
-                    if tableView.visibleCells.last!.tag >= indexPath.row
-                    {
+                    if tableView.visibleCells.last!.tag >= indexPath.row {
                         //Set the global «currentIndexPath» variable to be referenced later.
                         self.currentIndexPath = indexPath
                         
@@ -207,16 +191,13 @@ extension FactoidCardsController: UITableViewDataSource, UITableViewDelegate
                         tableView.moveRow(at: indexPath, to: IndexPath(row: 0, section: 0))
                         
                         //Add a blur overlay to each of the cells besides the first.
-                        for individualCell in tableView.visibleCells[1...tableView.visibleCells.count - 1]
-                        {
+                        for individualCell in tableView.visibleCells[1...tableView.visibleCells.count - 1] {
                             individualCell.addBlur(withActivityIndicator: false, withStyle: .regular, withTag: aTagFor("blur"), alpha: 0.95)
                         }
                         
                         currentCell.addSubview(textView)
                         currentCell.editLabel.alpha = 0
-                    }
-                    else //The selected cell can't be seen from the top of the table view.
-                    {
+                    } else /* The selected cell can't be seen from the top of the table view. */ {
                         //Set the global «originallyOrderedCards» variable to the value of the factoid card array pre-modification.
                         self.originallyOrderedCards = self.factoidCards
                         
@@ -236,14 +217,12 @@ extension FactoidCardsController: UITableViewDataSource, UITableViewDelegate
                         tableView.reloadData()
                         
                         //Add a blur overlay to each of the cells besides the first.
-                        for individualCell in tableView.visibleCells[1...tableView.visibleCells.count - 1]
-                        {
+                        for individualCell in tableView.visibleCells[1...tableView.visibleCells.count - 1] {
                             individualCell.addBlur(withActivityIndicator: false, withStyle: .regular, withTag: aTagFor("blur"), alpha: 0.95)
                         }
                         
                         //Get the first cell in the table view.
-                        if let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? FactoidCardCell
-                        {
+                        if let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? FactoidCardCell {
                             //Add the text view to the first cell.
                             firstCell.addSubview(textView)
                             firstCell.editLabel.alpha = 0
@@ -264,8 +243,7 @@ extension FactoidCardsController: UITableViewDataSource, UITableViewDelegate
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currentCell = tableView.dequeueReusableCell(withIdentifier: "FactoidCardCell") as! FactoidCardCell
         let currentFactoidCard = factoidCards[indexPath.row]
         
@@ -280,8 +258,7 @@ extension FactoidCardsController: UITableViewDataSource, UITableViewDelegate
         
         currentCell.editLabel.attributedText = NSAttributedString(string: "Tap card to edit info", attributes:  [.underlineStyle: NSUnderlineStyle.single.rawValue])
         
-        if currentFactoidCard.isEditable && currentFactoidCard.isRequired && originalContentOffset == nil
-        {
+        if currentFactoidCard.isEditable && currentFactoidCard.isRequired && originalContentOffset == nil {
             currentCell.requiredLabel.frame.origin.y += 8
         }
         
@@ -289,13 +266,10 @@ extension FactoidCardsController: UITableViewDataSource, UITableViewDelegate
         cardView.frame = currentCell.cardView.frame
         cardView.tag = aTagFor("cardView")
         
-        if indexPath.row % 2 == 0
-        {
+        if indexPath.row % 2 == 0 {
             currentCell.backgroundColor = .white
             cardView.backgroundColor = UIColor(hex: 0xF4F5F5)
-        }
-        else
-        {
+        } else {
             currentCell.backgroundColor = UIColor(hex: 0xF4F5F5)
             cardView.backgroundColor = .white
         }
@@ -309,48 +283,18 @@ extension FactoidCardsController: UITableViewDataSource, UITableViewDelegate
     }
 }
 
-extension String
-{
-    func removingLeadingWhitespace() -> String
-    {
-        var mutableSelf = self
-        
-        while mutableSelf.hasPrefix(" ")
-        {
-            mutableSelf = mutableSelf.chopPrefix(1)
-        }
-        
-        return mutableSelf
-    }
-    
-    func removingTrailingWhitespace() -> String
-    {
-        var mutableSelf = self
-        
-        while mutableSelf.hasSuffix(" ")
-        {
-            mutableSelf = mutableSelf.chopSuffix(1)
-        }
-        
-        return mutableSelf
-    }
-}
-
-extension FactoidCardsController: UITextViewDelegate
-{
-    func textViewDidEndEditing(_ textView: UITextView)
-    {
-        //UserSerialiser().updateCurrentUserData(type: self.factoidCards[indexPath.row].dataType, with: returnedString.removingLeadingWhitespace().removingTrailingWhitespace())
+/* MARK: UITextViewDelegate */
+extension FactoidCardsController: UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        //UserSerializer().updateCurrentUserData(type: self.factoidCards[indexPath.row].dataType, with: returnedString.removingLeadingWhitespace().removingTrailingWhitespace())
         
         //Remove the blur overlay applied to cells besides the first.
-        for individualCell in tableView.visibleCells[1...tableView.visibleCells.count - 1]
-        {
+        for individualCell in tableView.visibleCells[1...tableView.visibleCells.count - 1] {
             individualCell.removeBlur(withTag: aTagFor("blur"))
         }
         
         //If the text field was on a card that could not be seen from the top of the table view.
-        if let orderedCards = originallyOrderedCards
-        {
+        if let orderedCards = originallyOrderedCards {
             //Animate the hiding of the table view.
             UIView.animate(withDuration: 0.15, animations: {
                 self.tableView.alpha = 0
@@ -374,13 +318,10 @@ extension FactoidCardsController: UITextViewDelegate
                     self.originalContentOffset = nil
                 }
             }
-        }
-        else //If the text field was on a card that COULD be seen from the top of the table view.
-        {
+        } else /* If the text field was on a card that COULD be seen from the top of the table view. */ {
             //Unwrap the gloabl «currentIndexPath» variable and get the card view associated with it.
             if let indexPath = currentIndexPath,
-                let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? FactoidCardCell
-            {
+               let firstCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? FactoidCardCell {
                 //Remove the text view from the cell.
                 textView.removeFromSuperview()
                 firstCell.editLabel.alpha = 1
@@ -397,23 +338,19 @@ extension FactoidCardsController: UITextViewDelegate
         }
     }
     
-    func textViewShouldEndEditing(_ textView: UITextView) -> Bool
-    {
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         return true
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool
-    {
-        if (text == "\n")
-        {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
             textView.resignFirstResponder()
         }
         
         return true
     }
     
-    func textViewDidChange(_ textView: UITextView)
-    {
+    func textViewDidChange(_ textView: UITextView) {
         
     }
 }

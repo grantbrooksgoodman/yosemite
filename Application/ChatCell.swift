@@ -3,23 +3,24 @@
 //  glaid (Code Name Yosemite)
 //
 //  Created by Grant Brooks Goodman on 24/07/2020.
-//  Copyright © 2013-2020 NEOTechnica Corporation. All rights reserved.
+//  Copyright © 2013-2021 NEOTechnica Corporation. All rights reserved.
 //
 
-//First-party Frameworks
+/* First-party Frameworks */
 import UIKit
 
+/* Third-party Frameworks */
 import MessageKit
 
-class ChatCell: UITableViewCell
-{
-    //--------------------------------------------------//
+class ChatCell: UITableViewCell {
     
-    /* Interface Builder UI Elements */
+    //==================================================//
+    
+    /* MARK: - Interface Builder UI Elements */
     
     //UILabels
     @IBOutlet weak var nameLabel:    UILabel!
-    @IBOutlet weak var previewLabel: UILabel!
+    @IBOutlet weak var previewTextView: UITextView!
     
     //Other Elements
     @IBOutlet weak var profileImageView: UIImageView!
@@ -29,21 +30,15 @@ class ChatCell: UITableViewCell
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var recentlyActiveView: UIView!
     
-    //--------------------------------------------------//
+    //==================================================//
     
-    /* Overridden Functions */
+    /* MARK: - Overridden Functions */
     
-    override func awakeFromNib()
-    {
+    override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool)
-    {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
-    
 }
